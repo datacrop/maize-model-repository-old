@@ -2,7 +2,7 @@
 All notable changes to this project (DataCROP Model Repository) will be documented in this file.
 
 ---
-### [Release v0.1.0] - 2022-10-28
+### [Release v0.1.0] - 2022-10-27
 
 #### :chart_with_upwards_trend: Business Goal 
 * Creation of the outter folder structure of the repository.
