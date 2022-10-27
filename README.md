@@ -1,10 +1,13 @@
 # DataCROP Model Repository ~ Maize(V3.0)
 Implementation of databases based on the DataCROP Maize(V3.0) digital models. 
 <p align="center">
+<a href="https://github.com/datacrop/maize-model-repository/releases"><img src="https://img.shields.io/badge/latest%20release-v.0.1.0-blueviolet" alt="Release"></a>
 <a href="https://github.com/datacrop/maize-model-repository/blob/main/LICENSE"><img src="https://img.shields.io/github/license/datacrop/maize-model-repository" alt="License"></a>
 </p>
 
-![image](https://img.freepik.com/premium-vector/cute-red-panda-construction-worker-cartoon_471222-1406.jpg?w=500)
+<p align="center">
+  <img src="https://img.freepik.com/premium-vector/cute-red-panda-construction-worker-cartoon_471222-1406.jpg?w=500" />
+</p>
 
 ## Directory contents
 Here follows a short introduction of the current directory's contents:
