@@ -24,12 +24,12 @@ All notable changes to this project (DataCROP Model Repository) will be document
 * `CHANGELOG.md`  
   - [#5](https://github.com/datacrop/maize-model-repository/issues/5)
   Created the present document to keep track of the notable versions of the Model Repository component. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))
-* `CHANGELOG.md`  
+* `LICENCE.md`  
   - [#6](https://github.com/datacrop/maize-model-repository/issues/6)
-  Created the present document to keep track of the notable versions of the Model Repository component. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))  
+  Created a document with details on the licensing scheme of the Model Repository component. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))  
 * `README.md`
   - [#7](https://github.com/datacrop/maize-model-repository/issues/7)
-  Created documentation file describing the components purpose, contents and status. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))
+  Created a documentation file describing the component's purpose, contents and status. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))
   
 
 #### :pencil2: Changed 
