@@ -10,6 +10,12 @@ import org.springframework.context.annotation.ComponentScan;
         "eu.datacrop.maize.model_repository.commons.enums",
         "eu.datacrop.maize.model_repository.commons.util",
         "eu.datacrop.maize.model_repository.commons.wrappers",
+        "eu.datacrop.maize.model_repository.mongodb.converters",
+        "eu.datacrop.maize.model_repository.mongodb.daos",
+        "eu.datacrop.maize.model_repository.mongodb.listeners",
+        "eu.datacrop.maize.model_repository.mongodb.model",
+        "eu.datacrop.maize.model_repository.mongodb.repositories",
+        "eu.datacrop.maize.model_repository.mongodb.services",
 })
 public class ModelRepositoryServerApplication {
 
