@@ -3,7 +3,7 @@ package eu.datacrop.maize.model_repository.commons.enums;
 /**********************************************************************************************************************
  * This enumeration contains a result indicator to be returned from functions denoting Success or Failure.
  *
- * @author Angela-Maria Despotopoulou
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
 public enum SuccessOrFailure {

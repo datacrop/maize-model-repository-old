@@ -5,7 +5,7 @@ import java.util.UUID;
 /**********************************************************************************************************************
  * This class offers the functionality of a global tool that checks whether strings adhere to the UUID format.
  *
- * @author Angela-Maria Despotopoulou
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
 public class ValidatorUUID {

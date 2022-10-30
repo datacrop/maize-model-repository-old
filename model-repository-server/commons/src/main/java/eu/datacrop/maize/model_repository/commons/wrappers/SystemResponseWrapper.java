@@ -12,18 +12,20 @@ import java.util.List;
  * This class wraps the responses travelling from the persistence layer back to the API for a more complete
  * reporting of problems / unsuccessful requests on IoT Systems.
  *
- * @author Angela-Maria Despotopoulou
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
 public class SystemResponseWrapper extends ResponseWrapper implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 3273277217031230024L;
+
     /******************************************************************************************************************
      * A data transfer object representing a collection of IoT Systems to be wrapped while returned as a response
      * to an HTTP request.
      *****************************************************************************************************************/
     List<SystemResponseDto> listOfResponses;
+
     /******************************************************************************************************************
      * A data transfer object representing an IoT System to be wrapped while returned as a response to an HTTP request.
      *****************************************************************************************************************/

@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 /**********************************************************************************************************************
  * This class offers the functionality of a global DateTime Formatter.
  *
- * @author Angela-Maria Despotopoulou
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
 public class DateFormatter {

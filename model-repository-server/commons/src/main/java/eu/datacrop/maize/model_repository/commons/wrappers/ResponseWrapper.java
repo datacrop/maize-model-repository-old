@@ -11,7 +11,7 @@ import java.io.Serializable;
  * This class wraps the responses travelling from the persistence layer back to the API for a more complete
  * reporting of problems / unsuccessful requests.
  *
- * @author Angela-Maria Despotopoulou
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
 
