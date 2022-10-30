@@ -8,7 +8,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Builder
 public class LocationResponseDto implements Serializable {
 
     @Serial
@@ -25,7 +24,7 @@ public class LocationResponseDto implements Serializable {
     private String virtualLocation;
 
     /******************************************************************************************************************
-     * Constructor of the LocationResponseDto class, both for Builder pattern and instantiation with "new".
+     * Constructor of the LocationResponseDto class.
      *****************************************************************************************************************/
     public LocationResponseDto(double latitude, double longitude, String virtualLocation) {
 

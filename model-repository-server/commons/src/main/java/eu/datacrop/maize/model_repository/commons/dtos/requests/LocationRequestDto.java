@@ -8,11 +8,11 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Builder
 public class LocationRequestDto implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 418281017020031854L;
+    private static final long serialVersionUID = -5500314095045018717L;
+
 
     /******************************************************************************************************************
      * Αn object representing a Geographical Location (a pair of  coordinates).
@@ -162,7 +162,8 @@ public class LocationRequestDto implements Serializable {
     public static class GeoLocationRequestDto implements Serializable {
 
         @Serial
-        private static final long serialVersionUID = 4100314718361516719L;
+        private static final long serialVersionUID = -7873833700409892138L;
+
 
         /**************************************************************************************************************
          * The latitude of the geographical location.
