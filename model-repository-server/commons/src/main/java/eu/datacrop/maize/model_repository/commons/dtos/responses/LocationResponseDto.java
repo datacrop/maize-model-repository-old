@@ -8,6 +8,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**********************************************************************************************************************
+ * This class is a data transfer object representing Locations (Geographical or Virtual ones). Used in HTTP responses.
+ *********************************************************************************************************************/
 public class LocationResponseDto implements Serializable {
 
     @Serial
@@ -102,16 +105,22 @@ public class LocationResponseDto implements Serializable {
     /******************************************************************************************************************
      * "Setter" method for "virtualLocation" attribute.
      *
-     * @param virtualLocation A value to assign to the object's "virtualLocation" attribute.
+     * @param virtualLocation A value to assign to the object's "virtualLocation" attribute, not null.
      *****************************************************************************************************************/
     public void setVirtualLocation(String virtualLocation) {
         this.virtualLocation = virtualLocation;
+        if (!StringUtils.isBlank(virtualLocation)) {
+            this.geoLocation = LocationResponseDto.GeoLocationResponseDto.builder()
+                    .latitude(0.0)
+                    .longitude(0.0)
+                    .build();
+        }
     }
 
     /******************************************************************************************************************
      * Method that checks whether two LocationResponseDto objects are equal.
      *
-     * @param o The second Object two compare with the current Object.
+     * @param o The second Object to compare with the current Object, not null.
      *****************************************************************************************************************/
     @Override
     public boolean equals(Object o) {
@@ -203,7 +212,7 @@ public class LocationResponseDto implements Serializable {
         /**************************************************************************************************************
          * "Setter" function for "latitude" attribute.
          *
-         * @param latitude A value to assign to the object's "latitude" attribute.
+         * @param latitude A value to assign to the object's "latitude" attribute, not null.
          *************************************************************************************************************/
         private void setLatitude(double latitude) {
             this.latitude = latitude;
@@ -221,7 +230,7 @@ public class LocationResponseDto implements Serializable {
         /**************************************************************************************************************
          * "Setter" function for "longitude" attribute.
          *
-         * @param longitude A value to assign to the object's "longitude" attribute.
+         * @param longitude A value to assign to the object's "longitude" attribute, not null.
          *************************************************************************************************************/
         private void setLongitude(double longitude) {
             this.longitude = longitude;
@@ -230,7 +239,7 @@ public class LocationResponseDto implements Serializable {
         /**************************************************************************************************************
          * Method that checks whether two GeoLocationResponseDto objects are equal.
          *
-         * @param o The second Object two compare with the current Object.
+         * @param o The second Object to compare with the current Object, not null.
          *************************************************************************************************************/
         @Override
         public boolean equals(Object o) {
