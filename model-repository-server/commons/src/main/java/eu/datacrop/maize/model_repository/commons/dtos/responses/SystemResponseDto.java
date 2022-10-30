@@ -14,6 +14,9 @@ import java.util.Set;
 
 /**********************************************************************************************************************
  * This class is a data transfer object representing IoT Systems. Used in HTTP responses.
+ *
+ * @author Angela-Maria Despotopoulou
+ * @since version 0.3.0
  *********************************************************************************************************************/
 @Builder
 public class SystemResponseDto implements Serializable {

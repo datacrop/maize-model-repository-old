@@ -10,6 +10,9 @@ import java.util.Objects;
 
 /**********************************************************************************************************************
  * This class is a data transfer object representing Locations (Geographical or Virtual ones). Used in HTTP responses.
+ *
+ * @author Angela-Maria Despotopoulou
+ * @since version 0.3.0
  *********************************************************************************************************************/
 public class LocationResponseDto implements Serializable {
 
