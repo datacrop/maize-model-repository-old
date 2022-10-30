@@ -2,6 +2,27 @@
 All notable changes to this project (DataCROP Model Repository) will be documented in this file.
 
 ---
+### [Release v0.2.0] - 2022-10-30
+
+#### :chart_with_upwards_trend: Business Goal 
+* Instantiation of the Spring Boot Project with multiple properties files for different databases. ~ [Milestone 2](https://github.com/datacrop/maize-model-repository/milestone/2)
+
+#### :rocket: Added 
+
+* `model-repository-server`
+  - [#8](https://github.com/datacrop/maize-model-repository/issues/8)
+  Instantiated the Spring Boot Project as a Maven Project with six modules: API, services, persistence, mysql, mongo, commons. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))
+  - [#9](https://github.com/datacrop/maize-model-repository/issues/9)
+Created the following application.properties files: one generic, one for Mongo configurations, one for H2 JPA database and one for MySQL JPA database.
+* `quick-dev-tools\docker-compose.yml`
+  - [#9](https://github.com/datacrop/maize-model-repository/issues/9)
+  Created docker-compose.yml file for local installation of a MongoDB and a MySQL container for development purposes. ([@AngelaMariaDespotopoulou](https://github.com/AngelaMariaDespotopoulou))
+  
+
+#### :pencil2: Changed 
+
+#### :wrench: Fixed 
+---
 ### [Release v0.1.0] - 2022-10-27
 
 #### :chart_with_upwards_trend: Business Goal 
