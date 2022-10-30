@@ -2,7 +2,10 @@ package eu.datacrop.maize.model_repository.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
@@ -17,6 +20,9 @@ import org.springframework.context.annotation.ComponentScan;
         "eu.datacrop.maize.model_repository.mongodb.repositories",
         "eu.datacrop.maize.model_repository.mongodb.services",
 })
+@EnableMongoAuditing
+@EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})
+@EntityScan(basePackages = {"eu.datacrop.maize.model_repository.mongodb.model"})
 public class ModelRepositoryServerApplication {
 
     public static void main(String[] args) {

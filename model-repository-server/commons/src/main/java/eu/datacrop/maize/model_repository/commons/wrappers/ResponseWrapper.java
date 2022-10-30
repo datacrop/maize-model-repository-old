@@ -40,6 +40,13 @@ public class ResponseWrapper implements Serializable {
     }
 
     /******************************************************************************************************************
+     * Empty constructor of the ResponseWrapper class.
+     *****************************************************************************************************************/
+    public ResponseWrapper() {
+
+    }
+
+    /******************************************************************************************************************
      * "Getter" function for "code" attribute.
      *
      * @return The current value of the object's "code" attribute.
@@ -51,7 +58,7 @@ public class ResponseWrapper implements Serializable {
     /******************************************************************************************************************
      * "Setter" function for "code" attribute.
      *
-     * @param code A value to assign to the object's "code" attribute.
+     * @param code A value to assign to the object's "code" attribute, not null.
      *****************************************************************************************************************/
     public void setCode(ResponseCode code) {
         this.code = code;
@@ -69,7 +76,7 @@ public class ResponseWrapper implements Serializable {
     /******************************************************************************************************************
      * "Setter" function for "message" attribute.
      *
-     * @param message A value to assign to the object's "message" attribute.
+     * @param message A value to assign to the object's "message" attribute, not null.
      *****************************************************************************************************************/
     public void setMessage(String message) {
         this.message = message;
