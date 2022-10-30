@@ -1,0 +1,51 @@
+version: '3.3'
+
+services:
+  mongo-storage:
+    image: 'mongo:latest'
+    container_name: mongo
+    ports:
+      - '27020:27017'
+    expose:
+      - '27020'
+    volumes:
+      - 'model-repository-mongo:/data/model-repository-mongo'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin     
+      MONGO_INITDB_DATABASE: maize-model-repository 
+    networks:
+      - model-repository-net
+    restart: on-failure
+
+  mysql-storage:
+     image: mysql:latest
+     container_name: mysql
+     ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3310:3306'
+     expose:
+      # Opens port 3306 on the container
+      - '3310'     
+     environment:
+      MYSQL_DATABASE: 'maize-model-repository'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+      # Where our data will be persisted
+     volumes:
+      - model-repository-mysql:/var/lib/mysql
+     networks:
+      - model-repository-net
+     restart: on-failure 
+  
+volumes:
+  model-repository-mongo: null
+  model-repository-mysql: null
+
+networks:
+  model-repository-net:
+    external: false
