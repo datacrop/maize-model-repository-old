@@ -59,6 +59,28 @@
                     <mainClass>eu.datacrop.maize.model_repository.api.ModelRepositoryServerApplication</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Specific configuration for the aggregate report -->
+                            <reportOutputDirectory>${user.dir}/documents</reportOutputDirectory>
+                            <destDir>javadoc</destDir>
+                        </configuration>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
