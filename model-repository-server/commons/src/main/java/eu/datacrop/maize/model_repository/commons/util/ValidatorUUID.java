@@ -12,6 +12,8 @@ public class ValidatorUUID {
 
     /******************************************************************************************************************
      * Constructor of the ValidatorUUID class (private to disallow instantiation).
+     *
+     * @throws IllegalStateException if called, since the class is not meant to be instantiated.
      *****************************************************************************************************************/
     private ValidatorUUID() {
         throw new IllegalStateException("Utility classes should not be instantiated.");

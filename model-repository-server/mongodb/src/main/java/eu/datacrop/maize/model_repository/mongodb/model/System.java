@@ -5,6 +5,7 @@ import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
 import eu.datacrop.maize.model_repository.mongodb.listeners.SystemListener;
 import eu.datacrop.maize.model_repository.mongodb.model.auxiliary.Location;
 import lombok.Builder;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -66,6 +67,7 @@ public class System implements Serializable {
     /******************************************************************************************************************
      * Timestamp of first persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
+    @CreatedDate
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private LocalDateTime creationDate;
 

@@ -70,6 +70,25 @@ public class LocationResponseDto implements Serializable {
         return geoLocation;
     }
 
+    /**************************************************************************************************************
+     * "Getter" function for "latitude" attribute.
+     *
+     * @return The current value of the object's "latitude" attribute.
+     *************************************************************************************************************/
+    public double getLatitude() {
+        return geoLocation.getLatitude();
+    }
+
+
+    /**************************************************************************************************************
+     * "Getter" function for "longitude" attribute.
+     *
+     * @return The current value of the object's "longitude" attribute.
+     *************************************************************************************************************/
+    public double getLongitude() {
+        return geoLocation.getLongitude();
+    }
+
     /******************************************************************************************************************
      * "Setter" method for "geoLocation" attribute. If the Virtual Location is null, then the Geographical Location
      * must have a value and vice versa.

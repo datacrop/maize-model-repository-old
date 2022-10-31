@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         "eu.datacrop.maize.model_repository.commons.wrappers.collection",
         "eu.datacrop.maize.model_repository.commons.wrappers.single",
         "eu.datacrop.maize.model_repository.mongodb.converters",
+        "eu.datacrop.maize.model_repository.mongodb.converters.auxiliary",
         "eu.datacrop.maize.model_repository.mongodb.daos",
         "eu.datacrop.maize.model_repository.mongodb.listeners",
         "eu.datacrop.maize.model_repository.mongodb.model",
