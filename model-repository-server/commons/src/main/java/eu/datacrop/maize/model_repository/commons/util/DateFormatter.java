@@ -13,7 +13,7 @@ public class DateFormatter {
     /******************************************************************************************************************
      * Definition of the global DateTime Formatter.
      *****************************************************************************************************************/
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
 
     /******************************************************************************************************************
      * Constructor of the DateTimeFormatter class (private to disallow instantiation).

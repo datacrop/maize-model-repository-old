@@ -1,17 +1,35 @@
 package eu.datacrop.maize.model_repository.mongodb.services;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.exceptions.NonUuidArgumentException;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
+import eu.datacrop.maize.model_repository.commons.util.ValidatorUUID;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.mongodb.converters.SystemConverters;
+import eu.datacrop.maize.model_repository.mongodb.model.System;
+import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**********************************************************************************************************************
- * This interface defines the services offered by Mongo databases pertaining to the persistence of IoT Systems.
+ * This class implements the services offered by Mongo databases pertaining to the persistence of IoT Systems.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public interface SystemServices {
+@Slf4j
+@Service
+public class SystemServicesImpl implements SystemServices {
+
+    @Autowired
+    SystemRepository repository;
+
+    @Autowired
+    SystemConverters converters;
+
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its databaseID as unique identifier.
@@ -22,7 +40,52 @@ public interface SystemServices {
      * @throws IllegalArgumentException if databaseID parameter is null or empty string.
      * @throws NonUuidArgumentException if databaseID parameter does not adhere to UUID format.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException, NonUuidArgumentException;
+    @Override
+    public SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException, NonUuidArgumentException {
+
+        // Validating input parameter.
+        if (databaseID == null || databaseID.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method retrieveSystemByDatabaseID().");
+        } else if (ValidatorUUID.isValidUUIDFormat(databaseID).equals(Boolean.FALSE)) {
+            throw new NonUuidArgumentException("Non-UUID parameter detected for method retrieveSystemByDatabaseID().");
+        }
+
+        // Attempting to retrieve the entity corresponding to the databaseID.
+        System entity;
+        String message;
+        try {
+            entity = repository.findById(databaseID).orElse(null);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // If nothing has been found, but not due to error, report accordingly.
+        if (entity == null) {
+            message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
+            log.info(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+        }
+
+        // Since the retrieval has been successful, enclosing the System into a message.
+        SystemResponseWrapper wrapper;
+        try {
+            wrapper = converters.convertEntityToResponseWrapper(entity);
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        log.info("Successfully retrieved System from database with ID: '{}'.", databaseID);
+        return wrapper;
+    }
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its name as unique identifier.
@@ -32,7 +95,10 @@ public interface SystemServices {
      *
      * @throws IllegalArgumentException if name parameter is null or an empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to retrieve all Systems paginated.
@@ -41,7 +107,10 @@ public interface SystemServices {
      * @param size The intended size of pages.
      * @return A wrapped data transfer object with either information on the retrieved Systems or failure messages.
      *****************************************************************************************************************/
-    SystemResponsesWrapper retrieveAllSystems(int page, int size);
+    @Override
+    public SystemResponsesWrapper retrieveAllSystems(int page, int size) {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to persist a new System.
@@ -51,7 +120,10 @@ public interface SystemServices {
      *
      * @throws IllegalArgumentException if requestDto parameter is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to update an existing System using its databaseID as unique identifier.
@@ -63,7 +135,10 @@ public interface SystemServices {
      * @throws IllegalArgumentException if requestDto parameter is null.
      * @throws IllegalArgumentException if databaseID parameter is null, empty or does not adhere to UUID format.
      *****************************************************************************************************************/
-    SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to delete an existing System using its databaseID as unique identifier.
@@ -73,13 +148,18 @@ public interface SystemServices {
      *
      * @throws IllegalArgumentException if databaseID parameter is null, empty or does not adhere to UUID format.
      *****************************************************************************************************************/
-    SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to delete all existing Systems.
      *
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
-    SystemResponsesWrapper deleteAllSystems();
-
+    @Override
+    public SystemResponsesWrapper deleteAllSystems() {
+        return null;
+    }
 }

@@ -11,6 +11,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @ComponentScan(basePackages = {
         "eu.datacrop.maize.model_repository.commons.dtos",
         "eu.datacrop.maize.model_repository.commons.enums",
+        "eu.datacrop.maize.model_repository.commons.error",
+        "eu.datacrop.maize.model_repository.commons.error.exceptions",
+        "eu.datacrop.maize.model_repository.commons.error.messages",
         "eu.datacrop.maize.model_repository.commons.util",
         "eu.datacrop.maize.model_repository.commons.wrappers",
         "eu.datacrop.maize.model_repository.commons.wrappers.collection",

@@ -57,13 +57,13 @@ public class SystemResponseDto implements Serializable {
     /******************************************************************************************************************
      * Timestamp of first persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime creationDate;
 
     /******************************************************************************************************************
      * Timestamp of latest persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime latestUpdateDate;
 
     /******************************************************************************************************************

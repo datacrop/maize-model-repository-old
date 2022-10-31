@@ -68,14 +68,14 @@ public class System implements Serializable {
      * Timestamp of first persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
     @CreatedDate
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime creationDate;
 
     /******************************************************************************************************************
      * Timestamp of latest persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
     @LastModifiedDate
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime latestUpdateDate;
 
     /******************************************************************************************************************
