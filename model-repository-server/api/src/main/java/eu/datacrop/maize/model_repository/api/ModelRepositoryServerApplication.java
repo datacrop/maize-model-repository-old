@@ -19,12 +19,16 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         "eu.datacrop.maize.model_repository.mongodb.daos",
         "eu.datacrop.maize.model_repository.mongodb.listeners",
         "eu.datacrop.maize.model_repository.mongodb.model",
+        "eu.datacrop.maize.model_repository.mongodb.model.auxiliary",
         "eu.datacrop.maize.model_repository.mongodb.repositories",
         "eu.datacrop.maize.model_repository.mongodb.services",
 })
 @EnableMongoAuditing
 @EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})
-@EntityScan(basePackages = {"eu.datacrop.maize.model_repository.mongodb.model"})
+@EntityScan(basePackages = {
+        "eu.datacrop.maize.model_repository.mongodb.model",
+        "eu.datacrop.maize.model_repository.mongodb.model.auxiliary"
+})
 public class ModelRepositoryServerApplication {
 
     public static void main(String[] args) {

@@ -74,8 +74,8 @@ public class LocationResponseDto implements Serializable {
      * "Setter" method for "geoLocation" attribute. If the Virtual Location is null, then the Geographical Location
      * must have a value and vice versa.
      *
-     * @param latitude The latitude of the geographical location, not null if virtualLocation is null.
-     * @param longitude The longitude of the geographical location, not null if virtualLocation is null.
+     * @param latitude The latitude of the Geographical Location, not null if virtualLocation is null.
+     * @param longitude The longitude of the Geographical Location, not null if virtualLocation is null.
      * @param virtualLocation A string representing a Virtual Location, not null if coordinates are null.
      *****************************************************************************************************************/
     public void setGeoLocation(double latitude, double longitude, String virtualLocation) {
@@ -168,6 +168,9 @@ public class LocationResponseDto implements Serializable {
 
     /******************************************************************************************************************
      * This inner class is a data transfer object for Geographical Locations.
+     *
+     * @author Angela-Maria Despotopoulou [Athens, Greece]
+     * @since version 0.3.0
      *****************************************************************************************************************/
     @Builder
     public static class GeoLocationResponseDto implements Serializable {
@@ -176,20 +179,20 @@ public class LocationResponseDto implements Serializable {
         private static final long serialVersionUID = 4100314718361516719L;
 
         /**************************************************************************************************************
-         * The latitude of the geographical location.
+         * The latitude of the Geographical Location.
          *************************************************************************************************************/
         private double latitude;
 
         /**************************************************************************************************************
-         * The longitude of the geographical location.
+         * The longitude of the Geographical Location.
          *************************************************************************************************************/
         private double longitude;
 
         /**************************************************************************************************************
          * Constructor of the GeoLocationResponseDto class, both for Builder pattern and instantiation with "new".
          *
-         * @param latitude  The latitude of the new Geographical Location.
-         * @param longitude The longitude of the new Geographical Location.
+         * @param latitude  The latitude of the new Geographical Location, not null.
+         * @param longitude The longitude of the new Geographical Location, not null.
          *************************************************************************************************************/
         private GeoLocationResponseDto(double latitude, double longitude) {
             this.latitude = latitude;
@@ -200,7 +203,7 @@ public class LocationResponseDto implements Serializable {
          * Empty constructor of the GeoLocationResponseDto class.
          *************************************************************************************************************/
         private GeoLocationResponseDto() {
-
+            this(0.0, 0.0);
         }
 
         /**************************************************************************************************************
