@@ -20,7 +20,7 @@ public class PaginationInfo implements Serializable {
     /******************************************************************************************************************
      * Total of entities found in the database.
      *****************************************************************************************************************/
-    private int totalItems;
+    private long totalItems;
 
     /******************************************************************************************************************
      * Total of pages that can be retrieved from the database.
@@ -32,7 +32,7 @@ public class PaginationInfo implements Serializable {
      *****************************************************************************************************************/
     private int currentPage;
 
-    public PaginationInfo(int totalItems, int totalPages, int currentPage) {
+    public PaginationInfo(long totalItems, int totalPages, int currentPage) {
         this.totalItems = totalItems;
         this.totalPages = totalPages;
         this.currentPage = currentPage;
@@ -42,11 +42,11 @@ public class PaginationInfo implements Serializable {
         this(0, 0, 0);
     }
 
-    public int getTotalItems() {
+    public long getTotalItems() {
         return totalItems;
     }
 
-    public void setTotalItems(int totalItems) {
+    public void setTotalItems(long totalItems) {
         this.totalItems = totalItems;
     }
 

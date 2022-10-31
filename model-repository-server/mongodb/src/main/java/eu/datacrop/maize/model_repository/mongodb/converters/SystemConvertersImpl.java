@@ -4,6 +4,7 @@ import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto
 import eu.datacrop.maize.model_repository.commons.dtos.responses.LocationResponseDto;
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.converters.auxiliary.LocationConverters;
@@ -116,13 +117,16 @@ public class SystemConvertersImpl implements SystemConverters {
      * Transfer Responses form. The result is enclosed in a Wrapper object. Returns null on erroneous input.
      *
      * @param entitiesList The list of database entities to transform, not null, not empty.
+     * @param paginationInfo A structure containing information regarding pagination, not null.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if entitiesList parameter is null or corresponds to an empty list.
+     * @throws IllegalArgumentException if paginationInfo parameter is null.
      ****************************************************************************************************************/
     @Override
-    public SystemResponsesWrapper convertEntitiesToResponseWrapper(List<System> entitiesList) throws IllegalArgumentException {
-        if (entitiesList == null || entitiesList.isEmpty()) {
+    public SystemResponsesWrapper convertEntitiesToResponseWrapper(List<System> entitiesList, PaginationInfo paginationInfo) throws IllegalArgumentException {
+
+        if (entitiesList == null || entitiesList.isEmpty() || paginationInfo == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method convertEntitiesToResponseWrapper().");
         }
 
@@ -152,6 +156,7 @@ public class SystemConvertersImpl implements SystemConverters {
         wrapper.setCode(ResponseCode.SUCCESS);
         wrapper.setMessage("Database transaction successfully concluded.");
         wrapper.setListOfResponses(responseDtoList);
+        wrapper.setPaginationInfo(paginationInfo);
 
         log.debug("Successfully converted MongoDB entities list to ResponseWrapper for Systems.");
 

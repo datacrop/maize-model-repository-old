@@ -2,6 +2,7 @@ package eu.datacrop.maize.model_repository.mongodb.converters;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.model.System;
@@ -44,11 +45,13 @@ public interface SystemConverters {
      * Transfer Responses form. The result is enclosed in a Wrapper object. Returns null on erroneous input.
      *
      * @param entitiesList The list of database entities to transform, not null, not empty.
+     * @param paginationInfo A structure containing information regarding pagination, not null.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if entitiesList parameter is null or corresponds to an empty list.
+     * @throws IllegalArgumentException if paginationInfo parameter is null.
      ****************************************************************************************************************/
-    SystemResponsesWrapper convertEntitiesToResponseWrapper(List<System> entitiesList) throws IllegalArgumentException;
+    SystemResponsesWrapper convertEntitiesToResponseWrapper(List<System> entitiesList, PaginationInfo paginationInfo) throws IllegalArgumentException;
 
     /*****************************************************************************************************************
      * This method synthesizes a Wrapper object with error messages. To be used when database transactions fail.

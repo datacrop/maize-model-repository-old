@@ -4,6 +4,8 @@ import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseD
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
+import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
+import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.model.System;
 import eu.datacrop.maize.model_repository.mongodb.model.auxiliary.Location;
@@ -165,5 +167,50 @@ class SystemServicesImplTest {
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
         Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_NAME.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
+    }
+
+    @Test
+    void retrieveAllSystems() {
+
+        // Testing the retrieval of both Systems.
+        SystemResponsesWrapper wrapper = systemServices.retrieveAllSystems(0, 5);
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, wrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", wrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotNull(wrapper.getListOfResponses(), "Wrapper has not received proper SUCCESS ListOfResponses:");
+        Assertions.assertNotNull(wrapper.getPaginationInfo(), "Wrapper has not received proper SUCCESS PaginationInfo:");
+
+        List<SystemResponseDto> retrievedList = wrapper.getListOfResponses();
+        Assertions.assertEquals(2, retrievedList.size(), "");
+
+        PaginationInfo paginationInfo = wrapper.getPaginationInfo();
+        Assertions.assertEquals(2, paginationInfo.getTotalItems(), "");
+        Assertions.assertEquals(1, paginationInfo.getTotalPages(), "");
+        Assertions.assertEquals(0, paginationInfo.getCurrentPage(), "");
+
+        // Testing the retrieval of one System through Pagination.
+        wrapper = systemServices.retrieveAllSystems(0, 1);
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, wrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", wrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotNull(wrapper.getListOfResponses(), "Wrapper has not received proper SUCCESS ListOfResponses:");
+        Assertions.assertNotNull(wrapper.getPaginationInfo(), "Wrapper has not received proper SUCCESS PaginationInfo:");
+
+        retrievedList = wrapper.getListOfResponses();
+        Assertions.assertEquals(1, retrievedList.size(), "");
+
+        paginationInfo = wrapper.getPaginationInfo();
+        Assertions.assertEquals(2, paginationInfo.getTotalItems(), "");
+        Assertions.assertEquals(2, paginationInfo.getTotalPages(), "");
+        Assertions.assertEquals(0, paginationInfo.getCurrentPage(), "");
+
+        // Testing also the "Not Found" scenario.
+        systemRepository.delete(system1);
+        systemRepository.delete(system2);
+        wrapper = systemServices.retrieveAllSystems(0, 5);
+        Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
+        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ALL.toString(), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertEquals(0, wrapper.getListOfResponses().size(), "Wrapper has not received proper NOT_FOUND ListOfResponses:");
+        Assertions.assertEquals(0, wrapper.getPaginationInfo().getTotalItems(), "Wrapper has not received proper NOT_FOUND PaginationInfo:");
     }
 }

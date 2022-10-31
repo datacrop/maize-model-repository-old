@@ -5,6 +5,7 @@ import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.exceptions.NonUuidArgumentException;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.util.ValidatorUUID;
+import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.converters.SystemConverters;
@@ -12,7 +13,12 @@ import eu.datacrop.maize.model_repository.mongodb.model.System;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**********************************************************************************************************************
  * This class implements the services offered by Mongo databases pertaining to the persistence of IoT Systems.
@@ -149,7 +155,48 @@ public class SystemServicesImpl implements SystemServices {
      *****************************************************************************************************************/
     @Override
     public SystemResponsesWrapper retrieveAllSystems(int page, int size) {
-        return null;
+
+        // Attempting to retrieve the all entities indicated by the pagination instructions.
+        Pageable paging = PageRequest.of(page, size);
+        Page<System> systemsPage;
+        List<System> entities;
+        PaginationInfo paginationInfo;
+
+        String message;
+        try {
+            systemsPage = repository.findAll(paging);
+            entities = systemsPage.getContent();
+            paginationInfo = new PaginationInfo(systemsPage.getTotalElements(), systemsPage.getTotalPages(), systemsPage.getNumber());
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_MANY.toString();
+            log.error(message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // If nothing has been found, but not due to error, report accordingly.
+        if (entities == null || entities.size() == 0) {
+            message = SystemErrorMessages.NOT_FOUND_ALL.toString();
+            log.info(message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.NOT_FOUND, message);
+        }
+
+        // Since the retrieval has been successful, enclosing the collection of Systems into a message.
+        SystemResponsesWrapper wrapper;
+        try {
+            wrapper = converters.convertEntitiesToResponseWrapper(entities, paginationInfo);
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_MANY.toString();
+            log.error(message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        log.info("Successfully retrieved all System entities from database (Page '{}' of '{}').", systemsPage.getNumber(), systemsPage.getTotalPages());
+        return wrapper;
     }
 
     /******************************************************************************************************************
