@@ -133,4 +133,37 @@ class SystemServicesImplTest {
         Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
     }
+
+    @Test
+    void retrieveSystemByName() {
+
+        // Testing the retrieval of the first System.
+        SystemResponseWrapper wrapper = systemServices.retrieveSystemByName(system1.getName());
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, wrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", wrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotNull(wrapper.getResponse(), "Wrapper has not received proper SUCCESS Response:");
+
+        SystemResponseDto retrieved = wrapper.getResponse();
+
+        Assertions.assertNotNull(retrieved, "System has not been retrieved successfully (null test):");
+        Assertions.assertEquals(system1.getId(), retrieved.getId(), "The retrieved System has incorrect identifier:");
+        Assertions.assertEquals(system1.getName(), retrieved.getName(), "The retrieved System has incorrect name:");
+        Assertions.assertEquals(system1.getDescription(), retrieved.getDescription(), "The retrieved System has incorrect description:");
+        Assertions.assertEquals(system1.getLocation().getLatitude(), retrieved.getLocation().getLatitude(), "The retrieved System has incorrect latitude:");
+        Assertions.assertEquals(system1.getLocation().getLongitude(), retrieved.getLocation().getLongitude(), "The retrieved System has incorrect longitude:");
+        Assertions.assertEquals(system1.getLocation().getVirtualLocation(), retrieved.getLocation().getVirtualLocation(), "The retrieved System has incorrect virtual location:");
+        Assertions.assertEquals(system1.getOrganization(), retrieved.getOrganization(), "The retrieved System has incorrect organization:");
+        Assertions.assertTrue(system1.getAdditionalInformation().containsAll(retrieved.getAdditionalInformation()), "The retrieved System has incorrect info:");
+        Assertions.assertEquals(system1.getAdditionalInformation().size(), retrieved.getAdditionalInformation().size(), "The retrieved System has incorrect info size:");
+        Assertions.assertNotNull(retrieved.getCreationDate(), "The retrieved System did not receive a creation timestamp:");
+        Assertions.assertNotNull(retrieved.getLatestUpdateDate(), "The retrieved System did not receive an update timestamp:");
+
+        // Testing also the "Not Found" scenario.
+        String random = RandomStringUtils.randomAlphabetic(10);
+        wrapper = systemServices.retrieveSystemByName(random);
+        Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
+        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_NAME.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
+    }
 }

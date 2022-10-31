@@ -97,7 +97,47 @@ public class SystemServicesImpl implements SystemServices {
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException {
-        return null;
+
+        // Validating input parameter.
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method retrieveSystemByDatabaseID().");
+        }
+
+        // Attempting to retrieve the entity corresponding to the name.
+        System entity;
+        String message;
+        try {
+            entity = repository.findFirstByName(name);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(name);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // If nothing has been found, but not due to error, report accordingly.
+        if (entity == null) {
+            message = SystemErrorMessages.NOT_FOUND_NAME.toString().concat(name);
+            log.info(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+        }
+
+        // Since the retrieval has been successful, enclosing the System into a message.
+        SystemResponseWrapper wrapper;
+        try {
+            wrapper = converters.convertEntityToResponseWrapper(entity);
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(name);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        log.info("Successfully retrieved System from database with Name: '{}'.", name);
+        return wrapper;
     }
 
     /******************************************************************************************************************
