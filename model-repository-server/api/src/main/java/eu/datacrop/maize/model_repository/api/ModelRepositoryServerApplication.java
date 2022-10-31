@@ -13,6 +13,8 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         "eu.datacrop.maize.model_repository.commons.enums",
         "eu.datacrop.maize.model_repository.commons.util",
         "eu.datacrop.maize.model_repository.commons.wrappers",
+        "eu.datacrop.maize.model_repository.commons.wrappers.collection",
+        "eu.datacrop.maize.model_repository.commons.wrappers.single",
         "eu.datacrop.maize.model_repository.mongodb.converters",
         "eu.datacrop.maize.model_repository.mongodb.daos",
         "eu.datacrop.maize.model_repository.mongodb.listeners",

@@ -1,16 +1,15 @@
-package eu.datacrop.maize.model_repository.commons.wrappers;
+package eu.datacrop.maize.model_repository.commons.wrappers.single;
 
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**********************************************************************************************************************
  * This class wraps the responses travelling from the persistence layer back to the API for a more complete
- * reporting of problems / unsuccessful requests on IoT Systems.
+ * reporting of problems / unsuccessful requests on IoT Systems. Used for Single Objects (as opposed to a Collection).
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
@@ -19,12 +18,6 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
 
     @Serial
     private static final long serialVersionUID = 3273277217031230024L;
-
-    /******************************************************************************************************************
-     * A data transfer object representing a collection of IoT Systems to be wrapped while returned as a response
-     * to an HTTP request.
-     *****************************************************************************************************************/
-    List<SystemResponseDto> listOfResponses;
 
     /******************************************************************************************************************
      * A data transfer object representing an IoT System to be wrapped while returned as a response to an HTTP request.
@@ -42,7 +35,6 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
             this.setMessage(message);
         }
         this.response = response;
-        this.listOfResponses = new ArrayList<>();
     }
 
     /******************************************************************************************************************
@@ -52,7 +44,6 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
         this.setCode(ResponseCode.UNDEFINED);
         this.setMessage(null);
         this.response = null;
-        this.listOfResponses = new ArrayList<>();
     }
 
     /******************************************************************************************************************
@@ -74,31 +65,6 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
     }
 
     /******************************************************************************************************************
-     * "Getter" function for "listOfResponses" attribute.
-     *
-     * @return The current value of the object's "listOfResponses" attribute.
-     *****************************************************************************************************************/
-    public List<SystemResponseDto> getListOfResponses() {
-        if (listOfResponses == null) {
-            listOfResponses = new ArrayList<>();
-        }
-        return listOfResponses;
-    }
-
-    /******************************************************************************************************************
-     * "Setter" function for "listOfResponses" attribute.
-     *
-     * @param listOfResponses A value to assign to the object's "listOfResponses" attribute.
-     *****************************************************************************************************************/
-    public void setListOfResponses(List<SystemResponseDto> listOfResponses) {
-        if (listOfResponses == null) {
-            this.listOfResponses = new ArrayList<>();
-        } else {
-            this.listOfResponses = listOfResponses;
-        }
-    }
-
-    /******************************************************************************************************************
      * Transforms a SystemResponseWrapper object to String.
      *
      * @return A string representation of the Object.
@@ -106,8 +72,9 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
     @Override
     public String toString() {
         return "{" +
-                "response=" + response +
-                ", listOfResponses=" + listOfResponses +
+                "code=" + super.getCode() +
+                ", message='" + super.getMessage() + '\'' +
+                ", response='" + response + '\'' +
                 '}';
     }
 }
