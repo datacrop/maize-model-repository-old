@@ -30,6 +30,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         "eu.datacrop.maize.model_repository.persistence.mongo_implementation",
         "eu.datacrop.maize.model_repository.persistence.mysql_implementation",
         "eu.datacrop.maize.model_repository.services.asset_management.persistence",
+        "eu.datacrop.maize.model_repository.api",
+        "eu.datacrop.maize.model_repository.api.config",
+        "eu.datacrop.maize.model_repository.api.controllers",
+        "eu.datacrop.maize.model_repository.api.error",
+        "eu.datacrop.maize.model_repository.api.services",
+        "eu.datacrop.maize.model_repository.api.services.api",
+        "eu.datacrop.maize.model_repository.api.services.validators",
 })
 @EnableMongoAuditing
 @EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})
