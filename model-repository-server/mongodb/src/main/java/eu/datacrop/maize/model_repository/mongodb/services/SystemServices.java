@@ -61,7 +61,8 @@ public interface SystemServices {
      * @return A wrapped data transfer object with either information on the updated System or failure messages.
      *
      * @throws IllegalArgumentException if requestDto parameter is null.
-     * @throws IllegalArgumentException if databaseID parameter is null, empty or does not adhere to UUID format.
+     * @throws IllegalArgumentException if databaseID parameter is null or empty string.
+     * @throws NonUuidArgumentException if databaseID parameter does not adhere to UUID format.
      *****************************************************************************************************************/
     SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException;
 
@@ -71,7 +72,8 @@ public interface SystemServices {
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the deleted System or failure messages.
      *
-     * @throws IllegalArgumentException if databaseID parameter is null, empty or does not adhere to UUID format.
+     * @throws IllegalArgumentException if databaseID parameter is null or empty string.
+     * @throws NonUuidArgumentException if databaseID parameter does not adhere to UUID format.
      *****************************************************************************************************************/
     SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException;
 

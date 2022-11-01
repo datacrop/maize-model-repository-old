@@ -13,11 +13,18 @@ public enum SystemErrorMessages {
     NOT_FOUND_NAME("Failed to retrieve any System entities from the database with Name: "),
 
     NOT_FOUND_ALL("Failed to retrieve any System entities from the database."),
+
+    CONFLICT("There is already another System with the same Name and ID: "),
+
     ERROR_ON_RETRIEVAL_ID("Error detected while attempting to retrieve System with ID: "),
 
     ERROR_ON_RETRIEVAL_NAME("Error detected while attempting to retrieve System with Name: "),
 
-    ERROR_ON_RETRIEVAL_MANY("Error detected while attempting to retrieve collection of Systems.");
+    ERROR_ON_RETRIEVAL_MANY("Error detected while attempting to retrieve collection of Systems."),
+
+    ERROR_ON_CREATION("Error detected while attempting to create System with Name: "),
+
+    ERROR_ON_UPDATE("Error detected while attempting to update System with ID: ");
 
 
     /******************************************************************************************************************

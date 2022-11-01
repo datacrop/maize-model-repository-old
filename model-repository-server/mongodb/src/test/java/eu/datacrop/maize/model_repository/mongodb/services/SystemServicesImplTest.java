@@ -1,7 +1,10 @@
 package eu.datacrop.maize.model_repository.mongodb.services;
 
+import eu.datacrop.maize.model_repository.commons.dtos.requests.LocationRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.exceptions.NonUuidArgumentException;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
@@ -26,6 +29,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ActiveProfiles("devmongo")
 @SpringBootTest(classes = SystemServicesImpl.class)
@@ -134,6 +139,28 @@ class SystemServicesImplTest {
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
         Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
+
+        // Testing also the "Invalid Parameter" scenario.
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.retrieveSystemByDatabaseID(" "),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method retrieveSystemByDatabaseID()."));
+
+        thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.retrieveSystemByDatabaseID(null),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method retrieveSystemByDatabaseID()."));
+
+        NonUuidArgumentException thrown2 = assertThrows(
+                NonUuidArgumentException.class,
+                () -> systemServices.retrieveSystemByDatabaseID(RandomStringUtils.randomAlphabetic(10)),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown2.getMessage().contains("Non-UUID parameter detected for method retrieveSystemByDatabaseID()."));
     }
 
     @Test
@@ -167,6 +194,21 @@ class SystemServicesImplTest {
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
         Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_NAME.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
+
+        // Testing also the "Invalid Parameter" scenario.
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.retrieveSystemByName(" "),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method retrieveSystemByName()."));
+
+        thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.retrieveSystemByName(null),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method retrieveSystemByName()."));
     }
 
     @Test
@@ -181,12 +223,12 @@ class SystemServicesImplTest {
         Assertions.assertNotNull(wrapper.getPaginationInfo(), "Wrapper has not received proper SUCCESS PaginationInfo:");
 
         List<SystemResponseDto> retrievedList = wrapper.getListOfResponses();
-        Assertions.assertEquals(2, retrievedList.size(), "");
+        Assertions.assertEquals(2, retrievedList.size(), "Wrapper contains erroneous number of retrieved items:");
 
         PaginationInfo paginationInfo = wrapper.getPaginationInfo();
-        Assertions.assertEquals(2, paginationInfo.getTotalItems(), "");
-        Assertions.assertEquals(1, paginationInfo.getTotalPages(), "");
-        Assertions.assertEquals(0, paginationInfo.getCurrentPage(), "");
+        Assertions.assertEquals(2, paginationInfo.getTotalItems(), "Pagination info contains invalid number of Total Items.");
+        Assertions.assertEquals(1, paginationInfo.getTotalPages(), "Pagination info contains invalid number of Total Pages.");
+        Assertions.assertEquals(0, paginationInfo.getCurrentPage(), "Pagination info contains invalid index of Current Page.");
 
         // Testing the retrieval of one System through Pagination.
         wrapper = systemServices.retrieveAllSystems(0, 1);
@@ -197,12 +239,12 @@ class SystemServicesImplTest {
         Assertions.assertNotNull(wrapper.getPaginationInfo(), "Wrapper has not received proper SUCCESS PaginationInfo:");
 
         retrievedList = wrapper.getListOfResponses();
-        Assertions.assertEquals(1, retrievedList.size(), "");
+        Assertions.assertEquals(1, retrievedList.size(), "Wrapper contains erroneous number of retrieved items:");
 
         paginationInfo = wrapper.getPaginationInfo();
-        Assertions.assertEquals(2, paginationInfo.getTotalItems(), "");
-        Assertions.assertEquals(2, paginationInfo.getTotalPages(), "");
-        Assertions.assertEquals(0, paginationInfo.getCurrentPage(), "");
+        Assertions.assertEquals(2, paginationInfo.getTotalItems(), "Pagination info contains invalid number of Total Items.");
+        Assertions.assertEquals(2, paginationInfo.getTotalPages(), "Pagination info contains invalid number of Total Pages.");
+        Assertions.assertEquals(0, paginationInfo.getCurrentPage(), "Pagination info contains invalid index of Current Page.");
 
         // Testing also the "Not Found" scenario.
         systemRepository.delete(system1);
@@ -212,5 +254,153 @@ class SystemServicesImplTest {
         Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ALL.toString(), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertEquals(0, wrapper.getListOfResponses().size(), "Wrapper has not received proper NOT_FOUND ListOfResponses:");
         Assertions.assertEquals(0, wrapper.getPaginationInfo().getTotalItems(), "Wrapper has not received proper NOT_FOUND PaginationInfo:");
+    }
+
+    @Test
+    void createSystem() {
+        // Preparing a third System to be inserted.
+        LocationRequestDto location = new LocationRequestDto(0.0, 0.0, "127.00.00.01:8080");
+        Set<Object> info = new HashSet<Object>();
+        info.add(UUID.randomUUID());
+        info.add(RandomStringUtils.randomAlphabetic(10));
+        info.add(LocalDateTime.now().format(DateFormatter.formatter));
+
+        SystemRequestDto system3 = new SystemRequestDto();
+        system3.setName("System3");
+        system3.setDescription(RandomStringUtils.randomAlphabetic(10));
+        system3.setLocation(location);
+        system3.setOrganization(RandomStringUtils.randomAlphabetic(10));
+        system3.setAdditionalInformation(info);
+
+        // Testing the insertion.
+        Long beforeInsertion = systemRepository.count();
+        SystemResponseWrapper createdWrapper = systemServices.createSystem(system3);
+        Long afterInsertion = systemRepository.count();
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, createdWrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", createdWrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotNull(createdWrapper.getResponse(), "Wrapper has not received proper SUCCESS Response:");
+
+        SystemResponseDto created = createdWrapper.getResponse();
+
+        Assertions.assertNotNull(created, "System has not been created successfully (null test):");
+        Assertions.assertNotNull(created.getId(), "The created System received no identifier:");
+        Assertions.assertEquals(system3.getName(), created.getName(), "The created System has incorrect name:");
+        Assertions.assertEquals(system3.getDescription(), created.getDescription(), "The created System has incorrect description:");
+        Assertions.assertEquals(system3.getLocation().getLatitude(), created.getLocation().getLatitude(), "The created System has incorrect latitude:");
+        Assertions.assertEquals(system3.getLocation().getLongitude(), created.getLocation().getLongitude(), "The created System has incorrect longitude:");
+        Assertions.assertEquals(system3.getLocation().getVirtualLocation(), created.getLocation().getVirtualLocation(), "The created System has incorrect virtual location:");
+        Assertions.assertEquals(system3.getOrganization(), created.getOrganization(), "The created System has incorrect organization:");
+        Assertions.assertTrue(system3.getAdditionalInformation().containsAll(created.getAdditionalInformation()), "The created System has incorrect info:");
+        Assertions.assertEquals(system3.getAdditionalInformation().size(), created.getAdditionalInformation().size(), "The created System has incorrect info size:");
+        Assertions.assertNotNull(created.getCreationDate(), "The created System did not receive a creation timestamp:");
+        Assertions.assertNotNull(created.getLatestUpdateDate(), "The created System did not receive an update timestamp:");
+        Assertions.assertEquals(Long.valueOf(beforeInsertion + 1L), afterInsertion, "The number of entities has not increased by one:");
+
+        // Testing also the "Conflict" scenario by attempting to re-insert the same information.
+        beforeInsertion = systemRepository.count();
+        SystemResponseWrapper createdWrapper2 = systemServices.createSystem(system3);
+        afterInsertion = systemRepository.count();
+
+        Assertions.assertEquals(ResponseCode.CONFLICT, createdWrapper2.getCode(), "Wrapper has not received proper CONFLICT ResponseCode:");
+        Assertions.assertNull(createdWrapper2.getResponse(), "Wrapper has not received proper CONFLICT Response:");
+        Assertions.assertEquals(beforeInsertion, afterInsertion, "The number of entities has changed despite the CONFLICT:");
+
+        // Testing also the "Invalid Parameter" scenario.
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.createSystem(null),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method createSystem()."));
+
+        // Cleaning up.
+        systemRepository.deleteById(created.getId());
+    }
+
+    @Test
+    void updateSystem() {
+        // Preparing to update the second System.
+        System retrievedSystem2 = systemRepository.findFirstByName("System2");
+
+        SystemRequestDto updateRequest = new SystemRequestDto();
+        updateRequest.setName("System2"); // Unchanged.
+        updateRequest.setDescription("updatedDesc");
+        updateRequest.setLocation(null);
+        updateRequest.setOrganization("updatedOrg");
+        Set<Object> addInfo = retrievedSystem2.getAdditionalInformation();
+        int infoOriginalSize = addInfo.size();
+        addInfo.add("something_new");
+        updateRequest.setAdditionalInformation(addInfo);
+
+        // Testing the update.
+        Long beforeUpdate = systemRepository.count();
+        SystemResponseWrapper updatedWrapper = systemServices.updateSystem(updateRequest, retrievedSystem2.getId());
+        Long afterUpdate = systemRepository.count();
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, updatedWrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", updatedWrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotNull(updatedWrapper.getResponse(), "Wrapper has not received proper SUCCESS Response:");
+
+        SystemResponseDto updated = updatedWrapper.getResponse();
+
+        Assertions.assertNotNull(updated, "System has not been updated successfully (null test):");
+        Assertions.assertNotNull(updated.getId(), "The updated System received no identifier:");
+        Assertions.assertEquals(retrievedSystem2.getId(), updated.getId(), "The updated System has changed identifier.");
+        Assertions.assertEquals("System2", updated.getName(), "The updated System has incorrect name:");
+        Assertions.assertEquals("updatedDesc", updated.getDescription(), "The updated System has incorrect description:");
+        Assertions.assertNotEquals(retrievedSystem2.getLocation(), updated.getLocation(), "The updated System has incorrect location:");
+        Assertions.assertEquals("updatedOrg", updated.getOrganization(), "The updated System has incorrect organization:");
+        Assertions.assertTrue(updated.getAdditionalInformation().containsAll(updated.getAdditionalInformation()), "The updated System has incorrect info:");
+        Assertions.assertEquals(infoOriginalSize + 1, updated.getAdditionalInformation().size(), "The created System has incorrect info size:");
+        Assertions.assertNotNull(updated.getCreationDate(), "The updated System did not receive a creation timestamp:");
+        Assertions.assertEquals(retrievedSystem2.getCreationDate(), updated.getCreationDate(), "The updated System changed timestamp:");
+        Assertions.assertNotNull(updated.getLatestUpdateDate(), "The updated System did not receive an update timestamp:");
+        Assertions.assertNotEquals(retrievedSystem2.getLatestUpdateDate(), updated.getLatestUpdateDate(), "The updated System still bears the same latest update timestamp:");
+        Assertions.assertEquals(beforeUpdate, afterUpdate, "The number of entities has changed:");
+
+        // Testing also the "Conflict" scenario by attempting to update the second system with a name that already exists.
+        updateRequest.setName("System1");
+        SystemResponseWrapper updatedWrapper2 = systemServices.updateSystem(updateRequest, retrievedSystem2.getId());
+
+        Assertions.assertEquals(ResponseCode.CONFLICT, updatedWrapper2.getCode(), "Wrapper has not received proper CONFLICT ResponseCode:");
+        Assertions.assertNull(updatedWrapper2.getResponse(), "Wrapper has not received proper CONFLICT Response:");
+        Assertions.assertEquals(beforeUpdate, afterUpdate, "The number of entities has changed despite the CONFLICT:");
+
+        // Testing also the "Not Found" scenario.
+        String random = UUID.randomUUID().toString();
+        SystemResponseWrapper updatedWrapper3 = systemServices.updateSystem(updateRequest, random);
+        Assertions.assertEquals(ResponseCode.NOT_FOUND, updatedWrapper3.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
+        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), updatedWrapper3.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertNull(updatedWrapper3.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
+
+        // Testing also the "Invalid Parameter" scenario.
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.updateSystem(updateRequest, " "),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method updateSystem()."));
+
+        thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.updateSystem(updateRequest, null),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method updateSystem()."));
+
+        NonUuidArgumentException thrown2 = assertThrows(
+                NonUuidArgumentException.class,
+                () -> systemServices.updateSystem(updateRequest, RandomStringUtils.randomAlphabetic(10)),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown2.getMessage().contains("Non-UUID parameter detected for method updateSystem()."));
+
+        thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.updateSystem(null, retrievedSystem2.getId()),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method updateSystem()."));
     }
 }

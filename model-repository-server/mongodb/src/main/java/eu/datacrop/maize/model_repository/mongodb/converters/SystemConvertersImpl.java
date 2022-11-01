@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -61,6 +62,7 @@ public class SystemConvertersImpl implements SystemConverters {
         if (databaseID.isBlank()) // RequestDTO used for first persistence of new entities.
         {
             system.setId(UUID.randomUUID().toString());
+            system.setCreationDate(LocalDateTime.now());
         } else // RequestDTO used to update existing entities.
         {
             system.setId(databaseID);

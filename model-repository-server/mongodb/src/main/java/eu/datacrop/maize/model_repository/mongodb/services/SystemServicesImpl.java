@@ -106,7 +106,7 @@ public class SystemServicesImpl implements SystemServices {
 
         // Validating input parameter.
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Invalid parameter detected for method retrieveSystemByDatabaseID().");
+            throw new IllegalArgumentException("Invalid parameter detected for method retrieveSystemByName().");
         }
 
         // Attempting to retrieve the entity corresponding to the name.
@@ -161,8 +161,8 @@ public class SystemServicesImpl implements SystemServices {
         Page<System> systemsPage;
         List<System> entities;
         PaginationInfo paginationInfo;
-
         String message;
+
         try {
             systemsPage = repository.findAll(paging);
             entities = systemsPage.getContent();
@@ -209,7 +209,72 @@ public class SystemServicesImpl implements SystemServices {
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException {
-        return null;
+
+        // Validating input parameter.
+        if (requestDto == null) {
+            throw new IllegalArgumentException("Invalid parameter detected for method createSystem().");
+        }
+        String message;
+
+        // Checking whether the name is already taken by another entity.
+        System conflictingEntity;
+        try {
+            conflictingEntity = repository.findFirstByName(requestDto.getName());
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(requestDto.getName());
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        if (conflictingEntity != null) {
+            message = SystemErrorMessages.CONFLICT.toString().concat(conflictingEntity.getId());
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message);
+        }
+
+        // Converting the request data transfer object to a database entity.
+        System entityToPersist;
+        try {
+            entityToPersist = converters.convertRequestDtoToEntity(requestDto, "");
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Attempting to create new System entity.
+        System createdEntity;
+        try {
+            createdEntity = repository.save(entityToPersist);
+        } catch (Exception e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        if (createdEntity == null) {
+            message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat(requestDto.getName());
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Since the creation has been successful, enclosing the System into a message.
+        SystemResponseWrapper wrapper;
+        try {
+            wrapper = converters.convertEntityToResponseWrapper(createdEntity);
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat(requestDto.getName());
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        log.info("Successfully created new System in database with ID '{}' and Name '{}'.", createdEntity.getId(), createdEntity.getName());
+        return wrapper;
     }
 
     /******************************************************************************************************************
@@ -220,11 +285,101 @@ public class SystemServicesImpl implements SystemServices {
      * @return A wrapped data transfer object with either information on the updated System or failure messages.
      *
      * @throws IllegalArgumentException if requestDto parameter is null.
-     * @throws IllegalArgumentException if databaseID parameter is null, empty or does not adhere to UUID format.
+     * @throws IllegalArgumentException if databaseID parameter is null or empty string.
+     * @throws NonUuidArgumentException if databaseID parameter does not adhere to UUID format.
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException {
-        return null;
+
+        // Validating input parameters.
+        if (requestDto == null) {
+            throw new IllegalArgumentException("Invalid parameter detected for method updateSystem().");
+        } else if (databaseID == null || databaseID.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method updateSystem().");
+        } else if (ValidatorUUID.isValidUUIDFormat(databaseID).equals(Boolean.FALSE)) {
+            throw new NonUuidArgumentException("Non-UUID parameter detected for method updateSystem().");
+        }
+
+        // Attempting to retrieve the entity corresponding to the databaseID.
+        System retrievedEntity;
+        String message;
+        try {
+            retrievedEntity = repository.findById(databaseID).orElse(null);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // If nothing has been found, but not due to error, report accordingly.
+        if (retrievedEntity == null) {
+            message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
+            log.info(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+        }
+
+        // If a change to the name is being attempted, search for conflicts.
+        if (!requestDto.getName().equals(retrievedEntity.getName())) {
+            System conflictingEntity;
+            try {
+                conflictingEntity = repository.findFirstByName(requestDto.getName());
+            } catch (Exception e) {
+                message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(requestDto.getName());
+                log.error(message);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            }
+
+            if (conflictingEntity != null) {
+                message = SystemErrorMessages.CONFLICT.toString().concat(conflictingEntity.getId());
+                log.error(message);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message);
+            }
+        }
+
+        // Converting the request data transfer object to a database entity.
+        System entityToPersist;
+        try {
+            entityToPersist = converters.convertRequestDtoToEntity(requestDto, databaseID);
+            entityToPersist.setCreationDate(retrievedEntity.getCreationDate());
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Attempting to update System entity.
+        System updatedEntity;
+        try {
+            updatedEntity = repository.save(entityToPersist);
+        } catch (Exception e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        if (updatedEntity == null) {
+            message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Since the creation has been successful, enclosing the System into a message.
+        SystemResponseWrapper wrapper;
+        try {
+            wrapper = converters.convertEntityToResponseWrapper(updatedEntity);
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        log.info("Successfully updated System in database with ID '{}' and Name '{}'.", updatedEntity.getId(), updatedEntity.getName());
+        return wrapper;
     }
 
     /******************************************************************************************************************
@@ -233,7 +388,8 @@ public class SystemServicesImpl implements SystemServices {
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the deleted System or failure messages.
      *
-     * @throws IllegalArgumentException if databaseID parameter is null, empty or does not adhere to UUID format.
+     * @throws IllegalArgumentException if databaseID parameter is null or empty string.
+     * @throws NonUuidArgumentException if databaseID parameter does not adhere to UUID format.
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException {
