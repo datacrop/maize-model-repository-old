@@ -24,7 +24,11 @@ public enum SystemErrorMessages {
 
     ERROR_ON_CREATION("Error detected while attempting to create System with Name: "),
 
-    ERROR_ON_UPDATE("Error detected while attempting to update System with ID: ");
+    ERROR_ON_UPDATE("Error detected while attempting to update System with ID: "),
+
+    ERROR_ON_DELETION_ID("Error detected while attempting to delete System with ID: "),
+
+    ERROR_ON_DELETION_MANY("Error detected while attempting to delete collection of Systems.");
 
 
     /******************************************************************************************************************

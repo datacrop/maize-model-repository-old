@@ -393,7 +393,58 @@ public class SystemServicesImpl implements SystemServices {
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException {
-        return null;
+
+        // Validating input parameter.
+        if (databaseID == null || databaseID.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method deleteSystem().");
+        } else if (ValidatorUUID.isValidUUIDFormat(databaseID).equals(Boolean.FALSE)) {
+            throw new NonUuidArgumentException("Non-UUID parameter detected for method deleteSystem().");
+        }
+
+        // Attempting to retrieve the entity corresponding to the databaseID.
+        System entity;
+        String message;
+        try {
+            entity = repository.findById(databaseID).orElse(null);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // If nothing has been found, but not due to error, report accordingly.
+        if (entity == null) {
+            message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
+            log.info(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+        }
+
+        // Attempting to delete the entity corresponding to the databaseID.
+        try {
+            repository.deleteById(databaseID);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Since the retrieval has been successful, enclosing the System into a message.
+        SystemResponseWrapper wrapper;
+        try {
+            wrapper = converters.convertEntityToResponseWrapper(entity);
+        } catch (IllegalArgumentException e) {
+            message = e.getMessage();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat(databaseID);
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        log.info("Successfully deleted System from database with ID: '{}'.", databaseID);
+        return wrapper;
     }
 
     /******************************************************************************************************************
@@ -402,7 +453,24 @@ public class SystemServicesImpl implements SystemServices {
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
     @Override
-    public SystemResponsesWrapper deleteAllSystems() {
-        return null;
+    public SystemResponseWrapper deleteAllSystems() {
+
+        // Attempting to delete all System entities from the database.
+        String message;
+        try {
+            repository.deleteAll();
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_DELETION_MANY.toString();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+        }
+
+        // Logging success and returning the result.
+        SystemResponseWrapper wrapper = new SystemResponseWrapper();
+        wrapper.setCode(ResponseCode.SUCCESS);
+        wrapper.setMessage("Database transaction successfully concluded.");
+
+        log.info("Successfully deleted all Systems from the database.");
+        return wrapper;
     }
 }

@@ -82,6 +82,6 @@ public interface SystemServices {
      *
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
-    SystemResponsesWrapper deleteAllSystems();
+    SystemResponseWrapper deleteAllSystems();
 
 }

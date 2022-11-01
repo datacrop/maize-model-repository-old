@@ -403,4 +403,78 @@ class SystemServicesImplTest {
         );
         Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method updateSystem()."));
     }
+
+    @Test
+    void deleteSystem() {
+        // Testing the deletion of the first System.
+        Long beforeDeletion = systemRepository.count();
+        SystemResponseWrapper wrapper = systemServices.deleteSystem(system1.getId());
+        Long afterDeletion = systemRepository.count();
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, wrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", wrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotNull(wrapper.getResponse(), "Wrapper has not received proper SUCCESS Response:");
+
+        SystemResponseDto deleted = wrapper.getResponse();
+
+        Assertions.assertNotNull(deleted, "System has not been deleted successfully (null test):");
+        Assertions.assertEquals(system1.getId(), deleted.getId(), "The deleted System has incorrect identifier:");
+        Assertions.assertEquals(system1.getName(), deleted.getName(), "The deleted System has incorrect name:");
+        Assertions.assertEquals(system1.getDescription(), deleted.getDescription(), "The deleted System has incorrect description:");
+        Assertions.assertEquals(system1.getLocation().getLatitude(), deleted.getLocation().getLatitude(), "The deleted System has incorrect latitude:");
+        Assertions.assertEquals(system1.getLocation().getLongitude(), deleted.getLocation().getLongitude(), "The deleted System has incorrect longitude:");
+        Assertions.assertEquals(system1.getLocation().getVirtualLocation(), deleted.getLocation().getVirtualLocation(), "The deleted System has incorrect virtual location:");
+        Assertions.assertEquals(system1.getOrganization(), deleted.getOrganization(), "The deleted System has incorrect organization:");
+        Assertions.assertTrue(system1.getAdditionalInformation().containsAll(deleted.getAdditionalInformation()), "The deleted System has incorrect info:");
+        Assertions.assertEquals(system1.getAdditionalInformation().size(), deleted.getAdditionalInformation().size(), "The deleted System has incorrect info size:");
+        Assertions.assertNotNull(deleted.getCreationDate(), "The deleted System did not receive a creation timestamp:");
+        Assertions.assertNotNull(deleted.getLatestUpdateDate(), "The deleted System did not receive an update timestamp:");
+        Assertions.assertEquals(Long.valueOf(beforeDeletion - 1L), afterDeletion, "The number of entities has not decreased by one:");
+
+        // Testing the retrieval of the first System. It must return nothing.
+        System retrieved = systemRepository.findFirstByName("System1");
+        Assertions.assertNull(retrieved, "The supposedly deleted System can still be retrieved:");
+
+        // Testing also the "Not Found" scenario.
+        String random = UUID.randomUUID().toString();
+        wrapper = systemServices.deleteSystem(random);
+        Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
+        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
+
+        // Testing also the "Invalid Parameter" scenario.
+        IllegalArgumentException thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.retrieveSystemByDatabaseID(" "),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method retrieveSystemByDatabaseID()."));
+
+        thrown = assertThrows(
+                IllegalArgumentException.class,
+                () -> systemServices.retrieveSystemByDatabaseID(null),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown.getMessage().contains("Invalid parameter detected for method retrieveSystemByDatabaseID()."));
+
+        NonUuidArgumentException thrown2 = assertThrows(
+                NonUuidArgumentException.class,
+                () -> systemServices.retrieveSystemByDatabaseID(RandomStringUtils.randomAlphabetic(10)),
+                "Invalid input parameter has not been detected."
+        );
+        Assertions.assertTrue(thrown2.getMessage().contains("Non-UUID parameter detected for method retrieveSystemByDatabaseID()."));
+    }
+
+    @Test
+    void deleteAllSystems() {
+        // Testing the deletion of both Test Systems.
+        Long beforeDeletion = systemRepository.count();
+        SystemResponseWrapper wrapper = systemServices.deleteAllSystems();
+        Long afterDeletion = systemRepository.count();
+
+        Assertions.assertEquals(ResponseCode.SUCCESS, wrapper.getCode(), "Wrapper has not received proper SUCCESS ResponseCode:");
+        Assertions.assertEquals("Database transaction successfully concluded.", wrapper.getMessage(), "Wrapper has not received proper SUCCESS message:");
+        Assertions.assertNotEquals(beforeDeletion, afterDeletion, "The number of entities has not changed:");
+        Assertions.assertEquals(0, afterDeletion, "The number of entities is not zero:");
+    }
 }

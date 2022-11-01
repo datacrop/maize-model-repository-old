@@ -58,7 +58,7 @@ public class LocationConvertersImpl implements LocationConverters {
         LocationResponseDto location = new LocationResponseDto(entity.getLatitude(), entity.getLongitude(),
                 entity.getVirtualLocation());
 
-        log.debug("Successfully converted MongoDB entity to RequestDto for Location.");
+        log.debug("Successfully converted MongoDB entity to ResponseWrapper for Location.");
 
         return location;
     }
