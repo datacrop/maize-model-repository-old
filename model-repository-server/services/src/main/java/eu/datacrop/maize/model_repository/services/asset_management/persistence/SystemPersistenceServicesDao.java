@@ -1,16 +1,16 @@
-package eu.datacrop.maize.model_repository.persistence.daos;
+package eu.datacrop.maize.model_repository.services.asset_management.persistence;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 
 /**********************************************************************************************************************
- * This interface defines the services offered by the persistence layer pertaining to IoT Systems.
+ * This interface defines the services offered that pertain to persistence (CRUD) operations of IoT Systems.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public interface SystemPersistenceLayerDaos {
+public interface SystemPersistenceServicesDao {
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its databaseID as unique identifier.
@@ -68,5 +68,4 @@ public interface SystemPersistenceLayerDaos {
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
     SystemResponseWrapper deleteAllSystems();
-
 }
