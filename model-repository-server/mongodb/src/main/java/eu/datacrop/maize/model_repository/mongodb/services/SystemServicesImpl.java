@@ -13,6 +13,7 @@ import eu.datacrop.maize.model_repository.mongodb.model.System;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,7 @@ import java.util.List;
  *********************************************************************************************************************/
 @Slf4j
 @Service
+@Profile("devmongo")
 public class SystemServicesImpl implements SystemServices {
 
     @Autowired

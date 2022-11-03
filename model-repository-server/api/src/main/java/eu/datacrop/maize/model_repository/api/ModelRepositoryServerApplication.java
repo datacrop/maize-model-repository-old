@@ -4,8 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.mongodb.config.EnableMongoAuditing;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
@@ -41,8 +39,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         "eu.datacrop.maize.model_repository.api.error",
         "eu.datacrop.maize.model_repository.api.services",
 })
-@EnableMongoAuditing
-@EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})
 @EntityScan(basePackages = {
         "eu.datacrop.maize.model_repository.mongodb.model",
         "eu.datacrop.maize.model_repository.mongodb.model.auxiliary"
