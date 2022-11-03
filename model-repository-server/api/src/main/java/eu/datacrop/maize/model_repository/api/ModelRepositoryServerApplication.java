@@ -10,11 +10,15 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "eu.datacrop.maize.model_repository.commons.dtos",
+        "eu.datacrop.maize.model_repository.commons.dtos.requests",
+        "eu.datacrop.maize.model_repository.commons.dtos.requests.templates",
+        "eu.datacrop.maize.model_repository.commons.dtos.responses",
         "eu.datacrop.maize.model_repository.commons.enums",
         "eu.datacrop.maize.model_repository.commons.error",
         "eu.datacrop.maize.model_repository.commons.error.exceptions",
         "eu.datacrop.maize.model_repository.commons.error.messages",
         "eu.datacrop.maize.model_repository.commons.util",
+        "eu.datacrop.maize.model_repository.commons.validators",
         "eu.datacrop.maize.model_repository.commons.wrappers",
         "eu.datacrop.maize.model_repository.commons.wrappers.collection",
         "eu.datacrop.maize.model_repository.commons.wrappers.single",
@@ -29,14 +33,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         "eu.datacrop.maize.model_repository.persistence.daos",
         "eu.datacrop.maize.model_repository.persistence.mongo_implementation",
         "eu.datacrop.maize.model_repository.persistence.mysql_implementation",
+        "eu.datacrop.maize.model_repository.persistence.validators",
         "eu.datacrop.maize.model_repository.services.persistence",
         "eu.datacrop.maize.model_repository.api",
         "eu.datacrop.maize.model_repository.api.config",
         "eu.datacrop.maize.model_repository.api.controllers",
         "eu.datacrop.maize.model_repository.api.error",
         "eu.datacrop.maize.model_repository.api.services",
-        "eu.datacrop.maize.model_repository.api.services.api",
-        "eu.datacrop.maize.model_repository.api.services.validators",
 })
 @EnableMongoAuditing
 @EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})

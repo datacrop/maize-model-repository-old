@@ -17,16 +17,20 @@ public interface SystemPersistenceLayerDaos {
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
+     *
+     * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID);
+    SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException;
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its name as unique identifier.
      *
      * @param name A string that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
+     *
+     * @throws IllegalArgumentException, if name is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByName(String name);
+    SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException;
 
     /******************************************************************************************************************
      * Method to retrieve all Systems paginated.
@@ -42,8 +46,10 @@ public interface SystemPersistenceLayerDaos {
      *
      * @param requestDto A data transfer object with values for the attributes of the System, not null.
      * @return A wrapped data transfer object with either information on the created System or failure messages.
+     *
+     * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper createSystem(SystemRequestDto requestDto);
+    SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException;
 
     /******************************************************************************************************************
      * Method to update an existing System using its databaseID as unique identifier.
@@ -51,16 +57,21 @@ public interface SystemPersistenceLayerDaos {
      * @param requestDto A data transfer object with values for the attributes of the System, not null.
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the updated System or failure messages.
+     *
+     * @throws IllegalArgumentException, if requestDto is null.
+     * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID);
+    SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException;
 
     /******************************************************************************************************************
      * Method to delete an existing System using its databaseID as unique identifier.
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the deleted System or failure messages.
+     *
+     * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper deleteSystem(String databaseID);
+    SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException;
 
     /******************************************************************************************************************
      * Method to delete all existing Systems.

@@ -1,10 +1,13 @@
 package eu.datacrop.maize.model_repository.persistence.mongo_implementation;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.services.SystemServices;
 import eu.datacrop.maize.model_repository.persistence.daos.SystemPersistenceLayerDaos;
+import eu.datacrop.maize.model_repository.persistence.validators.SystemValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -24,15 +27,26 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
     @Autowired
     SystemServices services;
 
+    @Autowired
+    SystemValidator validator;
+
+
     /******************************************************************************************************************
      * Method to retrieve an existing System using its databaseID as unique identifier.
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
      *
+     * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) {
+    public SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException {
+
+        // Checking input parameters.
+        if (databaseID.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.updateSystem().");
+        }
+
         log.info("Persistence layer (MongoDB) received request for retrieval of System with ID: '{}'.", databaseID);
         return services.retrieveSystemByDatabaseID(databaseID);
     }
@@ -42,9 +56,17 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
      *
      * @param name A string that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
+     *
+     * @throws IllegalArgumentException, if name is null.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper retrieveSystemByName(String name) {
+    public SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException {
+
+        // Checking input parameters.
+        if (name.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.updateSystem().");
+        }
+
         log.info("Persistence layer (MongoDB) received request for retrieval of System with Name: '{}'.", name);
         return services.retrieveSystemByName(name);
     }
@@ -67,10 +89,28 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
      *
      * @param requestDto A data transfer object with values for the attributes of the System, not null.
      * @return A wrapped data transfer object with either information on the created System or failure messages.
+     *
+     * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper createSystem(SystemRequestDto requestDto) {
+    public SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException {
+
+        // Checking input parameters.
+        if (requestDto == null) {
+            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.createSystem().");
+        }
+
         log.info("Persistence layer (MongoDB) received request for creation of new System.");
+
+        // Performing validations of data transfer object.
+        ResponseWrapper wrapper = requestDto.performValidation();
+        if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+            // Aborting if issues have been discovered.
+            log.debug("Issues discovered during attribute validation.");
+            return synthesizeResponseWrapperForError(wrapper.getCode(), wrapper.getMessage());
+        }
+
+        // Continuing if issues have not been discovered.
         return services.createSystem(requestDto);
     }
 
@@ -80,10 +120,29 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
      * @param requestDto A data transfer object with values for the attributes of the System, not null.
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the updated System or failure messages.
+     *
+     * @throws IllegalArgumentException, if requestDto is null.
+     * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) {
+    public SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException {
+
+        // Checking input parameters.
+        if (requestDto == null || databaseID.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.updateSystem().");
+        }
+
         log.info("Persistence layer (MongoDB) received request for update of System with ID: '{}'.", databaseID);
+
+        // Performing validations of data transfer object.
+        ResponseWrapper wrapper = requestDto.performValidation();
+        if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+            // Aborting if issues have been discovered.
+            log.debug("Issues discovered during attribute validation.");
+            return synthesizeResponseWrapperForError(wrapper.getCode(), wrapper.getMessage());
+        }
+
+        // Continuing if issues have not been discovered.
         return services.updateSystem(requestDto, databaseID);
     }
 
@@ -92,9 +151,17 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the deleted System or failure messages.
+     *
+     * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper deleteSystem(String databaseID) {
+    public SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException {
+
+        // Checking input parameters.
+        if (databaseID.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.updateSystem().");
+        }
+
         log.info("Persistence layer (MongoDB) received request for deletion of System with ID: '{}'.", databaseID);
         return services.deleteSystem(databaseID);
     }
@@ -108,5 +175,21 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
     public SystemResponseWrapper deleteAllSystems() {
         log.info("Persistence layer (MongoDB) received request for deletion of all Systems.");
         return services.deleteAllSystems();
+    }
+
+    private SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message) throws IllegalArgumentException {
+
+        if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
+            throw new IllegalArgumentException("Invalid parameter detected for method synthesizeResponseWrapperForError().");
+        }
+
+        SystemResponseWrapper wrapper = new SystemResponseWrapper();
+        wrapper.setCode(code);
+        wrapper.setMessage(message);
+        wrapper.setResponse(null);
+
+        log.debug("Successfully produced ResponseWrapper for unsuccessful database transaction.");
+
+        return wrapper;
     }
 }

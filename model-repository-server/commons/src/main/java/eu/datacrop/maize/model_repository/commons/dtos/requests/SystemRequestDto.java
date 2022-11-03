@@ -1,5 +1,6 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests;
 
+import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import org.json.JSONObject;
 
 import java.io.Serial;
@@ -14,7 +15,7 @@ import java.util.Set;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public class SystemRequestDto implements Serializable {
+public class SystemRequestDto extends RequestDto implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -9170777359020648979L;

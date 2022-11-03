@@ -1,7 +1,7 @@
 package eu.datacrop.maize.model_repository.commons.error.messages;
 
 /**********************************************************************************************************************
- * This enumeration contains Response Codes to be used in Response Wrappers.
+ * This enumeration contains Response Codes to be used in Response Wrappers for IoT Systems.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
@@ -27,6 +27,17 @@ public enum SystemErrorMessages {
      * Indicates that persistence has been aborted due to unique identifier conflict.
      *****************************************************************************************************************/
     CONFLICT("There is already another System with the same Name and ID: "),
+
+    /******************************************************************************************************************
+     * Indicates that persistence has been aborted due to absence of mandatory fields.
+     *****************************************************************************************************************/
+    MANDATORY_FIELDS_MISSING("Request contains one or more mandatory fields that are null. Operation aborted."),
+
+    /******************************************************************************************************************
+     * Indicates that persistence has been aborted due to a Location structure that does not conform to
+     * the business model.
+     *****************************************************************************************************************/
+    INVALID_LOCATION_STRUCTURE("A System may be provided either with a pair of coordinates or a virtual location."),
 
     /******************************************************************************************************************
      * Indicates that a search by database identifier produced an error.
@@ -71,7 +82,12 @@ public enum SystemErrorMessages {
     /******************************************************************************************************************
      * Indicates that operation has been aborted due to invalid format of input parameters.
      *****************************************************************************************************************/
-    INVALID_PARAMETER_FORMAT("Operation aborted due to invalid parameter format.");
+    INVALID_PARAMETER_FORMAT("Operation aborted due to invalid parameter format."),
+
+    /******************************************************************************************************************
+     * Indicates that the back-end server malfunctioned.
+     *****************************************************************************************************************/
+    INTERNAL_SERVER_ERROR("Internal Server Error.");
 
 
     /******************************************************************************************************************
