@@ -29,6 +29,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
+/**********************************************************************************************************************
+ * This class contains configuration information pertaining to SpringFox (Swagger2 Documentation with User Interface).
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.3.0
+ *********************************************************************************************************************/
 @Configuration
 @EnableWebMvc
 @EnableOpenApi
@@ -38,17 +45,29 @@ public class SpringFoxConfig {
     @Value("${swagger.baseurl:localhost:8080}")
     private String baseUrl;
 
+    /******************************************************************************************************************
+     * Constructs a collection of information regarding the particular API to be displayed on the header of
+     * Swagger UI.
+     *
+     * @return A Collection of information.
+     *****************************************************************************************************************/
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Model Repository")
                 .description("DataCROP Model Repository RESTful API")
                 .license("Apache 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .contact(new Contact("Angelina", "https://www.linkedin.com/in/amdespotopoulou/", "ades@ait.gr"))
+                .contact(new Contact("Angela-Maria Despotopoulou", "https://www.linkedin.com/in/amdespotopoulou/", "AngelaMaria.Despotopoulou@netcompany-intrasoft.com"))
                 .version("1.0")
                 .build();
     }
 
+    /******************************************************************************************************************
+     * Defines technical confugurations on which endpoints to include or omit from the UI, where it should be
+     * exposed, etc.
+     *
+     * @return A configuration for the global io.swagger.model
+     *****************************************************************************************************************/
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -64,6 +83,18 @@ public class SpringFoxConfig {
                 .useDefaultResponseMessages(false);
     }
 
+    /******************************************************************************************************************
+     * The presence of this method just fixes SwaggerFox 3.0.0 incompatibilities with Spring Boot.
+     *
+     * @param webEndpointsSupplier
+     * @param servletEndpointsSupplier
+     * @param controllerEndpointsSupplier
+     * @param endpointMediaTypes
+     * @param corsProperties
+     * @param webEndpointProperties
+     * @param environment
+     * @return A WebMvcEndpointHandlerMapping object.
+     *****************************************************************************************************************/
     @Bean
     public WebMvcEndpointHandlerMapping webEndpointServletHandlerMapping(WebEndpointsSupplier webEndpointsSupplier, ServletEndpointsSupplier servletEndpointsSupplier, ControllerEndpointsSupplier controllerEndpointsSupplier, EndpointMediaTypes endpointMediaTypes, CorsEndpointProperties corsProperties, WebEndpointProperties webEndpointProperties, Environment environment) {
         List<ExposableEndpoint<?>> allEndpoints = new ArrayList();
@@ -77,6 +108,14 @@ public class SpringFoxConfig {
         return new WebMvcEndpointHandlerMapping(endpointMapping, webEndpoints, endpointMediaTypes, corsProperties.toCorsConfiguration(), new EndpointLinksResolver(allEndpoints, basePath), shouldRegisterLinksMapping, null);
     }
 
+    /******************************************************************************************************************
+     * The presence of this method just fixes SwaggerFox 3.0.0 incompatibilities with Spring Boot.
+     *
+     * @param webEndpointProperties
+     * @param environment
+     * @param basePath
+     * @return A boolean value.
+     *****************************************************************************************************************/
     private boolean shouldRegisterLinksMapping(WebEndpointProperties webEndpointProperties, Environment environment, String basePath) {
         return webEndpointProperties.getDiscovery().isEnabled() && (StringUtils.hasText(basePath) || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
     }

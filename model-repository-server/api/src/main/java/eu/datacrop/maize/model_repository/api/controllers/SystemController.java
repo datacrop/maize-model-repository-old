@@ -56,4 +56,29 @@ public class SystemController {
         log.info("Received GET request for System with SystemID: {}.", systemID);
         return services.retrieveSystemByDatabaseID(systemID);
     }
+
+    /******************************************************************************************************************
+     * Method to intercept a GET Request that aims to retrieve an existing System using its name as
+     * unique identifier.
+     *
+     * @param  name A human-readable name that uniquely identifies an existing System in the persistence layer, not null.
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Retrieves a specific System using its UUID unique identifier.", response = SystemRequestDto.class)
+    @GetMapping(path = "/{name}/name/")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK ~ System has been successfully retrieved.",
+                    response = SystemRequestDto.class),
+            @ApiResponse(code = 400, message = "Bad_Request ~ Erroneous request operation on System to be aborted.",
+                    response = ErrorMessage.class),
+            @ApiResponse(code = 404, message = "Not_Found ~ No System with the specified identifier has been found available to retrieve.",
+                    response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal_Server_Error ~ Internal Server Error occurred.",
+                    response = ErrorMessage.class)
+    })
+    public ResponseEntity retrieveSystemByName(@PathVariable String name) {
+        log.info("Received GET request for System with Name: {}.", name);
+        return services.retrieveSystemByName(name);
+    }
 }

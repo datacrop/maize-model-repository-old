@@ -18,4 +18,13 @@ public interface SystemApiServices {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     ResponseEntity retrieveSystemByDatabaseID(String systemID);
+
+    /******************************************************************************************************************
+     * Method that connects to the persistence layer to retrieve an existing IoT System using its name
+     * as unique identifier.
+     *
+     * @param name A human-readable string that uniquely identifies an existing System in the database, not null.
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    ResponseEntity retrieveSystemByName(String name);
 }
