@@ -227,10 +227,11 @@ public class LocationResponseDto implements Serializable {
 
         /**************************************************************************************************************
          * "Getter" function for "latitude" attribute.
+         * Note: This method is public for (de)serialization purposes.
          *
          * @return The current value of the object's "latitude" attribute.
          *************************************************************************************************************/
-        private double getLatitude() {
+        public double getLatitude() {
             return latitude;
         }
 
@@ -245,10 +246,11 @@ public class LocationResponseDto implements Serializable {
 
         /**************************************************************************************************************
          * "Getter" function for "longitude" attribute.
+         * Note: This method is public for (de)serialization purposes.
          *
          * @return The current value of the object's "longitude" attribute.
          *************************************************************************************************************/
-        private double getLongitude() {
+        public double getLongitude() {
             return longitude;
         }
 

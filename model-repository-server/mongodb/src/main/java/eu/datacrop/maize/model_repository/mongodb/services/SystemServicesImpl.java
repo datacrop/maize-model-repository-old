@@ -91,7 +91,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         // Logging success and returning the result.
-        log.info("Successfully retrieved System from database with ID: '{}'.", databaseID);
+        log.info("Successfully retrieved System from persistence layer with ID: '{}'.", databaseID);
         return wrapper;
     }
 
@@ -144,7 +144,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         // Logging success and returning the result.
-        log.info("Successfully retrieved System from database with Name: '{}'.", name);
+        log.info("Successfully retrieved System from persistence layer with Name: '{}'.", name);
         return wrapper;
     }
 
@@ -197,7 +197,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         // Logging success and returning the result.
-        log.info("Successfully retrieved all System entities from database (Page '{}' of '{}').", systemsPage.getNumber(), systemsPage.getTotalPages());
+        log.info("Successfully retrieved all System entities from persistence layer (Page '{}' of '{}').", systemsPage.getNumber(), systemsPage.getTotalPages());
         return wrapper;
     }
 
@@ -275,7 +275,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         // Logging success and returning the result.
-        log.info("Successfully created new System in database with ID '{}' and Name '{}'.", createdEntity.getId(), createdEntity.getName());
+        log.info("Successfully created new System in persistence layer with ID '{}' and Name '{}'.", createdEntity.getId(), createdEntity.getName());
         return wrapper;
     }
 
@@ -380,7 +380,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         // Logging success and returning the result.
-        log.info("Successfully updated System in database with ID '{}' and Name '{}'.", updatedEntity.getId(), updatedEntity.getName());
+        log.info("Successfully updated System in persistence layer with ID '{}' and Name '{}'.", updatedEntity.getId(), updatedEntity.getName());
         return wrapper;
     }
 
@@ -445,7 +445,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         // Logging success and returning the result.
-        log.info("Successfully deleted System from database with ID: '{}'.", databaseID);
+        log.info("Successfully deleted System from persistence layer with ID: '{}'.", databaseID);
         return wrapper;
     }
 
@@ -472,7 +472,7 @@ public class SystemServicesImpl implements SystemServices {
         wrapper.setCode(ResponseCode.SUCCESS);
         wrapper.setMessage("Database transaction successfully concluded.");
 
-        log.info("Successfully deleted all Systems from the database.");
+        log.info("Successfully deleted all Systems from the persistence layer.");
         return wrapper;
     }
 }

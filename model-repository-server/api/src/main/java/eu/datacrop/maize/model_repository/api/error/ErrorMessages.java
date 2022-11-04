@@ -9,11 +9,6 @@ package eu.datacrop.maize.model_repository.api.error;
 public enum ErrorMessages {
 
     /******************************************************************************************************************
-     * Indicates that an incoming data transfer object lacks fields that are supposed to be mandatory.
-     *****************************************************************************************************************/
-    MANDATORY_FIELDS_MISSING("Request contains one or more mandatory fields that are null. Operation aborted."),
-
-    /******************************************************************************************************************
      * Indicates that an incoming message body is of improper syntax.
      *****************************************************************************************************************/
     HTTP_MESSAGE_NOT_READABLE("JSON Parse Error occurred. Operation aborted."),
@@ -22,6 +17,10 @@ public enum ErrorMessages {
      * Indicates that an incoming message body has attributes of improper data type.
      *****************************************************************************************************************/
     ERRONEOUS_PARAMETER_TYPE("A non-acceptable variable data type has been detected. Operation aborted."),
+
+    IDENTIFIER_MISSING("An identifier is required to perform this operation."),
+
+    IDENTIFIER_NOT_UUID("The identifier must adhere to the UUID format."),
 
     /******************************************************************************************************************
      * Indicates that the back-end server malfunctioned.

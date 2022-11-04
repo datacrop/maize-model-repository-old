@@ -38,6 +38,7 @@ import org.springframework.context.annotation.ComponentScan;
         "eu.datacrop.maize.model_repository.api.controllers",
         "eu.datacrop.maize.model_repository.api.error",
         "eu.datacrop.maize.model_repository.api.services",
+        "org.springframework.data.annotation"
 })
 @EntityScan(basePackages = {
         "eu.datacrop.maize.model_repository.mongodb.model",
