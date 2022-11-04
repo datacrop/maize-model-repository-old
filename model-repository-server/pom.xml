@@ -80,6 +80,30 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Swagger Dependencies -->
+
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <!--         <dependency>
+             <groupId>org.springdoc</groupId>
+             <artifactId>springdoc-openapi-ui</artifactId>
+             <version>1.6.11</version>
+         </dependency>
+         <dependency>
+             <groupId>io.springfox</groupId>
+             <artifactId>springfox-swagger-ui</artifactId>
+             <version>3.0.0</version>
+         </dependency>
+         <dependency>
+             <groupId>com.google.guava</groupId>
+             <artifactId>guava-base</artifactId>
+             <version>r03</version>
+         </dependency>-->
+
         <!-- Logging Dependencies -->
         <dependency>
             <groupId>org.projectlombok</groupId>

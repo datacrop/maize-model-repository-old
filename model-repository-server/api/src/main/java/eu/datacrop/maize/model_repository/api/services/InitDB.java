@@ -17,10 +17,12 @@ public class InitDB implements ApplicationListener<ApplicationReadyEvent> {
 
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
 
+        systemRepository.deleteAll();
+
         System system = new System();
         system.setName("MyTestSystem");
         system.setOrganization("MyOrg");
-        // systemRepository.save(system);
+        systemRepository.save(system);
 
     }
 

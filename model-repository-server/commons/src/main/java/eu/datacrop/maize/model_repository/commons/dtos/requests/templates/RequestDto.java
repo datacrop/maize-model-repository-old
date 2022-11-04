@@ -1,5 +1,6 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests.templates;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
@@ -18,6 +19,7 @@ public abstract class RequestDto {
      * A validator offers methods to validate whether an incoming HTTP Request body contains attributes that are
      * valid according to the business rules.
      *****************************************************************************************************************/
+    @JsonIgnore
     Validator validator;
 
     /******************************************************************************************************************
