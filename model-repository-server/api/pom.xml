@@ -76,6 +76,7 @@
                             <!-- Specific configuration for the aggregate report -->
                             <reportOutputDirectory>${user.dir}/documents</reportOutputDirectory>
                             <destDir>javadoc</destDir>
+                            <show>private</show>
                         </configuration>
                         <phase>site</phase>
                     </execution>
