@@ -14,7 +14,7 @@ Here follows a short introduction of the current directory's contents:
 * **[documentation](documentation)**: documentation of the component's [API](https://en.wikipedia.org/wiki/Application_programming_interface), as well as a [Swagger](https://swagger.io/) export in [JSON](https://en.wikipedia.org/wiki/JSON) format.
 * **[model-repository-server](model-repository-server)**: the [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) [Spring Framework](https://spring.io/) project with the actual code of the component.
 * **[pictures](pictures)**: pictures folder for the present documentation.
-* **[quick-dev-tools](quick-dev-tools)**: quick setup helpers for development-only purposes on local machine.
+* **[deployment-scripts](deployment-scripts)**: deployment yaml files for component's deployment.
 * **[samples](samples)**: sample data models of the basic logical entities in JSON format,
 as well as an exported collection of sample [Postman](https://www.postman.com/) [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) requests for the API.
 * **[CHANGELOG.md](CHANGELOG.md)**: document to keep track of the notable versions of the Data Collection component.

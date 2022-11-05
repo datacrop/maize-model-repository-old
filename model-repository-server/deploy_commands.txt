@@ -1,0 +1,9 @@
+mvn clean package
+docker build -t datacrop/maize-model-repository:0.2.0 .
+docker run -d -p8087:8087 amdespotopoulou/maize-model-repository:0.2.0
+docker push datacrop/maize-model-repository:0.2.0
+
+
+docker login datacrop/maize-model-repository
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
