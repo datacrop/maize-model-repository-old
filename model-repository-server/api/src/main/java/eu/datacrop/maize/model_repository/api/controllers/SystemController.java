@@ -130,4 +130,25 @@ public class SystemController {
         log.info("Received DELETE request for System with SystemID: {}.", systemID);
         return services.deleteSystem(systemID);
     }
+
+    /******************************************************************************************************************
+     * Method to intercept a GET Request that aims to delete all existing System entities.
+     *
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete All Systems", description = "Deletes all Systems that have been ever persisted.")
+    @DeleteMapping(path = "/")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "OK ~ All Systems have been successfully deleted.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
+            @ApiResponse(responseCode = "404", description = "Not_Found ~ No System has been found available to delete.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "500", description = "Internal_Server_Error ~ Internal Server Error occurred.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+    })
+    public ResponseEntity deleteAllSystems() {
+        log.info("Received DELETE request for all System entities.");
+        return services.deleteAllSystems();
+    }
 }

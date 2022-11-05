@@ -45,4 +45,11 @@ public interface SystemApiServices {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     ResponseEntity deleteSystem(String systemID);
+
+    /******************************************************************************************************************
+     * Method that connects to the persistence layer to delete all existing IoT Systems.
+     *
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    ResponseEntity deleteAllSystems();
 }

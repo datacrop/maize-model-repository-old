@@ -466,8 +466,22 @@ public class SystemServicesImpl implements SystemServices {
     @Override
     public SystemResponseWrapper deleteAllSystems() {
 
-        // Attempting to delete all System entities from the database.
+        // Checking whether there is anything to delete.
         String message;
+        try {
+            long count = repository.count();
+            if (count == 0L) {
+                message = SystemErrorMessages.NOT_FOUND_ALL.toString();
+                log.info(message);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ALL);
+            }
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_DELETION_MANY.toString();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_MANY);
+        }
+
+        // Attempting to delete all System entities from the database.
         try {
             repository.deleteAll();
         } catch (Exception e) {

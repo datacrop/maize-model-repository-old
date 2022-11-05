@@ -302,7 +302,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
 
         // Reporting problematic client requests.
         if (wrapper.getCode().equals(ResponseCode.BAD_REQUEST)) {
-            log.info("Bad request diagnosed after attempt  to delete System with ID: '{}'. Message: '{}'", systemID, wrapper.getMessage());
+            log.info("Bad request diagnosed after attempt to delete System with ID: '{}'. Message: '{}'", systemID, wrapper.getMessage());
             ErrorMessage errorMessage = new ErrorMessage(400, HttpStatus.BAD_REQUEST.toString(),
                     wrapper.getMessage(),
                     wrapper.getErrorCode().name(), null);
@@ -328,8 +328,55 @@ public class SystemApiServicesImpl implements SystemApiServices {
         }
 
         // Logging success and returning the deleted System.
-        log.info("Successfully delete System from persistence layer with ID: '{}'.", systemID);
+        log.info("Successfully deleted System from persistence layer with ID: '{}'.", systemID);
         return ResponseEntity.ok(wrapper.getResponse());
+    }
+
+    /******************************************************************************************************************
+     * Method that connects to the persistence layer to delete all existing IoT Systems.
+     *
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    @Override
+    public ResponseEntity deleteAllSystems() {
+
+        // Querying the persistence layer.
+        SystemResponseWrapper wrapper;
+        try {
+            wrapper = services.deleteAllSystems();
+        } catch (Exception e) {
+            log.error("Internal error occurred after attempt to delete all System entities. Message: '{}'", e.getMessage());
+            ErrorMessage errorMessage = new ErrorMessage(500, HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+                    ErrorMessages.INTERNAL_SERVER_ERROR.getErrorMessage(),
+                    ErrorMessages.INTERNAL_SERVER_ERROR.toString(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
+
+        // Reporting server errors.
+        if (wrapper == null
+                || wrapper.getCode().equals(ResponseCode.ERROR)
+                || wrapper.getCode().equals(ResponseCode.UNDEFINED)
+                || wrapper.getCode().equals(ResponseCode.CONFLICT)) {
+            log.error("Internal error occurred after attempt  to delete all System entities. Message: '{}'",
+                    wrapper != null ? wrapper.getMessage() : "Details unknown.");
+            ErrorMessage errorMessage = new ErrorMessage(500, HttpStatus.INTERNAL_SERVER_ERROR.toString(),
+                    ErrorMessages.INTERNAL_SERVER_ERROR.getErrorMessage(),
+                    ErrorMessages.INTERNAL_SERVER_ERROR.name(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
+
+        // Reporting failure to locate any System.
+        if (wrapper.getCode().equals(ResponseCode.NOT_FOUND)) {
+            log.info("Observed fruitless attempt to all System entities. Message: '{}'", wrapper.getMessage());
+            ErrorMessage errorMessage = new ErrorMessage(404, HttpStatus.NOT_FOUND.toString(),
+                    wrapper.getMessage(),
+                    wrapper.getErrorCode().name(), null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+        }
+
+        // Logging success and returning the deleted System.
+        log.info("Successfully deleted all System entities from persistence layer.");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Deletion operation was successful.");
     }
 
 }
