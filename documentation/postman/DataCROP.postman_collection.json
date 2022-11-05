@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "a340b019-46b4-4528-b08e-76e134c4991e",
+		"name": "DataCROP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3949221"
+	},
+	"item": [
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "Persist new System",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update System by UUID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{systemID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								"{{systemID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve System by UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{systemID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								"{{systemID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve System by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{name}}/name/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								"{{name}}",
+								"name",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve all Systems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/?page=0&size=8",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Default is 0."
+								},
+								{
+									"key": "size",
+									"value": "8",
+									"description": "Default is 10."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete System by UUID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{systemID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								"{{systemID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all Systems",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"system",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Checks",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/health/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uptime Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/metrics/process.uptime/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"metrics",
+								"process.uptime",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
