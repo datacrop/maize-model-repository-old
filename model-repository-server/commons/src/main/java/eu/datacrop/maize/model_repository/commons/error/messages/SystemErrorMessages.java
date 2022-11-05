@@ -24,6 +24,11 @@ public enum SystemErrorMessages {
     NOT_FOUND_ALL("Failed to retrieve any System entities from the database."),
 
     /******************************************************************************************************************
+     * Indicates that the document in the database is empty.
+     *****************************************************************************************************************/
+    EXCEEDED_PAGE_LIMIT("Failed to retrieve any System entities because page limit has been exceeded."),
+
+    /******************************************************************************************************************
      * Indicates that persistence has been aborted due to unique identifier conflict.
      *****************************************************************************************************************/
     CONFLICT("There is already another System with the same Name and ID: "),

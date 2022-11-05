@@ -2,6 +2,7 @@ package eu.datacrop.maize.model_repository.commons.wrappers.single;
 
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 
 import java.io.Serial;
@@ -25,9 +26,14 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
     private SystemResponseDto response;
 
     /******************************************************************************************************************
+     * An error code in case the wrapper is used to report error.
+     *****************************************************************************************************************/
+    private SystemErrorMessages errorCode;
+
+    /******************************************************************************************************************
      * Constructor of the SystemResponseWrapper class, both for Builder pattern and instantiation with "new".
      *****************************************************************************************************************/
-    public SystemResponseWrapper(ResponseCode code, String message, SystemResponseDto response) {
+    public SystemResponseWrapper(ResponseCode code, String message, SystemResponseDto response, SystemErrorMessages errorCode) {
         this.setCode(code);
         if (code.equals(ResponseCode.SUCCESS)) {
             this.setMessage("Request has been successful.");
@@ -35,6 +41,7 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
             this.setMessage(message);
         }
         this.response = response;
+        this.errorCode = errorCode;
     }
 
     /******************************************************************************************************************
@@ -44,6 +51,7 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
         this.setCode(ResponseCode.UNDEFINED);
         this.setMessage(null);
         this.response = null;
+        this.errorCode = null;
     }
 
     /******************************************************************************************************************
@@ -65,6 +73,24 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
     }
 
     /******************************************************************************************************************
+     * "Getter" function for "errorCode" attribute.
+     *
+     * @return The current value of the object's "errorCode" attribute.
+     *****************************************************************************************************************/
+    public SystemErrorMessages getErrorCode() {
+        return errorCode;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "errorCode" attribute.
+     *
+     * @param errorCode A value to assign to the object's "errorCode" attribute, not null.
+     *****************************************************************************************************************/
+    public void setErrorCode(SystemErrorMessages errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    /******************************************************************************************************************
      * Transforms a SystemResponseWrapper object to String.
      *
      * @return A string representation of the Object.
@@ -75,6 +101,8 @@ public class SystemResponseWrapper extends ResponseWrapper implements Serializab
                 "code=" + super.getCode() +
                 ", message='" + super.getMessage() + '\'' +
                 ", response='" + response + '\'' +
+                ", response='" + response + '\'' +
+                ", errorCode='" + errorCode + '\'' +
                 '}';
     }
 }

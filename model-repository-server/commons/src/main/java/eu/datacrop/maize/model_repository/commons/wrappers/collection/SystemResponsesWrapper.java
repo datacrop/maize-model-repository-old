@@ -2,6 +2,7 @@ package eu.datacrop.maize.model_repository.commons.wrappers.collection;
 
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 
@@ -34,9 +35,14 @@ public class SystemResponsesWrapper extends ResponseWrapper implements Serializa
     private PaginationInfo paginationInfo;
 
     /******************************************************************************************************************
+     * An error code in case the wrapper is used to report error.
+     *****************************************************************************************************************/
+    private SystemErrorMessages errorCode;
+
+    /******************************************************************************************************************
      * Constructor of the SystemResponseWrapper class, both for Builder pattern and instantiation with "new".
      *****************************************************************************************************************/
-    public SystemResponsesWrapper(ResponseCode code, String message, PaginationInfo paginationInfo) {
+    public SystemResponsesWrapper(ResponseCode code, String message, PaginationInfo paginationInfo, SystemErrorMessages errorCode) {
         this.setCode(code);
         if (code.equals(ResponseCode.SUCCESS)) {
             this.setMessage("Request has been successful.");
@@ -49,6 +55,7 @@ public class SystemResponsesWrapper extends ResponseWrapper implements Serializa
             this.paginationInfo = paginationInfo;
         }
         this.listOfResponses = new ArrayList<>();
+        this.errorCode = errorCode;
     }
 
     /******************************************************************************************************************
@@ -59,6 +66,7 @@ public class SystemResponsesWrapper extends ResponseWrapper implements Serializa
         this.setMessage(null);
         this.listOfResponses = new ArrayList<>();
         this.paginationInfo = new PaginationInfo(0, 0, 0);
+        this.errorCode = null;
     }
 
     /******************************************************************************************************************
@@ -144,6 +152,24 @@ public class SystemResponsesWrapper extends ResponseWrapper implements Serializa
     }
 
     /******************************************************************************************************************
+     * "Getter" function for "errorCode" attribute.
+     *
+     * @return The current value of the object's "errorCode" attribute.
+     *****************************************************************************************************************/
+    public SystemErrorMessages getErrorCode() {
+        return errorCode;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "errorCode" attribute.
+     *
+     * @param errorCode A value to assign to the object's "errorCode" attribute, not null.
+     *****************************************************************************************************************/
+    public void setErrorCode(SystemErrorMessages errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    /******************************************************************************************************************
      * Transforms a SystemResponseWrapper object to String.
      *
      * @return A string representation of the Object.
@@ -155,6 +181,7 @@ public class SystemResponsesWrapper extends ResponseWrapper implements Serializa
                 ", message='" + super.getMessage() + '\'' +
                 ", listOfResponses='" + listOfResponses + '\'' +
                 ", paginationInfo='" + paginationInfo + '\'' +
+                ", errorCode='" + errorCode + '\'' +
                 '}';
     }
 }

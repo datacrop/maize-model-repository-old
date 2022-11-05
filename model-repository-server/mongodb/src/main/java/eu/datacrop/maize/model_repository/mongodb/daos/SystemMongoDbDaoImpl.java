@@ -49,11 +49,11 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (NonUuidArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETER_FORMAT.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETER_FORMAT);
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -75,7 +75,7 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -110,7 +110,7 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -133,11 +133,11 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (NonUuidArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETER_FORMAT.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETER_FORMAT);
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -159,11 +159,11 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (NonUuidArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETER_FORMAT.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETER_FORMAT);
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
