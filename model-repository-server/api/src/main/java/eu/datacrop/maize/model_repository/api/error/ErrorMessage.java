@@ -1,120 +1,183 @@
-package eu.datacrop.maize.model_repository.commons.error.messages;
+package eu.datacrop.maize.model_repository.api.error;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
+
+import java.time.LocalDateTime;
 
 /**********************************************************************************************************************
- * This enumeration contains Response Codes to be used in Response Wrappers for IoT Systems.
+ * This class is a data transfer object representing an Error Message. Used in HTTP responses that do not
+ * correspond to successful responses (codes 200-299).
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public enum SystemErrorMessages {
+public class ErrorMessage {
 
     /******************************************************************************************************************
-     * Indicates that a search by database identifier failed to produce a match.
+     * The code corresponding to an HTTP response status code.
+     * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response status codes</a>
      *****************************************************************************************************************/
-    NOT_FOUND_ID("Failed to retrieve any System entities from the database with ID: "),
+    private int httpCode;
 
     /******************************************************************************************************************
-     * Indicates that a search by human-readable identifier failed to produce a match.
+     * A text representation of the HTTP response status code.
+     * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">HTTP response status codes</a>
      *****************************************************************************************************************/
-    NOT_FOUND_NAME("Failed to retrieve any System entities from the database with Name: "),
+    private String httpText;
 
     /******************************************************************************************************************
-     * Indicates that the document in the database is empty.
+     * A textual description of the error details.
      *****************************************************************************************************************/
-    NOT_FOUND_ALL("Failed to retrieve any System entities from the database."),
+    private String message;
 
     /******************************************************************************************************************
-     * Indicates that the document in the database is empty.
+     * A custom key for the error.
      *****************************************************************************************************************/
-    EXCEEDED_PAGE_LIMIT("Failed to retrieve any System entities because page limit has been exceeded."),
+    private String messageKey;
 
     /******************************************************************************************************************
-     * Indicates that persistence has been aborted due to unique identifier conflict.
+     * A URL with more information on the error and how to resolve it. Optional field.
      *****************************************************************************************************************/
-    CONFLICT("There is already another System with the same Name and ID: "),
+    private String href;
 
     /******************************************************************************************************************
-     * Indicates that persistence has been aborted due to absence of mandatory fields.
+     * The point in time when the error has been reported.
      *****************************************************************************************************************/
-    MANDATORY_FIELDS_MISSING("Request contains one or more mandatory fields that are null. Operation aborted."),
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    private LocalDateTime timestamp;
 
     /******************************************************************************************************************
-     * Indicates that persistence has been aborted due to a Location structure that does not conform to
-     * the business model.
+     * Constructor for the ErrorMessage class. The timestamp is being set automatically to "now".
+     *
+     * @param httpCode The code corresponding to an HTTP response status code.
+     * @param httpText A text representation of the HTTP response status code.
+     * @param message A textual description of the error details.
+     * @param messageKey A custom key for the error.
+     * @param href A URL with more information on the error and how to resolve it. Optional field.
      *****************************************************************************************************************/
-    INVALID_LOCATION_STRUCTURE("A System may be provided either with a pair of coordinates or a virtual location."),
-
-    /******************************************************************************************************************
-     * Indicates that a search by database identifier produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_RETRIEVAL_ID("Error detected while attempting to retrieve System with ID: "),
-
-    /******************************************************************************************************************
-     * Indicates that a search by human-readable identifier produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_RETRIEVAL_NAME("Error detected while attempting to retrieve System with Name: "),
-
-    /******************************************************************************************************************
-     * Indicates that a search for a collection of entities produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_RETRIEVAL_MANY("Error detected while attempting to retrieve collection of Systems."),
-
-    /******************************************************************************************************************
-     * Indicates that the insertion of a new entity produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_CREATION("Error detected while attempting to create System with Name: "),
-
-    /******************************************************************************************************************
-     * Indicates that the update of an existing entity produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_UPDATE("Error detected while attempting to update System with ID: "),
-
-    /******************************************************************************************************************
-     * Indicates that the deletion of an existing entity produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_DELETION_ID("Error detected while attempting to delete System with ID: "),
-
-    /******************************************************************************************************************
-     * Indicates that the deletion of a collection of entities produced an error.
-     *****************************************************************************************************************/
-    ERROR_ON_DELETION_MANY("Error detected while attempting to delete collection of Systems."),
-
-    /******************************************************************************************************************
-     * Indicates that operation has been aborted due to invalid input parameters.
-     *****************************************************************************************************************/
-    INVALID_PARAMETERS("Operation aborted due to invalid input parameters."),
-
-    /******************************************************************************************************************
-     * Indicates that operation has been aborted due to invalid format of input parameters.
-     *****************************************************************************************************************/
-    INVALID_PARAMETER_FORMAT("Operation aborted due to invalid parameter format."),
-
-    /******************************************************************************************************************
-     * Indicates that the back-end server malfunctioned.
-     *****************************************************************************************************************/
-    INTERNAL_SERVER_ERROR("Internal Server Error.");
-
-
-    /******************************************************************************************************************
-     * The text representing the enumeration values.
-     *****************************************************************************************************************/
-    private final String text;
-
-    /******************************************************************************************************************
-     * Constructor of the SystemErrorMessages enumeration.
-     *****************************************************************************************************************/
-    SystemErrorMessages(String text) {
-        this.text = text;
+    public ErrorMessage(int httpCode, String httpText, String message, String messageKey, String href) {
+        this.httpCode = httpCode;
+        this.httpText = httpText;
+        this.message = message;
+        this.messageKey = messageKey;
+        this.href = href;
+        this.timestamp = LocalDateTime.now();
     }
 
     /******************************************************************************************************************
-     * Transforms a SystemErrorMessages enumeration object to String.
+     * "Getter" method for "httpCode" attribute.
+     *
+     * @return The current value of the object's "httpCode" attribute.
+     *****************************************************************************************************************/
+    public int getHttpCode() {
+        return httpCode;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "httpCode" attribute.
+     *
+     * @param httpCode A value to assign to the object's "httpCode" attribute, not null.
+     *****************************************************************************************************************/
+    public void setHttpCode(int httpCode) {
+        this.httpCode = httpCode;
+    }
+
+    /******************************************************************************************************************
+     * "Getter" method for "httpText" attribute.
+     *
+     * @return The current value of the object's "httpText" attribute.
+     *****************************************************************************************************************/
+    public String getHttpText() {
+        return httpText;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "httpText" attribute.
+     *
+     * @param httpText A value to assign to the object's "httpText" attribute, not null.
+     *****************************************************************************************************************/
+    public void setHttpText(String httpText) {
+        this.httpText = httpText;
+    }
+
+    /******************************************************************************************************************
+     * "Getter" method for "message" attribute.
+     *
+     * @return The current value of the object's "message" attribute.
+     *****************************************************************************************************************/
+    public String getMessage() {
+        return message;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "message" attribute.
+     *
+     * @param message A value to assign to the object's "message" attribute, not null.
+     *****************************************************************************************************************/
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /******************************************************************************************************************
+     * "Getter" method for "messageKey" attribute.
+     *
+     * @return The current value of the object's "messageKey" attribute.
+     *****************************************************************************************************************/
+    public String getMessageKey() {
+        return messageKey;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "messageKey" attribute.
+     *
+     * @param messageKey A value to assign to the object's "messageKey" attribute, not null.
+     *****************************************************************************************************************/
+    public void setMessageKey(String messageKey) {
+        this.messageKey = messageKey;
+    }
+
+    /******************************************************************************************************************
+     * "Getter" method for "href" attribute.
+     *
+     * @return The current value of the object's "href" attribute.
+     *****************************************************************************************************************/
+    public String getHref() {
+        return href;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "href" attribute.
+     *
+     * @param href A value to assign to the object's "href" attribute, not null.
+     *****************************************************************************************************************/
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    /******************************************************************************************************************
+     * "Getter" method for "timestamp" attribute. (Note: there is no corresponding "setter".)
+     *
+     * @return The current value of the object's "timestamp" attribute.
+     *****************************************************************************************************************/
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    /******************************************************************************************************************
+     * Transforms an ErrorMessage object to String.
      *
      *  @return A string representation of the Object.
      *****************************************************************************************************************/
     @Override
     public String toString() {
-        return text;
+        return "{" +
+                "httpCode=" + httpCode +
+                ", httpText='" + httpText + '\'' +
+                ", message='" + message + '\'' +
+                ", messageKey='" + messageKey + '\'' +
+                ", href='" + href + '\'' +
+                ", timestamp=" + ((timestamp != null) ? timestamp.format(DateFormatter.formatter) : "") +
+                '}';
     }
-
 }

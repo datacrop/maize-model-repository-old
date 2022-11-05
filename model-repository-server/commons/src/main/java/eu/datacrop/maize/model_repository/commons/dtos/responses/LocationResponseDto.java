@@ -1,5 +1,7 @@
 package eu.datacrop.maize.model_repository.commons.dtos.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Builder;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
@@ -75,6 +77,8 @@ public class LocationResponseDto implements Serializable {
      *
      * @return The current value of the object's "latitude" attribute.
      *************************************************************************************************************/
+    @Hidden
+    @JsonIgnore
     public double getLatitude() {
         return geoLocation.getLatitude();
     }
@@ -85,6 +89,8 @@ public class LocationResponseDto implements Serializable {
      *
      * @return The current value of the object's "longitude" attribute.
      *************************************************************************************************************/
+    @Hidden
+    @JsonIgnore
     public double getLongitude() {
         return geoLocation.getLongitude();
     }
@@ -227,10 +233,11 @@ public class LocationResponseDto implements Serializable {
 
         /**************************************************************************************************************
          * "Getter" function for "latitude" attribute.
+         * Note: This method is public for (de)serialization purposes.
          *
          * @return The current value of the object's "latitude" attribute.
          *************************************************************************************************************/
-        private double getLatitude() {
+        public double getLatitude() {
             return latitude;
         }
 
@@ -245,10 +252,11 @@ public class LocationResponseDto implements Serializable {
 
         /**************************************************************************************************************
          * "Getter" function for "longitude" attribute.
+         * Note: This method is public for (de)serialization purposes.
          *
          * @return The current value of the object's "longitude" attribute.
          *************************************************************************************************************/
-        private double getLongitude() {
+        public double getLongitude() {
             return longitude;
         }
 

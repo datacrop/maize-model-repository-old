@@ -13,6 +13,7 @@ import eu.datacrop.maize.model_repository.mongodb.model.System;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,7 @@ import java.util.List;
  *********************************************************************************************************************/
 @Slf4j
 @Service
+@Profile("devmongo")
 public class SystemServicesImpl implements SystemServices {
 
     @Autowired
@@ -64,14 +66,14 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entity == null) {
             message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ID);
         }
 
         // Since the retrieval has been successful, enclosing the System into a message.
@@ -81,15 +83,15 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
 
         // Logging success and returning the result.
-        log.info("Successfully retrieved System from database with ID: '{}'.", databaseID);
+        log.info("Successfully retrieved System from persistence layer with ID: '{}'.", databaseID);
         return wrapper;
     }
 
@@ -117,14 +119,14 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(name);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entity == null) {
             message = SystemErrorMessages.NOT_FOUND_NAME.toString().concat(name);
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_NAME);
         }
 
         // Since the retrieval has been successful, enclosing the System into a message.
@@ -134,15 +136,15 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(name);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME);
         }
 
         // Logging success and returning the result.
-        log.info("Successfully retrieved System from database with Name: '{}'.", name);
+        log.info("Successfully retrieved System from persistence layer with Name: '{}'.", name);
         return wrapper;
     }
 
@@ -170,14 +172,23 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_MANY.toString();
             log.error(message);
-            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_MANY);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entities == null || entities.size() == 0) {
+
+            // Systems are available but the request was out of pagination limits.
+            if (paginationInfo.getTotalItems() > 0) {
+                message = SystemErrorMessages.EXCEEDED_PAGE_LIMIT.toString().concat(" Total Pages: " + paginationInfo.getTotalPages());
+                log.info(message);
+                return converters.synthesizeResponsesWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.EXCEEDED_PAGE_LIMIT);
+            }
+
+            // Systems are not available at all.
             message = SystemErrorMessages.NOT_FOUND_ALL.toString();
             log.info(message);
-            return converters.synthesizeResponsesWrapperForError(ResponseCode.NOT_FOUND, message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ALL);
         }
 
         // Since the retrieval has been successful, enclosing the collection of Systems into a message.
@@ -187,15 +198,15 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_MANY.toString();
             log.error(message);
-            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_MANY);
         }
 
         // Logging success and returning the result.
-        log.info("Successfully retrieved all System entities from database (Page '{}' of '{}').", systemsPage.getNumber(), systemsPage.getTotalPages());
+        log.info("Successfully retrieved all System entities from persistence layer (Page '{}' of '{}').", systemsPage.getNumber(), systemsPage.getTotalPages());
         return wrapper;
     }
 
@@ -223,13 +234,13 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(requestDto.getName());
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         if (conflictingEntity != null) {
             message = SystemErrorMessages.CONFLICT.toString().concat(conflictingEntity.getId());
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.CONFLICT);
         }
 
         // Converting the request data transfer object to a database entity.
@@ -239,7 +250,7 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         // Attempting to create new System entity.
@@ -249,13 +260,13 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         if (createdEntity == null) {
             message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat(requestDto.getName());
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_CREATION);
         }
 
         // Since the creation has been successful, enclosing the System into a message.
@@ -265,15 +276,15 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat(requestDto.getName());
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_CREATION);
         }
 
         // Logging success and returning the result.
-        log.info("Successfully created new System in database with ID '{}' and Name '{}'.", createdEntity.getId(), createdEntity.getName());
+        log.info("Successfully created new System in persistence layer with ID '{}' and Name '{}'.", createdEntity.getId(), createdEntity.getName());
         return wrapper;
     }
 
@@ -308,14 +319,14 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (retrievedEntity == null) {
             message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ID);
         }
 
         // If a change to the name is being attempted, search for conflicts.
@@ -326,13 +337,13 @@ public class SystemServicesImpl implements SystemServices {
             } catch (Exception e) {
                 message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(requestDto.getName());
                 log.error(message);
-                return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME);
             }
 
             if (conflictingEntity != null) {
                 message = SystemErrorMessages.CONFLICT.toString().concat(conflictingEntity.getId());
                 log.error(message);
-                return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.CONFLICT);
             }
         }
 
@@ -344,7 +355,7 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         // Attempting to update System entity.
@@ -354,13 +365,13 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         if (updatedEntity == null) {
             message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_UPDATE);
         }
 
         // Since the creation has been successful, enclosing the System into a message.
@@ -370,15 +381,15 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         // Logging success and returning the result.
-        log.info("Successfully updated System in database with ID '{}' and Name '{}'.", updatedEntity.getId(), updatedEntity.getName());
+        log.info("Successfully updated System in persistence layer with ID '{}' and Name '{}'.", updatedEntity.getId(), updatedEntity.getName());
         return wrapper;
     }
 
@@ -409,14 +420,14 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entity == null) {
             message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ID);
         }
 
         // Attempting to delete the entity corresponding to the databaseID.
@@ -425,7 +436,7 @@ public class SystemServicesImpl implements SystemServices {
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_ID);
         }
 
         // Since the retrieval has been successful, enclosing the System into a message.
@@ -435,15 +446,15 @@ public class SystemServicesImpl implements SystemServices {
         } catch (IllegalArgumentException e) {
             message = e.getMessage();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat(databaseID);
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_ID);
         }
 
         // Logging success and returning the result.
-        log.info("Successfully deleted System from database with ID: '{}'.", databaseID);
+        log.info("Successfully deleted System from persistence layer with ID: '{}'.", databaseID);
         return wrapper;
     }
 
@@ -455,14 +466,28 @@ public class SystemServicesImpl implements SystemServices {
     @Override
     public SystemResponseWrapper deleteAllSystems() {
 
-        // Attempting to delete all System entities from the database.
+        // Checking whether there is anything to delete.
         String message;
+        try {
+            long count = repository.count();
+            if (count == 0L) {
+                message = SystemErrorMessages.NOT_FOUND_ALL.toString();
+                log.info(message);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ALL);
+            }
+        } catch (Exception e) {
+            message = SystemErrorMessages.ERROR_ON_DELETION_MANY.toString();
+            log.error(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_MANY);
+        }
+
+        // Attempting to delete all System entities from the database.
         try {
             repository.deleteAll();
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_DELETION_MANY.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_MANY);
         }
 
         // Logging success and returning the result.
@@ -470,7 +495,7 @@ public class SystemServicesImpl implements SystemServices {
         wrapper.setCode(ResponseCode.SUCCESS);
         wrapper.setMessage("Database transaction successfully concluded.");
 
-        log.info("Successfully deleted all Systems from the database.");
+        log.info("Successfully deleted all Systems from the persistence layer.");
         return wrapper;
     }
 }

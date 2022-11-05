@@ -1,63 +1,85 @@
-package eu.datacrop.maize.model_repository.commons.enums;
+package eu.datacrop.maize.model_repository.api.error;
 
 /**********************************************************************************************************************
- * This enumeration contains Response Codes to be used in Response Wrappers.
+ * This enumeration contains identifiers of generic error codes addressed to API clients.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public enum ResponseCode {
+public enum ErrorMessages {
 
     /******************************************************************************************************************
-     * Indicates that the API Request has been concluded successfully.
+     * Indicates that an incoming message body is of improper syntax.
      *****************************************************************************************************************/
-    SUCCESS("SUCCESS"),
+    HTTP_MESSAGE_NOT_READABLE("JSON Parse Error occurred. Operation aborted."),
 
     /******************************************************************************************************************
-     * Indicates that the API Request has not been concluded successfully due to Internal Server Error.
+     * Indicates that an incoming message body has attributes of improper data type.
      *****************************************************************************************************************/
-    ERROR("ERROR"),
+    ERRONEOUS_PARAMETER_TYPE("A non-acceptable variable data type has been detected. Operation aborted."),
 
     /******************************************************************************************************************
-     * Indicates that the API Request did not produce error, however no result was available to return.
+     * Indicates that an incoming message needing an identifier has none.
      *****************************************************************************************************************/
-    NOT_FOUND("NOT_FOUND"),
+    IDENTIFIER_MISSING("An identifier is required to perform this operation."),
 
     /******************************************************************************************************************
-     * Indicates that the API Request did not produce error, however it was aborted due to conflict.
+     * Indicates that an incoming message needing a UUID identifier has none or one of false data type.
      *****************************************************************************************************************/
-    CONFLICT("CONFLICT"),
+    IDENTIFIER_NOT_UUID("The identifier must adhere to the UUID format."),
 
     /******************************************************************************************************************
-     * Indicates that the API Request was problematic due to the client's fault.
+     * Indicates that an incoming message is missing a mandatory data transfer object.
      *****************************************************************************************************************/
-    BAD_REQUEST("BAD_REQUEST"),
+    MISSING_DATA_INPUT("Missing data transfer object detected."),
 
     /******************************************************************************************************************
-     * Default value of the Response Wrapper. Not meant to reach end-users.
+     * Indicates that the back-end server malfunctioned.
      *****************************************************************************************************************/
-    UNDEFINED("UNDEFINED");
+    INTERNAL_SERVER_ERROR("Internal Server Error.");
+
 
     /******************************************************************************************************************
      * The text representing the enumeration values.
      *****************************************************************************************************************/
-    private final String text;
+    private String errorMessage;
 
     /******************************************************************************************************************
-     * Constructor of the ResponseCode enumeration.
+     * Constructor of the ErrorMessages enumeration.
+     *
+     * @param errorMessage The text representing the enumeration values.
      *****************************************************************************************************************/
-    ResponseCode(String text) {
-        this.text = text;
+    ErrorMessages(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     /******************************************************************************************************************
-     * Transforms a ResponseCode enumeration object to String.
+     * "Getter" method for "errorMessage" attribute.
+     *
+     * @return The current value of the object's "errorMessage" attribute.
+     *****************************************************************************************************************/
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    /******************************************************************************************************************
+     * "Setter" function for "errorMessage" attribute.
+     *
+     * @param errorMessage A value to assign to the object's "location" attribute, not null.
+     *****************************************************************************************************************/
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    /******************************************************************************************************************
+     * Transforms an ErrorMessages enumeration object to String.
      *
      *  @return A string representation of the Object.
      *****************************************************************************************************************/
     @Override
     public String toString() {
-        return text;
+        return "{" +
+                "errorMessage='" + errorMessage + '\'' +
+                '}';
     }
-
 }

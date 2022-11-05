@@ -1,5 +1,6 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests;
 
+import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import lombok.Builder;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
@@ -14,7 +15,7 @@ import java.util.Objects;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public class LocationRequestDto implements Serializable {
+public class LocationRequestDto extends RequestDto implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -5500314095045018717L;

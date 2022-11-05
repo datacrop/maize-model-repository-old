@@ -1,6 +1,7 @@
 package eu.datacrop.maize.model_repository.mongodb.repositories;
 
 import eu.datacrop.maize.model_repository.mongodb.model.System;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
  * @since version 0.3.0
  *********************************************************************************************************************/
 @Repository
+@Profile("devmongo")
 public interface SystemRepository extends MongoRepository<System, String> {
 
     /*****************************************************************************************************************

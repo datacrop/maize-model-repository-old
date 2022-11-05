@@ -1,16 +1,17 @@
-package eu.datacrop.maize.model_repository.persistence.daos;
+package eu.datacrop.maize.model_repository.persistence.mysql_implementation;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.persistence.daos.SystemPersistenceLayerDaos;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
-/**********************************************************************************************************************
- * This interface defines the services offered by the persistence layer pertaining to IoT Systems.
- *
- * @author Angela-Maria Despotopoulou [Athens, Greece]
- * @since version 0.3.0
- *********************************************************************************************************************/
-public interface SystemPersistenceLayerDaos {
+@Slf4j
+@Service
+@Profile("devmysql")
+public class SystemJpaDaos implements SystemPersistenceLayerDaos {
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its databaseID as unique identifier.
@@ -20,7 +21,10 @@ public interface SystemPersistenceLayerDaos {
      *
      * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its name as unique identifier.
@@ -30,7 +34,10 @@ public interface SystemPersistenceLayerDaos {
      *
      * @throws IllegalArgumentException, if name is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to retrieve all Systems paginated.
@@ -39,7 +46,10 @@ public interface SystemPersistenceLayerDaos {
      * @param size The intended size of pages.
      * @return A wrapped data transfer object with either information on the retrieved Systems or failure messages.
      *****************************************************************************************************************/
-    SystemResponsesWrapper retrieveAllSystems(int page, int size);
+    @Override
+    public SystemResponsesWrapper retrieveAllSystems(int page, int size) {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to persist a new System.
@@ -49,7 +59,10 @@ public interface SystemPersistenceLayerDaos {
      *
      * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to update an existing System using its databaseID as unique identifier.
@@ -61,7 +74,10 @@ public interface SystemPersistenceLayerDaos {
      * @throws IllegalArgumentException, if requestDto is null.
      * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to delete an existing System using its databaseID as unique identifier.
@@ -71,13 +87,18 @@ public interface SystemPersistenceLayerDaos {
      *
      * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException;
+    @Override
+    public SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException {
+        return null;
+    }
 
     /******************************************************************************************************************
      * Method to delete all existing Systems.
      *
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
-    SystemResponseWrapper deleteAllSystems();
-
+    @Override
+    public SystemResponseWrapper deleteAllSystems() {
+        return null;
+    }
 }

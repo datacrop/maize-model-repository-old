@@ -4,6 +4,7 @@ import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto
 import eu.datacrop.maize.model_repository.commons.dtos.responses.LocationResponseDto;
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
@@ -167,17 +168,18 @@ public class SystemConvertersImpl implements SystemConverters {
 
     /*****************************************************************************************************************
      * This method synthesizes a Wrapper object with error messages. To be used when database transactions fail.
-     * Returns null on erroneous input. Wrapper for a single entity version.
+     * Wrapper for a single entity version.
      *
      * @param code Code indicating why the database transaction has been unsuccessful, not null.
      * @param message Comment accompanying the error report, not null.
+     * @param errorMessage A code for the particular type of error, not null.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if code parameter is null, or equals to SUCCESS or UNDEFINED.
      * @throws IllegalArgumentException if message parameter is null or an empty string.
      ****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message) throws IllegalArgumentException {
+    public SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, SystemErrorMessages errorMessage) throws IllegalArgumentException {
         if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
             throw new IllegalArgumentException("Invalid parameter detected for method synthesizeResponseWrapperForError().");
         }
@@ -186,6 +188,7 @@ public class SystemConvertersImpl implements SystemConverters {
         wrapper.setCode(code);
         wrapper.setMessage(message);
         wrapper.setResponse(null);
+        wrapper.setErrorCode(errorMessage);
 
         log.debug("Successfully produced ResponseWrapper for unsuccessful database transaction.");
 
@@ -194,17 +197,18 @@ public class SystemConvertersImpl implements SystemConverters {
 
     /*****************************************************************************************************************
      * This method synthesizes a Wrapper object with error messages. To be used when database transactions fail.
-     * Returns null on erroneous input. Wrapper for collection version.
+     * Wrapper for collection version.
      *
      * @param code Code indicating why the database transaction has been unsuccessful, not null.
      * @param message Comment accompanying the error report, not null.
+     * @param errorMessage A code for the particular type of error, not null.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if code parameter is null, or equals to SUCCESS or UNDEFINED.
      * @throws IllegalArgumentException if message parameter is null or an empty string.
      ****************************************************************************************************************/
     @Override
-    public SystemResponsesWrapper synthesizeResponsesWrapperForError(ResponseCode code, String message) throws IllegalArgumentException {
+    public SystemResponsesWrapper synthesizeResponsesWrapperForError(ResponseCode code, String message, SystemErrorMessages errorMessage) throws IllegalArgumentException {
         if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
             throw new IllegalArgumentException("Invalid parameter detected for method synthesizeResponsesWrapperForError().");
         }
@@ -213,6 +217,7 @@ public class SystemConvertersImpl implements SystemConverters {
         wrapper.setCode(code);
         wrapper.setMessage(message);
         wrapper.setListOfResponses(new ArrayList<>());
+        wrapper.setErrorCode(errorMessage);
 
         log.debug("Successfully produced ResponseWrapper for unsuccessful database transaction.");
 

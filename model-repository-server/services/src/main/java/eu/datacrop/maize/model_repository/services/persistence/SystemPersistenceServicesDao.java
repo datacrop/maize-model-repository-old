@@ -1,36 +1,32 @@
-package eu.datacrop.maize.model_repository.persistence.daos;
+package eu.datacrop.maize.model_repository.services.persistence;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 
 /**********************************************************************************************************************
- * This interface defines the services offered by the persistence layer pertaining to IoT Systems.
+ * This interface defines the services offered that pertain to persistence (CRUD) operations of IoT Systems.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public interface SystemPersistenceLayerDaos {
+public interface SystemPersistenceServicesDao {
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its databaseID as unique identifier.
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
-     *
-     * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException;
+    SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID);
 
     /******************************************************************************************************************
      * Method to retrieve an existing System using its name as unique identifier.
      *
      * @param name A string that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
-     *
-     * @throws IllegalArgumentException, if name is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException;
+    SystemResponseWrapper retrieveSystemByName(String name);
 
     /******************************************************************************************************************
      * Method to retrieve all Systems paginated.
@@ -46,10 +42,8 @@ public interface SystemPersistenceLayerDaos {
      *
      * @param requestDto A data transfer object with values for the attributes of the System, not null.
      * @return A wrapped data transfer object with either information on the created System or failure messages.
-     *
-     * @throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
-    SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException;
+    SystemResponseWrapper createSystem(SystemRequestDto requestDto);
 
     /******************************************************************************************************************
      * Method to update an existing System using its databaseID as unique identifier.
@@ -57,21 +51,16 @@ public interface SystemPersistenceLayerDaos {
      * @param requestDto A data transfer object with values for the attributes of the System, not null.
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the updated System or failure messages.
-     *
-     * @throws IllegalArgumentException, if requestDto is null.
-     * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException;
+    SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID);
 
     /******************************************************************************************************************
      * Method to delete an existing System using its databaseID as unique identifier.
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the deleted System or failure messages.
-     *
-     * @throws IllegalArgumentException, if databaseID is null or empty string.
      *****************************************************************************************************************/
-    SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException;
+    SystemResponseWrapper deleteSystem(String databaseID);
 
     /******************************************************************************************************************
      * Method to delete all existing Systems.
@@ -79,5 +68,4 @@ public interface SystemPersistenceLayerDaos {
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
     SystemResponseWrapper deleteAllSystems();
-
 }

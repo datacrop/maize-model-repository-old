@@ -1,5 +1,7 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests;
 
+import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
+import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import org.json.JSONObject;
 
 import java.io.Serial;
@@ -14,7 +16,7 @@ import java.util.Set;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public class SystemRequestDto implements Serializable {
+public class SystemRequestDto extends RequestDto implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -9170777359020648979L;
@@ -48,7 +50,7 @@ public class SystemRequestDto implements Serializable {
      * Constructor of the SystemRequestDto class, used for the Builder pattern.
      *****************************************************************************************************************/
     public SystemRequestDto(String name, String description, LocationRequestDto location,
-                            String organization, Set<Object> additionalInformation) {
+                            String organization, Set<Object> additionalInformation, Validator validator) {
         this.name = name;
         this.description = description;
         this.organization = organization;
@@ -63,24 +65,26 @@ public class SystemRequestDto implements Serializable {
         } else {
             this.additionalInformation = additionalInformation;
         }
+        super.setValidator(validator);
     }
 
     /******************************************************************************************************************
      * Constructor of the SystemRequestDto class, used for instantiation with "new".
      *****************************************************************************************************************/
-    public SystemRequestDto(String name, String description, String organization) {
+    public SystemRequestDto(String name, String description, String organization, Validator validator) {
         this.name = name;
         this.description = description;
         this.organization = organization;
         this.location = new LocationRequestDto();
         this.additionalInformation = new HashSet<>();
+        super.setValidator(validator);
     }
 
     /******************************************************************************************************************
      * Empty constructor of the SystemRequestDto class.
      *****************************************************************************************************************/
     public SystemRequestDto() {
-        this("", "", "");
+        this("", "", "", null);
     }
 
     /******************************************************************************************************************

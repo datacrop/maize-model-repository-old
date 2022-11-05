@@ -10,6 +10,7 @@ import eu.datacrop.maize.model_repository.mongodb.converters.SystemConverters;
 import eu.datacrop.maize.model_repository.mongodb.services.SystemServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**********************************************************************************************************************
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
  *********************************************************************************************************************/
 @Slf4j
 @Service
+@Profile("devmongo")
 public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
 
     @Autowired
@@ -47,11 +49,11 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (NonUuidArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETER_FORMAT.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETER_FORMAT);
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -73,7 +75,7 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -108,7 +110,7 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -131,11 +133,11 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (NonUuidArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETER_FORMAT.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETER_FORMAT);
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }
@@ -157,11 +159,11 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
         } catch (NonUuidArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETER_FORMAT.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETER_FORMAT);
         } catch (IllegalArgumentException e) {
             message = SystemErrorMessages.INVALID_PARAMETERS.toString();
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INVALID_PARAMETERS);
         }
         return wrapper;
     }

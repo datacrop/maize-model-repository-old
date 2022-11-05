@@ -2,6 +2,7 @@ package eu.datacrop.maize.model_repository.mongodb.converters;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
@@ -59,12 +60,13 @@ public interface SystemConverters {
      *
      * @param code Code indicating why the database transaction has been unsuccessful, not null.
      * @param message Comment accompanying the error report, not null.
+     * @param errorMessage A code for the particular type of error, not null.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if code parameter is null, or equals to SUCCESS or UNDEFINED.
      * @throws IllegalArgumentException if message parameter is null or an empty string.
      ****************************************************************************************************************/
-    SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message) throws IllegalArgumentException;
+    SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, SystemErrorMessages errorMessage) throws IllegalArgumentException;
 
     /*****************************************************************************************************************
      * This method synthesizes a Wrapper object with error messages. To be used when database transactions fail.
@@ -72,10 +74,11 @@ public interface SystemConverters {
      *
      * @param code Code indicating why the database transaction has been unsuccessful, not null.
      * @param message Comment accompanying the error report, not null.
+     * @param errorMessage A code for the particular type of error, not null.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if code parameter is null, or equals to SUCCESS or UNDEFINED.
      * @throws IllegalArgumentException if message parameter is null or an empty string.
      ****************************************************************************************************************/
-    SystemResponsesWrapper synthesizeResponsesWrapperForError(ResponseCode code, String message) throws IllegalArgumentException;
+    SystemResponsesWrapper synthesizeResponsesWrapperForError(ResponseCode code, String message, SystemErrorMessages errorMessage) throws IllegalArgumentException;
 }

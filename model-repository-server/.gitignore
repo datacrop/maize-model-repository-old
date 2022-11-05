@@ -320,3 +320,4 @@ gradle-app.setting
 # GitIgnore
 .gitignore
 
+!/deploy_commands.txt

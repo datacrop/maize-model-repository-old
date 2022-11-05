@@ -37,11 +37,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "eu.datacrop.maize.model_repository.commons.dtos",
+        "eu.datacrop.maize.model_repository.commons.dtos.requests",
+        "eu.datacrop.maize.model_repository.commons.dtos.requests.templates",
+        "eu.datacrop.maize.model_repository.commons.dtos.responses",
         "eu.datacrop.maize.model_repository.commons.enums",
         "eu.datacrop.maize.model_repository.commons.error",
         "eu.datacrop.maize.model_repository.commons.error.exceptions",
         "eu.datacrop.maize.model_repository.commons.error.messages",
         "eu.datacrop.maize.model_repository.commons.util",
+        "eu.datacrop.maize.model_repository.commons.validators",
         "eu.datacrop.maize.model_repository.commons.wrappers",
         "eu.datacrop.maize.model_repository.commons.wrappers.collection",
         "eu.datacrop.maize.model_repository.commons.wrappers.single",
@@ -53,13 +57,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "eu.datacrop.maize.model_repository.mongodb.model.auxiliary",
         "eu.datacrop.maize.model_repository.mongodb.repositories",
         "eu.datacrop.maize.model_repository.mongodb.services",
+        "org.springframework.data.annotation"
 })
-@EnableMongoAuditing
-@EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})
 @EntityScan(basePackages = {
         "eu.datacrop.maize.model_repository.mongodb.model",
         "eu.datacrop.maize.model_repository.mongodb.model.auxiliary"
 })
+@EnableMongoAuditing
+@EnableMongoRepositories(basePackages = {"eu.datacrop.maize.model_repository.mongodb.repositories"})
 class SystemServicesImplTest {
 
     @Autowired

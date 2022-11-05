@@ -1,0 +1,55 @@
+version: '3.3'
+
+services:
+  mongo-storage:
+    image: 'mongo:latest'
+    container_name: mongo
+    ports:
+      - '27020:27017'
+    expose:
+      - '27020'
+    volumes:
+      - 'model-repository-mongo:/data/model-repository-mongo'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin     
+      MONGO_INITDB_DATABASE: maize-model-repository 
+    networks:
+      - model-repository-net
+    restart: on-failure
+
+  maize-model-repository:
+    image: 'datacrop/maize-model-repository:0.2.0'
+    container_name: model-repository
+    depends_on:
+      - mongo-storage   
+    environment:
+       SPRING_PROFILES_ACTIVE: 'devmongo'
+       SERVER_ADDRESS: '0.0.0.0'
+       LOGGING_LEVEL_EU_DATACROP_MAIZE_MODEL_REPOSITORY: DEBUG
+       # Swagger configuration
+       SWAGGERUI.CONTACT.NAME: 'DataCROP Development Team'
+       SWAGGERUI.CONTACT.URL: 'http://datacrop.eu/'
+       SWAGGERUI.CONTACT.EMAIL: 'datacrop@googlegroups.com'
+       # MongoDB configuration
+       SPRING_DATA_MONGODB_HOST: mongo-storage
+       SPRING_DATA_MONGODB_PORT: 27017
+       SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
+       SPRING_DATA_MONGODB_DATABASE: maize-model-repository
+       SPRING_DATA_MONGODB_USERNAME: admin
+       SPRING_DATA_MONGODB_PASSWORD: admin
+    ports:
+      - 8087:8087 
+    expose:
+      - '8087'  
+    networks:
+      - model-repository-net
+    restart: on-failure:10
+  
+volumes:
+  model-repository-mongo: null
+  model-repository-mysql: null
+
+networks:
+  model-repository-net:
+    external: false

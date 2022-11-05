@@ -1,4 +1,4 @@
-package eu.datacrop.maize.model_repository.services.asset_management.persistence;
+package eu.datacrop.maize.model_repository.services.persistence;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
