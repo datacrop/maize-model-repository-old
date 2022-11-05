@@ -7,6 +7,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+/**********************************************************************************************************************
+ * This is a configuration class (concerns Mongo profile).
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.3.0
+ *********************************************************************************************************************/
 @Profile("devmongo")
 @Configuration
 @EnableConfigurationProperties(MongoProperties.class)

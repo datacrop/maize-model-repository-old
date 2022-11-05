@@ -8,18 +8,38 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**********************************************************************************************************************
+ * This class contains configurations for the Swagger auto-generated documentation.
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.3.0
+ *********************************************************************************************************************/
 @Configuration
 public class SwaggerConfig {
 
+    /*****************************************************************************************************************
+     * Name of a contact person or team regarding the API.
+     ****************************************************************************************************************/
     @Value("${swaggerui.contact.name:DataCROP Development Team}")
     private String contactName;
 
+    /*****************************************************************************************************************
+     * Website of a contact person or team regarding the API.
+     ****************************************************************************************************************/
     @Value("${swaggerui.contact.url:http://datacrop.eu/}")
     private String contactUrl;
 
+    /*****************************************************************************************************************
+     * E-mail address of a contact person or team regarding the API.
+     ****************************************************************************************************************/
     @Value("${swaggerui.contact.email:datacrop@googlegroups.com}")
     private String contactEmail;
 
+    /*****************************************************************************************************************
+     * This method configures the header of the automatically generated Swagger interface.
+     *
+     * @return OpenAPI An object representing the API information.
+     ****************************************************************************************************************/
     @Bean
     public OpenAPI apiInfo() {
 

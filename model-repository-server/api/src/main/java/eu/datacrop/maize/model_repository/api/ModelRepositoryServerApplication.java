@@ -5,6 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
+/**********************************************************************************************************************
+ * This is the entrance point to the execution of the Spring Boot Project.
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.3.0
+ *********************************************************************************************************************/
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "eu.datacrop.maize.model_repository.commons.dtos",
