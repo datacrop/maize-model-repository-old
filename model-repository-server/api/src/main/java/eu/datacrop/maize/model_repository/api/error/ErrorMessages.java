@@ -18,9 +18,20 @@ public enum ErrorMessages {
      *****************************************************************************************************************/
     ERRONEOUS_PARAMETER_TYPE("A non-acceptable variable data type has been detected. Operation aborted."),
 
+    /******************************************************************************************************************
+     * Indicates that an incoming message needing an identifier has none.
+     *****************************************************************************************************************/
     IDENTIFIER_MISSING("An identifier is required to perform this operation."),
 
+    /******************************************************************************************************************
+     * Indicates that an incoming message needing a UUID identifier has none or one of false data type.
+     *****************************************************************************************************************/
     IDENTIFIER_NOT_UUID("The identifier must adhere to the UUID format."),
+
+    /******************************************************************************************************************
+     * Indicates that an incoming message is missing a mandatory data transfer object.
+     *****************************************************************************************************************/
+    MISSING_DATA_INPUT("Missing data transfer object detected."),
 
     /******************************************************************************************************************
      * Indicates that the back-end server malfunctioned.

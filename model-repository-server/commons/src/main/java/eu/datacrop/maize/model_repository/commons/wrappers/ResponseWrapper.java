@@ -35,15 +35,16 @@ public class ResponseWrapper implements Serializable {
      * Constructor of the ResponseWrapper class, both for Builder pattern and instantiation with "new".
      *****************************************************************************************************************/
     public ResponseWrapper(ResponseCode code, String message) {
-        this.code = ResponseCode.UNDEFINED;
-        this.message = "";
+        this.code = code;
+        this.message = message;
     }
 
     /******************************************************************************************************************
      * Empty constructor of the ResponseWrapper class.
      *****************************************************************************************************************/
     public ResponseWrapper() {
-
+        this.code = ResponseCode.UNDEFINED;
+        this.message = "";
     }
 
     /******************************************************************************************************************

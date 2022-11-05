@@ -2,6 +2,7 @@ package eu.datacrop.maize.model_repository.api.controllers;
 
 import eu.datacrop.maize.model_repository.api.error.ErrorMessage;
 import eu.datacrop.maize.model_repository.api.services.SystemApiServices;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -42,7 +43,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Retrieve System By UUID", description = "Retrieves a specific System using its UUID as unique identifier.")
+    @Operation(summary = "Retrieve System By UUID", description = "Retrieves an existing System using its UUID as unique identifier.")
     @GetMapping(path = "/{systemID}/id/")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully retrieved.",
@@ -67,7 +68,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Retrieve System By Name", description = "Retrieves a specific System using its name as unique identifier.")
+    @Operation(summary = "Retrieve System By Name", description = "Retrieves an existing System using its Name as unique identifier.")
     @GetMapping(path = "/{name}/name/")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully retrieved.",
@@ -107,6 +108,59 @@ public class SystemController {
     }
 
     /******************************************************************************************************************
+     * Method to intercept a POST Request that aims to persist a new System.
+     *
+     * @param requestDto A data transfer object with values for the attributes of the System, not null.
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Persist new System", description = "Persists a new System.")
+    @PostMapping(path = "/")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "CREATED ~ System has been successfully created.",
+                    content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = SystemResponseDto.class)))),
+            @ApiResponse(responseCode = "400", description = "Bad_Request ~ Erroneous request operation on System to be aborted.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "409", description = "Conflict ~ System creation aborted due to Name conflict.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "500", description = "Internal_Server_Error ~ Internal Server Error occurred.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+    })
+    public ResponseEntity createSystem(@RequestBody SystemRequestDto requestDto) {
+        log.info("Received POST request for new System with Name: '{}'.", requestDto.getName());
+        return services.createSystem(requestDto);
+    }
+
+    /******************************************************************************************************************
+     * Method to intercept a PUT Request that aims to update an existing System using its databaseID as
+     * unique identifier.
+     *
+     * @param requestDto A data transfer object with values for the attributes of the System, not null.
+     * @param systemID A UUID that uniquely identifies an existing System in the persistence layer, not null.
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Update System By UUID", description = ("Updates an existing System using its UUID as " +
+            "unique identifier."))
+    @PutMapping(path = "/{systemID}/id/")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully updated.",
+                    content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = SystemResponseDto.class)))),
+            @ApiResponse(responseCode = "400", description = "Bad_Request ~ Erroneous request operation on System to be aborted.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "404", description = "Not_Found ~ No System with the specified identifier has been found available to update.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "409", description = "Conflict ~ System update aborted due to Name conflict.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+            @ApiResponse(responseCode = "500", description = "Internal_Server_Error ~ Internal Server Error occurred.",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+    })
+    public ResponseEntity updateSystem(@RequestBody SystemRequestDto requestDto, @PathVariable String systemID) {
+        log.info("Received PUT request to update System with ID: '{}'.", systemID);
+        return services.updateSystem(requestDto, systemID);
+    }
+
+    /******************************************************************************************************************
      * Method to intercept a GET Request that aims to delete an existing System using its databaseID as
      * unique identifier.
      *
@@ -114,7 +168,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Delete System By UUID", description = "Deletes a specific System using its UUID as unique identifier.")
+    @Operation(summary = "Delete System By UUID", description = "Deletes an existing System using its UUID as unique identifier.")
     @DeleteMapping(path = "/{systemID}/id/")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully deleted.",

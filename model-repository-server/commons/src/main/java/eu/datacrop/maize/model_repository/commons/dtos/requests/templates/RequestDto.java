@@ -67,7 +67,7 @@ public abstract class RequestDto {
             }
 
             // Validating relationships (if applicable).
-            validator.validateRelationships(this);
+            wrapper = validator.validateRelationships(this);
 
             // If an error has been discovered report it and return.
             if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {

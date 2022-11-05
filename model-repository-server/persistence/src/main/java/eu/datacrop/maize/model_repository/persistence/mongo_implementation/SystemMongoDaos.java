@@ -102,6 +102,9 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
 
         log.info("Persistence layer (MongoDB) received request for creation of new System.");
 
+        // Making the validator specific for Systems.
+        requestDto.setValidator(this.validator);
+
         // Performing validations of data transfer object.
         ResponseWrapper wrapper = requestDto.performValidation();
         if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
@@ -133,6 +136,9 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         }
 
         log.info("Persistence layer (MongoDB) received request for update of System with ID: '{}'.", databaseID);
+
+        // Making the validator specific for Systems.
+        requestDto.setValidator(this.validator);
 
         // Performing validations of data transfer object.
         ResponseWrapper wrapper = requestDto.performValidation();

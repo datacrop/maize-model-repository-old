@@ -1,5 +1,6 @@
 package eu.datacrop.maize.model_repository.commons.dtos.responses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Builder;
 import org.apache.commons.lang3.StringUtils;
@@ -77,6 +78,7 @@ public class LocationResponseDto implements Serializable {
      * @return The current value of the object's "latitude" attribute.
      *************************************************************************************************************/
     @Hidden
+    @JsonIgnore
     public double getLatitude() {
         return geoLocation.getLatitude();
     }
@@ -88,6 +90,7 @@ public class LocationResponseDto implements Serializable {
      * @return The current value of the object's "longitude" attribute.
      *************************************************************************************************************/
     @Hidden
+    @JsonIgnore
     public double getLongitude() {
         return geoLocation.getLongitude();
     }

@@ -1,5 +1,6 @@
 package eu.datacrop.maize.model_repository.api.services;
 
+import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import org.springframework.http.ResponseEntity;
 
 /**********************************************************************************************************************
@@ -36,6 +37,24 @@ public interface SystemApiServices {
      * @return A wrapped data transfer object with either information on the retrieved Systems or failure messages.
      *****************************************************************************************************************/
     ResponseEntity retrieveAllSystems(int page, int size);
+
+    /******************************************************************************************************************
+     * Method that connects to the persistence layer to record information on a new IoT System using.
+     *
+     * @param requestDto A data transfer object with values for the attributes of the System, not null.
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    ResponseEntity createSystem(SystemRequestDto requestDto);
+
+    /******************************************************************************************************************
+     * Method that connects to the persistence layer to update information of an existing IoT System using its databaseID
+     * as unique identifier.
+     *
+     * @param requestDto A data transfer object with values for the attributes of the System, not null.
+     * @param systemID A UUID that uniquely identifies an existing System in the database, not null.
+     * @return A data structure to be transmitted from server to client as response.
+     *****************************************************************************************************************/
+    ResponseEntity updateSystem(SystemRequestDto requestDto, String systemID);
 
     /******************************************************************************************************************
      * Method that connects to the persistence layer to delete an existing IoT System using its databaseID

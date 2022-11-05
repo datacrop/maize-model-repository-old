@@ -74,8 +74,8 @@ public class SystemValidator implements Validator {
             throw new IllegalArgumentException("Invalid parameter detected for method SystemValidator.validate().");
         }
 
-        // Always returns null according to business logic Locations do not refer to other entities.
-        return null;
+        // Always returns SUCCESS according to business logic Locations do not refer to other entities.
+        return new ResponseWrapper(ResponseCode.SUCCESS, "Validation success.");
     }
 
     /******************************************************************************************************************
