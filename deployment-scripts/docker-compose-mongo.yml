@@ -25,6 +25,7 @@ services:
       - mongo-storage   
     environment:
        SPRING_PROFILES_ACTIVE: 'devmongo'
+       SERVER_ADDRESS: '0.0.0.0'
        LOGGING_LEVEL_EU_DATACROP_MAIZE_MODEL_REPOSITORY: DEBUG
        # Swagger configuration
        SWAGGERUI.CONTACT.NAME: 'DataCROP Development Team'
@@ -38,9 +39,9 @@ services:
        SPRING_DATA_MONGODB_USERNAME: admin
        SPRING_DATA_MONGODB_PASSWORD: admin
     ports:
-      - 8088:8087 
+      - 8087:8087 
     expose:
-      - '8088'  
+      - '8087'  
     networks:
       - model-repository-net
     restart: on-failure:10
