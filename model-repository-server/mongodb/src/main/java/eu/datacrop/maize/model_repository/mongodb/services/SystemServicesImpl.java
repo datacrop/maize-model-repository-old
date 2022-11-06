@@ -64,16 +64,16 @@ public class SystemServicesImpl implements SystemServices {
         try {
             entity = repository.findById(databaseID).orElse(null);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entity == null) {
-            message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.SYSTEM_NOT_FOUND_ID.toString().concat("'" + databaseID + "'.");
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ID);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.SYSTEM_NOT_FOUND_ID);
         }
 
         // Since the retrieval has been successful, enclosing the System into a message.
@@ -85,7 +85,7 @@ public class SystemServicesImpl implements SystemServices {
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
@@ -117,16 +117,16 @@ public class SystemServicesImpl implements SystemServices {
         try {
             entity = repository.findFirstByName(name);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(name);
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat("'" + name + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entity == null) {
-            message = SystemErrorMessages.NOT_FOUND_NAME.toString().concat(name);
+            message = SystemErrorMessages.SYSTEM_NOT_FOUND_NAME.toString().concat("'" + name + "'.");
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_NAME);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.SYSTEM_NOT_FOUND_NAME);
         }
 
         // Since the retrieval has been successful, enclosing the System into a message.
@@ -138,7 +138,7 @@ public class SystemServicesImpl implements SystemServices {
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(name);
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat("'" + name + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME);
         }
@@ -186,9 +186,9 @@ public class SystemServicesImpl implements SystemServices {
             }
 
             // Systems are not available at all.
-            message = SystemErrorMessages.NOT_FOUND_ALL.toString();
+            message = SystemErrorMessages.NO_SYSTEMS_FOUND.toString();
             log.info(message);
-            return converters.synthesizeResponsesWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ALL);
+            return converters.synthesizeResponsesWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NO_SYSTEMS_FOUND);
         }
 
         // Since the retrieval has been successful, enclosing the collection of Systems into a message.
@@ -232,13 +232,13 @@ public class SystemServicesImpl implements SystemServices {
         try {
             conflictingEntity = repository.findFirstByName(requestDto.getName());
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(requestDto.getName());
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat("'" + requestDto.getName() + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
 
         if (conflictingEntity != null) {
-            message = SystemErrorMessages.CONFLICT.toString().concat(conflictingEntity.getId());
+            message = SystemErrorMessages.CONFLICT.toString().concat("'" + conflictingEntity.getId() + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.CONFLICT);
         }
@@ -264,7 +264,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         if (createdEntity == null) {
-            message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat(requestDto.getName());
+            message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat("'" + requestDto.getName() + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_CREATION);
         }
@@ -278,7 +278,7 @@ public class SystemServicesImpl implements SystemServices {
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat(requestDto.getName());
+            message = SystemErrorMessages.ERROR_ON_CREATION.toString().concat("'" + requestDto.getName() + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_CREATION);
         }
@@ -317,16 +317,16 @@ public class SystemServicesImpl implements SystemServices {
         try {
             retrievedEntity = repository.findById(databaseID).orElse(null);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (retrievedEntity == null) {
-            message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.SYSTEM_NOT_FOUND_ID.toString().concat("'" + databaseID + "'.");
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ID);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.SYSTEM_NOT_FOUND_ID);
         }
 
         // If a change to the name is being attempted, search for conflicts.
@@ -335,13 +335,13 @@ public class SystemServicesImpl implements SystemServices {
             try {
                 conflictingEntity = repository.findFirstByName(requestDto.getName());
             } catch (Exception e) {
-                message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat(requestDto.getName());
+                message = SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME.toString().concat("'" + requestDto.getName() + "'.");
                 log.error(message);
                 return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_NAME);
             }
 
             if (conflictingEntity != null) {
-                message = SystemErrorMessages.CONFLICT.toString().concat(conflictingEntity.getId());
+                message = SystemErrorMessages.CONFLICT.toString().concat("'" + conflictingEntity.getId() + "'.");
                 log.error(message);
                 return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.CONFLICT);
             }
@@ -369,7 +369,7 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         if (updatedEntity == null) {
-            message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_UPDATE);
         }
@@ -383,7 +383,7 @@ public class SystemServicesImpl implements SystemServices {
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_UPDATE.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         }
@@ -418,23 +418,23 @@ public class SystemServicesImpl implements SystemServices {
         try {
             entity = repository.findById(databaseID).orElse(null);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_RETRIEVAL_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat("'" + databaseID + "'.");
             log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_RETRIEVAL_ID);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_ID);
         }
 
         // If nothing has been found, but not due to error, report accordingly.
         if (entity == null) {
-            message = SystemErrorMessages.NOT_FOUND_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.SYSTEM_NOT_FOUND_ID.toString().concat("'" + databaseID + "'.");
             log.info(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ID);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.SYSTEM_NOT_FOUND_ID);
         }
 
         // Attempting to delete the entity corresponding to the databaseID.
         try {
             repository.deleteById(databaseID);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_ID);
         }
@@ -448,7 +448,7 @@ public class SystemServicesImpl implements SystemServices {
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
-            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat(databaseID);
+            message = SystemErrorMessages.ERROR_ON_DELETION_ID.toString().concat("'" + databaseID + "'.");
             log.error(message);
             return converters.synthesizeResponseWrapperForError(ResponseCode.ERROR, message, SystemErrorMessages.ERROR_ON_DELETION_ID);
         }
@@ -471,9 +471,9 @@ public class SystemServicesImpl implements SystemServices {
         try {
             long count = repository.count();
             if (count == 0L) {
-                message = SystemErrorMessages.NOT_FOUND_ALL.toString();
+                message = SystemErrorMessages.NO_SYSTEMS_FOUND.toString();
                 log.info(message);
-                return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NOT_FOUND_ALL);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.NOT_FOUND, message, SystemErrorMessages.NO_SYSTEMS_FOUND);
             }
         } catch (Exception e) {
             message = SystemErrorMessages.ERROR_ON_DELETION_MANY.toString();

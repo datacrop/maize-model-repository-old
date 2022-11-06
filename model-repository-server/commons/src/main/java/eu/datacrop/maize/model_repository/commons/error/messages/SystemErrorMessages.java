@@ -11,17 +11,17 @@ public enum SystemErrorMessages {
     /******************************************************************************************************************
      * Indicates that a search by database identifier failed to produce a match.
      *****************************************************************************************************************/
-    NOT_FOUND_ID("Failed to retrieve any System entities from the database with ID: "),
+    SYSTEM_NOT_FOUND_ID("Failed to retrieve any System entities from the database with ID: "),
 
     /******************************************************************************************************************
      * Indicates that a search by human-readable identifier failed to produce a match.
      *****************************************************************************************************************/
-    NOT_FOUND_NAME("Failed to retrieve any System entities from the database with Name: "),
+    SYSTEM_NOT_FOUND_NAME("Failed to retrieve any System entities from the database with Name: "),
 
     /******************************************************************************************************************
      * Indicates that the document in the database is empty.
      *****************************************************************************************************************/
-    NOT_FOUND_ALL("Failed to retrieve any System entities from the database."),
+    NO_SYSTEMS_FOUND("Failed to retrieve any System entities from the database."),
 
     /******************************************************************************************************************
      * Indicates that the document in the database is empty.
