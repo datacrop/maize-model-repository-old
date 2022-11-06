@@ -315,6 +315,57 @@ class SystemApiServicesImplTest {
 
     @Test
     void retrieveAllSystems() {
+
+        // Attempting to retrieve both Systems (with convenient pagination).
+        ResponseEntity foundAll = apiServices.retrieveAllSystems(0, 5);
+        Assertions.assertNotNull(foundAll, "System list not retrieved successfully (null test 1):");
+        Assertions.assertSame(HttpStatus.OK, foundAll.getStatusCode(), "Systems have not been retrieved with HTTP Request Code 200:");
+        List<Object> systemList = (List<Object>) foundAll.getBody();
+        Assertions.assertNotNull(systemList, "System list not retrieved successfully (null test 2):");
+        Assertions.assertEquals(2, systemList.size(), "System list has improper size.");
+
+        // Attempting to retrieve the first System (respecting pagination).
+        foundAll = apiServices.retrieveAllSystems(0, 1);
+        Assertions.assertNotNull(foundAll, "System list not retrieved successfully (null test 1):");
+        Assertions.assertSame(HttpStatus.OK, foundAll.getStatusCode(), "Systems have not been retrieved with HTTP Request Code 200:");
+        systemList = (List<Object>) foundAll.getBody();
+        Assertions.assertNotNull(systemList, "System list not retrieved successfully (null test 2):");
+        Assertions.assertEquals(1, systemList.size(), "System list has improper size.");
+
+        // Attempting to retrieve the second System (respecting pagination).
+        foundAll = apiServices.retrieveAllSystems(1, 1);
+        Assertions.assertNotNull(foundAll, "System list not retrieved successfully (null test 1):");
+        Assertions.assertSame(HttpStatus.OK, foundAll.getStatusCode(), "Systems have not been retrieved with HTTP Request Code 200:");
+        systemList = (List<Object>) foundAll.getBody();
+        Assertions.assertNotNull(systemList, "System list not retrieved successfully (null test 2):");
+        Assertions.assertEquals(1, systemList.size(), "System list has improper size.");
+
+        // Checking "unhappy path": Attempting to retrieve both Systems (with pagination that exceeds the limit).
+        foundAll = apiServices.retrieveAllSystems(3, 5);
+        Assertions.assertNotNull(foundAll, "Error message has not been formulated:");
+        Assertions.assertSame(HttpStatus.NOT_FOUND, foundAll.getStatusCode(), "Error message has not been formulated with HTTP Request Code 404:");
+        ErrorMessage errorMessage = (ErrorMessage) foundAll.getBody();
+        Assertions.assertNotNull(errorMessage, "Error message has not been returned:");
+        Assertions.assertEquals(404, errorMessage.getHttpCode(), "The error message has incorrect http code:");
+        Assertions.assertEquals(HttpStatus.NOT_FOUND.toString(), errorMessage.getHttpText(), "The error message has incorrect http status:");
+        Assertions.assertTrue(errorMessage.getMessage().contains(SystemErrorMessages.EXCEEDED_PAGE_LIMIT.toString()), "The error message has incorrect message:");
+        Assertions.assertEquals(SystemErrorMessages.EXCEEDED_PAGE_LIMIT.name(), errorMessage.getMessageKey(), "The error message has incorrect message key:");
+        Assertions.assertNotNull(errorMessage.getTimestamp(), "The error message did not receive timestamp:");
+
+        // Cleaning the database.
+        mongoDbDao.deleteAllSystems();
+
+        // Checking "unhappy path": Attempting to retrieve anything expecting to find nothing.
+        foundAll = apiServices.retrieveAllSystems(0, 5);
+        Assertions.assertNotNull(foundAll, "Error message has not been formulated:");
+        Assertions.assertSame(HttpStatus.NOT_FOUND, foundAll.getStatusCode(), "Error message has not been formulated with HTTP Request Code 404:");
+        errorMessage = (ErrorMessage) foundAll.getBody();
+        Assertions.assertNotNull(errorMessage, "Error message has not been returned:");
+        Assertions.assertEquals(404, errorMessage.getHttpCode(), "The error message has incorrect http code:");
+        Assertions.assertEquals(HttpStatus.NOT_FOUND.toString(), errorMessage.getHttpText(), "The error message has incorrect http status:");
+        Assertions.assertTrue(errorMessage.getMessage().contains(SystemErrorMessages.NO_SYSTEMS_FOUND.toString()), "The error message has incorrect message:");
+        Assertions.assertEquals(SystemErrorMessages.NO_SYSTEMS_FOUND.name(), errorMessage.getMessageKey(), "The error message has incorrect message key:");
+        Assertions.assertNotNull(errorMessage.getTimestamp(), "The error message did not receive timestamp:");
     }
 
     @Test
@@ -424,6 +475,39 @@ class SystemApiServicesImplTest {
 
     @Test
     void deleteAllSystems() {
+
+        // Attempting to delete both Systems.
+        ResponseEntity deleteAll = apiServices.deleteAllSystems();
+        Assertions.assertNotNull(deleteAll, "Systems have not been deleted successfully (null test 1):");
+        Assertions.assertSame(HttpStatus.NO_CONTENT, deleteAll.getStatusCode(), "Systems have not been deleted with HTTP Request Code 204:");
+        String body = (String) deleteAll.getBody();
+        Assertions.assertNotNull(body, "Systems have not been deleted successfully (null test 2):");
+        Assertions.assertEquals(body, "Successfully deleted all Systems from the persistence layer.", "Deletion success message not received:");
+
+        // Attempting to retrieve anything expecting to find nothing.
+        ResponseEntity foundAll = apiServices.retrieveAllSystems(0, 5);
+        Assertions.assertNotNull(foundAll, "Error message has not been formulated:");
+        Assertions.assertSame(HttpStatus.NOT_FOUND, foundAll.getStatusCode(), "Error message has not been formulated with HTTP Request Code 404:");
+        ErrorMessage errorMessage = (ErrorMessage) foundAll.getBody();
+        Assertions.assertNotNull(errorMessage, "Error message has not been returned:");
+        Assertions.assertEquals(404, errorMessage.getHttpCode(), "The error message has incorrect http code:");
+        Assertions.assertEquals(HttpStatus.NOT_FOUND.toString(), errorMessage.getHttpText(), "The error message has incorrect http status:");
+        Assertions.assertTrue(errorMessage.getMessage().contains(SystemErrorMessages.NO_SYSTEMS_FOUND.toString()), "The error message has incorrect message:");
+        Assertions.assertEquals(SystemErrorMessages.NO_SYSTEMS_FOUND.name(), errorMessage.getMessageKey(), "The error message has incorrect message key:");
+        Assertions.assertNotNull(errorMessage.getTimestamp(), "The error message did not receive timestamp:");
+
+        // Checking "unhappy path": Attempting to re-delete expecting to find nothing.
+        deleteAll = apiServices.deleteAllSystems();
+        Assertions.assertNotNull(foundAll, "Error message has not been formulated:");
+        Assertions.assertSame(HttpStatus.NOT_FOUND, deleteAll.getStatusCode(), "Error message has not been formulated with HTTP Request Code 404:");
+        errorMessage = (ErrorMessage) deleteAll.getBody();
+        Assertions.assertNotNull(errorMessage, "Error message has not been returned:");
+        Assertions.assertEquals(404, errorMessage.getHttpCode(), "The error message has incorrect http code:");
+        Assertions.assertEquals(HttpStatus.NOT_FOUND.toString(), errorMessage.getHttpText(), "The error message has incorrect http status:");
+        Assertions.assertTrue(errorMessage.getMessage().contains(SystemErrorMessages.NO_SYSTEMS_FOUND.toString()), "The error message has incorrect message:");
+        Assertions.assertEquals(SystemErrorMessages.NO_SYSTEMS_FOUND.name(), errorMessage.getMessageKey(), "The error message has incorrect message key:");
+        Assertions.assertNotNull(errorMessage.getTimestamp(), "The error message did not receive timestamp:");
+
     }
 
 

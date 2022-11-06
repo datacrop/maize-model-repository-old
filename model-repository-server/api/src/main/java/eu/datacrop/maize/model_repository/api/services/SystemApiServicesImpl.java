@@ -567,7 +567,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
 
         // Logging success and returning the deleted System.
         log.info("Successfully deleted all System entities from persistence layer.");
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Deletion operation was successful.");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully deleted all Systems from the persistence layer.");
     }
 
 }
