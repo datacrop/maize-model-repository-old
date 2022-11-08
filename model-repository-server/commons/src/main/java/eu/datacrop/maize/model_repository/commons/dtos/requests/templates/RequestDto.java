@@ -1,7 +1,6 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests.templates;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -54,34 +53,5 @@ public abstract class RequestDto {
      * @return An abstract ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *****************************************************************************************************************/
-    public ResponseWrapper performValidation() {
-        ResponseWrapper wrapper;
-        try {
-            // Validating attributes.
-            wrapper = validator.validateAttributes(this);
-
-            // If we already have an error there is no point in checking further.
-            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
-                log.debug("Issues discovered during attribute validation.");
-                return wrapper;
-            }
-
-            // Validating relationships (if applicable).
-            wrapper = validator.validateRelationships(this);
-
-            // If an error has been discovered report it and return.
-            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
-                log.debug("Issues discovered during attribute validation.");
-                return wrapper;
-            }
-
-            // Reporting that the validation discovered no issues.
-            log.debug("Validation of the Request DTO has no issues to report.");
-            return validator.validateRelationships(this);
-        } catch (IllegalArgumentException e) {
-            String message = "Error occurred during Request DTO validation.";
-            log.error(message);
-            return new ResponseWrapper(ResponseCode.ERROR, message);
-        }
-    }
+    public abstract ResponseWrapper performValidation();
 }

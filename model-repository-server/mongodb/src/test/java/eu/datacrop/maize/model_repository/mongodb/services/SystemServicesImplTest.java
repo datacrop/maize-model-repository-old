@@ -142,7 +142,7 @@ class SystemServicesImplTest {
         String random = UUID.randomUUID().toString();
         wrapper = systemServices.retrieveSystemByDatabaseID(random);
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
-        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertEquals(SystemErrorMessages.SYSTEM_NOT_FOUND_ID.toString().concat("'" + random + "'."), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
 
         // Testing also the "Invalid Parameter" scenario.
@@ -197,7 +197,7 @@ class SystemServicesImplTest {
         String random = RandomStringUtils.randomAlphabetic(10);
         wrapper = systemServices.retrieveSystemByName(random);
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
-        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_NAME.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertEquals(SystemErrorMessages.SYSTEM_NOT_FOUND_NAME.toString().concat("'" + random + "'."), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
 
         // Testing also the "Invalid Parameter" scenario.
@@ -256,7 +256,7 @@ class SystemServicesImplTest {
         systemRepository.delete(system2);
         wrapper = systemServices.retrieveAllSystems(0, 5);
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
-        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ALL.toString(), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertEquals(SystemErrorMessages.NO_SYSTEMS_FOUND.toString(), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertEquals(0, wrapper.getListOfResponses().size(), "Wrapper has not received proper NOT_FOUND ListOfResponses:");
         Assertions.assertEquals(0, wrapper.getPaginationInfo().getTotalItems(), "Wrapper has not received proper NOT_FOUND PaginationInfo:");
     }
@@ -376,7 +376,7 @@ class SystemServicesImplTest {
         String random = UUID.randomUUID().toString();
         SystemResponseWrapper updatedWrapper3 = systemServices.updateSystem(updateRequest, random);
         Assertions.assertEquals(ResponseCode.NOT_FOUND, updatedWrapper3.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
-        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), updatedWrapper3.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertEquals(SystemErrorMessages.SYSTEM_NOT_FOUND_ID.toString().concat("'" + random + "'."), updatedWrapper3.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(updatedWrapper3.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
 
         // Testing also the "Invalid Parameter" scenario.
@@ -444,7 +444,7 @@ class SystemServicesImplTest {
         String random = UUID.randomUUID().toString();
         wrapper = systemServices.deleteSystem(random);
         Assertions.assertEquals(ResponseCode.NOT_FOUND, wrapper.getCode(), "Wrapper has not received proper NOT_FOUND ResponseCode:");
-        Assertions.assertEquals(SystemErrorMessages.NOT_FOUND_ID.toString().concat(random), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
+        Assertions.assertEquals(SystemErrorMessages.SYSTEM_NOT_FOUND_ID.toString().concat("'" + random + "'."), wrapper.getMessage(), "Wrapper has not received proper NOT_FOUND message:");
         Assertions.assertNull(wrapper.getResponse(), "Wrapper has not received proper NOT_FOUND Response:");
 
         // Testing also the "Invalid Parameter" scenario.

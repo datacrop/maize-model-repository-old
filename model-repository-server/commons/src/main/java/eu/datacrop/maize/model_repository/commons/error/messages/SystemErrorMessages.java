@@ -11,17 +11,17 @@ public enum SystemErrorMessages {
     /******************************************************************************************************************
      * Indicates that a search by database identifier failed to produce a match.
      *****************************************************************************************************************/
-    NOT_FOUND_ID("Failed to retrieve any System entities from the database with ID: "),
+    SYSTEM_NOT_FOUND_ID("Failed to retrieve any System entities from the database with ID: "),
 
     /******************************************************************************************************************
      * Indicates that a search by human-readable identifier failed to produce a match.
      *****************************************************************************************************************/
-    NOT_FOUND_NAME("Failed to retrieve any System entities from the database with Name: "),
+    SYSTEM_NOT_FOUND_NAME("Failed to retrieve any System entities from the database with Name: "),
 
     /******************************************************************************************************************
      * Indicates that the document in the database is empty.
      *****************************************************************************************************************/
-    NOT_FOUND_ALL("Failed to retrieve any System entities from the database."),
+    NO_SYSTEMS_FOUND("Failed to retrieve any System entities from the database."),
 
     /******************************************************************************************************************
      * Indicates that the document in the database is empty.
@@ -31,7 +31,7 @@ public enum SystemErrorMessages {
     /******************************************************************************************************************
      * Indicates that persistence has been aborted due to unique identifier conflict.
      *****************************************************************************************************************/
-    CONFLICT("There is already another System with the same Name and ID: "),
+    DUPLICATE_SYSTEM("There is already another System with the same Name and ID: "),
 
     /******************************************************************************************************************
      * Indicates that persistence has been aborted due to absence of mandatory fields.

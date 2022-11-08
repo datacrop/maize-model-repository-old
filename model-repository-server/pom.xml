@@ -21,13 +21,13 @@
 
     <groupId>eu.datacrop.maize</groupId>
     <artifactId>model_repository</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <name>model_repository</name>
     <description>model-repository-server</description>
 
     <properties>
         <java.version>17</java.version>
-        <server.version>0.2.0</server.version>
+        <server.version>0.3.0</server.version>
         <boot.version>2.7.5</boot.version>
     </properties>
 

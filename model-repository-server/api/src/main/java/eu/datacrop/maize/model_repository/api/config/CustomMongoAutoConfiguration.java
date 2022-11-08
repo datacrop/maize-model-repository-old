@@ -11,7 +11,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-
+/**********************************************************************************************************************
+ * This is a configuration class (concerns Mongo profile).
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.3.0
+ *********************************************************************************************************************/
 @Profile("devmongo")
 @Configuration
 @EnableMongoAuditing

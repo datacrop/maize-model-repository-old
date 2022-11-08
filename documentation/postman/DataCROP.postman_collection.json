@@ -38,7 +38,325 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "201 Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 11:52:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"06adf25a-aecc-44ac-ab2a-f914e43ccaf9\",\n    \"name\": \"Phygital Centrifuge 4.0\",\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\n    \"location\": {\n        \"geoLocation\": {\n            \"latitude\": 52.15425526446103,\n            \"longitude\": 9.95084586033136\n        },\n        \"virtualLocation\": \"\"\n    },\n    \"organization\": \"ACME Explosives\",\n    \"additionalInformation\": [\n        {\n            \"manufacturer\": \"SpinningTop Inc.\",\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\n        }\n    ],\n    \"creationDate\": \"2022-11-08T13:52:22.977\",\n    \"latestUpdateDate\": \"2022-11-08T13:52:23.003\"\n}"
+						},
+						{
+							"name": "409 Conflict - DUPLICATE_SYSTEM",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 11:54:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another System with the same Name and ID: 'fa841dd9-a822-491f-9096-7f3345f8ca64'.\",\n    \"messageKey\": \"DUPLICATE_SYSTEM\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T13:54:34.914\"\n}"
+						},
+						{
+							"name": "400 Bas Request - INVALID_LOCATION_STRUCTURE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"localhost:8080\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 11:58:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"A System may be provided either with a pair of coordinates or a virtual location.\",\n    \"messageKey\": \"INVALID_LOCATION_STRUCTURE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T13:58:49.049\"\n}"
+						},
+						{
+							"name": "400 Bad Request - MANDATORY_FIELDS_MISSING",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 11:59:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Request contains one or more mandatory fields that are null. Operation aborted. Field(s): [name]\",\n    \"messageKey\": \"MANDATORY_FIELDS_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T13:59:27.817\"\n}"
+						},
+						{
+							"name": "400 Bad Request - HTTP_MESSAGE_NOT_READABLE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 12:00:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Required request body is missing: public org.springframework.http.ResponseEntity eu.datacrop.maize.model_repository.api.controllers.SystemController.createSystem(eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto)\",\n    \"messageKey\": \"HTTP_MESSAGE_NOT_READABLE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T14:00:24.056\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_CREATION\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Update System by UUID",
@@ -71,7 +389,506 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afc",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:14:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"ace83002-c399-43d2-a175-b70208430afc\",\n    \"name\": \"Phygital Centrifuge 4.0\",\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\n    \"location\": {\n        \"geoLocation\": {\n            \"latitude\": 52.15425526446103,\n            \"longitude\": 9.95084586033136\n        },\n        \"virtualLocation\": \"\"\n    },\n    \"organization\": \"ACME Explosives\",\n    \"additionalInformation\": [\n        {\n            \"manufacturer\": \"SpinningTop Inc.\",\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\n        }\n    ],\n    \"creationDate\": \"2022-11-08T15:13:43.029\",\n    \"latestUpdateDate\": \"2022-11-08T15:14:34.333\"\n}"
+						},
+						{
+							"name": "404 Not Found - SYSTEM_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afe/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afe",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:15:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database with ID: 'ace83002-c399-43d2-a175-b70208430afe'.\",\n    \"messageKey\": \"SYSTEM_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:15:11.062\"\n}"
+						},
+						{
+							"name": "409 Conflict - DUPLICATE_SYSTEM",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 5.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afc",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:16:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another System with the same Name and ID: '1754861e-f36c-4417-b8dc-c94d24e2535c'.\",\n    \"messageKey\": \"DUPLICATE_SYSTEM\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:16:27.632\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:17:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:17:02.766\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/SomeString/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"SomeString",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:17:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:17:31.513\"\n}"
+						},
+						{
+							"name": "400 Bad Request - HTTP_MESSAGE_NOT_READABLE",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        \r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afc",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:18:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"JSON parse error: Unexpected close marker ']': expected '}' (for Object starting at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream)\",\n    \"messageKey\": \"HTTP_MESSAGE_NOT_READABLE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:18:24.453\"\n}"
+						},
+						{
+							"name": "400 Bad Request - MANDATORY_FIELDS_MISSING",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afc",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:19:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Request contains one or more mandatory fields that are null. Operation aborted. Field(s): [name, description]\",\n    \"messageKey\": \"MANDATORY_FIELDS_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:19:30.986\"\n}"
+						},
+						{
+							"name": "400 Bad Request - INVALID_LOCATION_STRUCTURE",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 0.0\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afc",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Nov 2022 13:20:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"A System may be provided either with a pair of coordinates or a virtual location.\",\n    \"messageKey\": \"INVALID_LOCATION_STRUCTURE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T15:20:08.370\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"ace83002-c399-43d2-a175-b70208430afc",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_UPDATE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Retrieve System by UUID",
@@ -95,7 +912,237 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/58d668eb-d6eb-4070-8132-e132a4d0ace8/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"58d668eb-d6eb-4070-8132-e132a4d0ace8",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:40:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"58d668eb-d6eb-4070-8132-e132a4d0ace8\",\n    \"name\": \"Phygital Centrifuge 4.0\",\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\n    \"location\": {\n        \"geoLocation\": {\n            \"latitude\": 52.15425526446103,\n            \"longitude\": 9.95084586033136\n        },\n        \"virtualLocation\": \"\"\n    },\n    \"organization\": \"ACME Explosives\",\n    \"additionalInformation\": [\n        {\n            \"manufacturer\": \"SpinningTop Inc.\",\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\n        }\n    ],\n    \"creationDate\": \"2022-11-06T14:40:34.228\",\n    \"latestUpdateDate\": \"2022-11-06T14:40:34.229\"\n}"
+						},
+						{
+							"name": "404 Not Found - SYSTEM_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/1de4d55b-7ae9-4b2c-850c-5d3e6fcf59e9/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"1de4d55b-7ae9-4b2c-850c-5d3e6fcf59e9",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:48:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database with ID: '1de4d55b-7ae9-4b2c-850c-5d3e6fcf59e6'.\",\n    \"messageKey\": \"SYSTEM_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T17:14:11.983\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:42:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:42:58.341\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/notUUID/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"notUUID",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:46:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:46:24.311\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{systemID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"{{systemID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_ID\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Retrieve System by Name",
@@ -119,7 +1166,204 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/Phygital Centrifuge 4.0/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"Phygital Centrifuge 4.0",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:56:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"58d668eb-d6eb-4070-8132-e132a4d0ace8\",\n    \"name\": \"Phygital Centrifuge 4.0\",\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\n    \"location\": {\n        \"geoLocation\": {\n            \"latitude\": 52.15425526446103,\n            \"longitude\": 9.95084586033136\n        },\n        \"virtualLocation\": \"\"\n    },\n    \"organization\": \"ACME Explosives\",\n    \"additionalInformation\": [\n        {\n            \"manufacturer\": \"SpinningTop Inc.\",\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\n        }\n    ],\n    \"creationDate\": \"2022-11-06T14:40:34.228\",\n    \"latestUpdateDate\": \"2022-11-06T14:40:34.229\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ /name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										" ",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:58:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:58:11.310\"\n}"
+						},
+						{
+							"name": "404 Not Found - SYSTEM_NOT_FOUND_NAME",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/Non Existent Name/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"Non Existent Name",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:07:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database with Name: 'Non Existent Name'.\",\n    \"messageKey\": \"SYSTEM_NOT_FOUND_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T17:07:53.058\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{name}}/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"{{name}}",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:07:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Retrieve all Systems",
@@ -153,7 +1397,235 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:27:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"642f32c6-b97b-4b32-ad9b-64a501eeeb8f\",\n        \"name\": \"System1\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"CgdOOvBBSI\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.438\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.466\"\n    },\n    {\n        \"id\": \"e3143697-5a65-42c5-b6b0-2aeeaccb78ac\",\n        \"name\": \"System2\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"fAuvsJuwQP\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.493\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.493\"\n    },\n    {\n        \"id\": \"e56a2a6c-3497-4be7-a265-6295fab285b5\",\n        \"name\": \"System3\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"UqknPJHgOH\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.499\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.499\"\n    },\n    {\n        \"id\": \"cab7f2d2-4b8b-4d94-a28e-456545795743\",\n        \"name\": \"System4\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"IiyrWvKjac\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.504\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.504\"\n    },\n    {\n        \"id\": \"3c96f67d-ddf3-44f0-90d0-1c9cf3c246e8\",\n        \"name\": \"System5\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"wwzMmhMjHu\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.508\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.508\"\n    },\n    {\n        \"id\": \"08eee48c-fef4-4ecd-a783-46426fe8f50b\",\n        \"name\": \"System6\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"FgYuRjbRWA\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.511\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.512\"\n    },\n    {\n        \"id\": \"e07895f6-cbb8-4f6f-91d6-628fae195c81\",\n        \"name\": \"System7\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"yCsxFpaKUb\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.514\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.515\"\n    },\n    {\n        \"id\": \"2b21229c-60d1-4288-ad08-36dd09f1e95d\",\n        \"name\": \"System8\",\n        \"description\": \"\",\n        \"location\": {\n            \"geoLocation\": {\n                \"latitude\": 0,\n                \"longitude\": 0\n            },\n            \"virtualLocation\": \"\"\n        },\n        \"organization\": \"MGyNCwSlmu\",\n        \"additionalInformation\": [],\n        \"creationDate\": \"2022-11-06T18:26:48.518\",\n        \"latestUpdateDate\": \"2022-11-06T18:26:48.518\"\n    }\n]"
+						},
+						{
+							"name": "404 Not Found - EXCEEDED_PAGE_LIMIT",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/?page=2&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:29:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities because page limit has been exceeded. Total Pages: 2\",\n    \"messageKey\": \"EXCEEDED_PAGE_LIMIT\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T18:29:05.564\"\n}"
+						},
+						{
+							"name": "404 Not Found - NO_SYSTEMS_FOUND",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:30:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database.\",\n    \"messageKey\": \"NO_SYSTEMS_FOUND\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T18:30:03.694\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_MANY\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete System by UUID",
@@ -177,7 +1649,237 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/3e507ebf-c1d1-477e-9d43-e5c07311c730/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"3e507ebf-c1d1-477e-9d43-e5c07311c730",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:39:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"3e507ebf-c1d1-477e-9d43-e5c07311c730\",\n    \"name\": \"Phygital Centrifuge 4.0\",\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\n    \"location\": {\n        \"geoLocation\": {\n            \"latitude\": 52.15425526446103,\n            \"longitude\": 9.95084586033136\n        },\n        \"virtualLocation\": \"\"\n    },\n    \"organization\": \"ACME Explosives\",\n    \"additionalInformation\": [\n        {\n            \"manufacturer\": \"SpinningTop Inc.\",\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\n        }\n    ],\n    \"creationDate\": \"2022-11-06T17:39:22.171\",\n    \"latestUpdateDate\": \"2022-11-06T17:39:22.201\"\n}"
+						},
+						{
+							"name": "404 Not Found - SYSTEM_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/1de4d55b-7ae9-4b2c-850c-5d3e6fcf59e6/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"1de4d55b-7ae9-4b2c-850c-5d3e6fcf59e6",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:33:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database with ID: '1de4d55b-7ae9-4b2c-850c-5d3e6fcf59e6'.\",\n    \"messageKey\": \"SYSTEM_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T17:33:05.081\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:34:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T17:34:08.923\"\n}"
+						},
+						{
+							"name": "404 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/RandomString/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"RandomString",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:34:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T17:34:47.903\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{systemID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										"{{systemID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_DELETION_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Delete all Systems",
@@ -199,7 +1901,151 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "204 Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:50:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "404 Not Found - NO_SYSTEMS_FOUND",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:51:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database.\",\n    \"messageKey\": \"NO_SYSTEMS_FOUND\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T18:51:23.855\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_DELETION_MANY\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
 				}
 			]
 		},
@@ -223,7 +2069,53 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/actuator/health/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"actuator",
+										"health",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.spring-boot.actuator.v3+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:35:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"UP\",\n    \"components\": {\n        \"diskSpace\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"total\": 4000750497792,\n                \"free\": 3946008207360,\n                \"threshold\": 10485760,\n                \"exists\": true\n            }\n        },\n        \"mongo\": {\n            \"status\": \"UP\",\n            \"details\": {\n                \"version\": \"6.0.2\"\n            }\n        },\n        \"ping\": {\n            \"status\": \"UP\"\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Uptime Check",
@@ -243,7 +2135,54 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/actuator/metrics/process.uptime/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"actuator",
+										"metrics",
+										"process.uptime",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/vnd.spring-boot.actuator.v3+json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 16:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"process.uptime\",\n    \"description\": \"The uptime of the Java virtual machine\",\n    \"baseUnit\": \"seconds\",\n    \"measurements\": [\n        {\n            \"statistic\": \"VALUE\",\n            \"value\": 540.699\n        }\n    ],\n    \"availableTags\": []\n}"
+						}
+					]
 				}
 			]
 		}

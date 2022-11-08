@@ -39,7 +39,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
     public ResponseEntity retrieveSystemByDatabaseID(String systemID) {
 
         // Checking that the mandatory system identifier has a value.
-        if (systemID.isBlank()) {
+        if (systemID == null || systemID.isBlank()) {
             log.info("Attempt to retrieve System without specifying a unique UUID detected. Operation aborted.");
             ErrorMessage errorMessage = new ErrorMessage(400, HttpStatus.BAD_REQUEST.toString(),
                     ErrorMessages.IDENTIFIER_MISSING.getErrorMessage(),
@@ -111,6 +111,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
 
         // Logging success and returning the retrieved System.
         log.info("Successfully retrieved System from persistence layer with ID: '{}'.", systemID);
+        log.info("Successfully retrieved System from persistence layer with ID: '{}'.", systemID);
         return ResponseEntity.ok(wrapper.getResponse());
     }
 
@@ -125,7 +126,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
     public ResponseEntity retrieveSystemByName(String name) {
 
         // Checking that the mandatory system identifier has a value.
-        if (name.isBlank()) {
+        if (name == null || name.isBlank()) {
             log.info("Attempt to retrieve System without specifying name identifier detected. Operation aborted.");
             ErrorMessage errorMessage = new ErrorMessage(400, HttpStatus.BAD_REQUEST.toString(),
                     ErrorMessages.IDENTIFIER_MISSING.getErrorMessage(),
@@ -348,7 +349,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
         }
 
         // Checking that the mandatory system identifier has a value.
-        if (systemID.isBlank()) {
+        if (systemID == null || systemID.isBlank()) {
             log.info("Attempt to update System without specifying a unique UUID detected. Operation aborted.");
             ErrorMessage errorMessage = new ErrorMessage(400, HttpStatus.BAD_REQUEST.toString(),
                     ErrorMessages.IDENTIFIER_MISSING.getErrorMessage(),
@@ -447,7 +448,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
     public ResponseEntity deleteSystem(String systemID) {
 
         // Checking that the mandatory system identifier has a value.
-        if (systemID.isBlank()) {
+        if (systemID == null || systemID.isBlank()) {
             log.info("Attempt to delete System without specifying a unique UUID detected. Operation aborted.");
             ErrorMessage errorMessage = new ErrorMessage(400, HttpStatus.BAD_REQUEST.toString(),
                     ErrorMessages.IDENTIFIER_MISSING.getErrorMessage(),
@@ -566,7 +567,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
 
         // Logging success and returning the deleted System.
         log.info("Successfully deleted all System entities from persistence layer.");
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Deletion operation was successful.");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Successfully deleted all Systems from the persistence layer.");
     }
 
 }
