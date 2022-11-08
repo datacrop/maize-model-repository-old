@@ -6,7 +6,7 @@ Implementation of databases based on the DataCROP Maize :corn: (V3.0) digital mo
 </p>
 
 <p align="center">
-  <img src="https://blog.inedo.com/hs-fs/hubfs/Inedo%20Blog/Best%20Deployment%20Automation%20Tools/Deployment%20Pipeline.jpg?width=2515&name=Deployment%20Pipeline.jpg?w=500" />
+  <img src="../pictures/release.jpg" width="500px" />
 </p>
 
 ## Directory contents
