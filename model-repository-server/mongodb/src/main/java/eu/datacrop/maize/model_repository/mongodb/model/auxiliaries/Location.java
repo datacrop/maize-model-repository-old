@@ -2,7 +2,6 @@ package eu.datacrop.maize.model_repository.mongodb.model.auxiliaries;
 
 import lombok.Builder;
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -174,18 +173,6 @@ public class Location implements Serializable {
                 '}';
     }
 
-    /**************************************************************************************************************
-     * Transforms a Location object to JSONObject.
-     *
-     * @return A JSON representation of the Object.
-     *************************************************************************************************************/
-    public JSONObject toJSON() {
-        JSONObject jo = new JSONObject();
-        jo.put("geoLocation", geoLocation.toJSON());
-        jo.put("virtualLocation", virtualLocation);
-        return jo;
-    }
-
     /******************************************************************************************************************
      * This inner class defines the data model of Geographical Locations for persistence in a MongoDB.
      *
@@ -295,18 +282,6 @@ public class Location implements Serializable {
                     "latitude=" + latitude +
                     ", longitude=" + longitude +
                     '}';
-        }
-
-        /**************************************************************************************************************
-         * Transforms a GeoLocation object to JSONObject.
-         *
-         * @return A JSON representation of the Object.
-         *************************************************************************************************************/
-        public JSONObject toJSON() {
-            JSONObject jo = new JSONObject();
-            jo.put("latitude", latitude);
-            jo.put("longitude", longitude);
-            return jo;
         }
     }
 }

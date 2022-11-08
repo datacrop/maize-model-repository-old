@@ -1,6 +1,6 @@
 package eu.datacrop.maize.model_repository.mongodb.listeners;
 
-import eu.datacrop.maize.model_repository.mongodb.model.System;
+import eu.datacrop.maize.model_repository.mongodb.model.entities.System;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;

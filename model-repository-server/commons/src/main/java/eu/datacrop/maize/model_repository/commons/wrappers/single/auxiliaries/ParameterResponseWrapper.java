@@ -8,6 +8,13 @@ import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 import java.io.Serial;
 import java.io.Serializable;
 
+/**********************************************************************************************************************
+ * This class wraps the responses travelling from the persistence layer back to the API for a more complete
+ * reporting of problems / unsuccessful requests on IoT Systems. Used for Single Objects (as opposed to a Collection).
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.4.0
+ *********************************************************************************************************************/
 public class ParameterResponseWrapper extends ResponseWrapper implements Serializable {
 
     @Serial

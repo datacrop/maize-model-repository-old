@@ -6,7 +6,7 @@ import eu.datacrop.maize.model_repository.commons.error.exceptions.NonUuidArgume
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
-import eu.datacrop.maize.model_repository.mongodb.converters.SystemConverters;
+import eu.datacrop.maize.model_repository.mongodb.converters.entities.SystemConverters;
 import eu.datacrop.maize.model_repository.mongodb.services.SystemServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package eu.datacrop.maize.model_repository.mongodb.converters.auxiliary;
+package eu.datacrop.maize.model_repository.mongodb.converters.auxiliaries;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.LocationRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.LocationResponseDto;

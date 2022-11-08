@@ -10,8 +10,8 @@ import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
-import eu.datacrop.maize.model_repository.mongodb.model.System;
 import eu.datacrop.maize.model_repository.mongodb.model.auxiliaries.Location;
+import eu.datacrop.maize.model_repository.mongodb.model.entities.System;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -50,7 +50,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "eu.datacrop.maize.model_repository.commons.wrappers.collection",
         "eu.datacrop.maize.model_repository.commons.wrappers.single",
         "eu.datacrop.maize.model_repository.mongodb.converters",
-        "eu.datacrop.maize.model_repository.mongodb.converters.auxiliary",
+        "eu.datacrop.maize.model_repository.mongodb.converters.auxiliaries",
         "eu.datacrop.maize.model_repository.mongodb.daos",
         "eu.datacrop.maize.model_repository.mongodb.listeners",
         "eu.datacrop.maize.model_repository.mongodb.model",

@@ -1,4 +1,4 @@
-package eu.datacrop.maize.model_repository.mongodb.converters;
+package eu.datacrop.maize.model_repository.mongodb.converters.entities;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.LocationResponseDto;
@@ -8,9 +8,9 @@ import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMess
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
-import eu.datacrop.maize.model_repository.mongodb.converters.auxiliary.LocationConverters;
-import eu.datacrop.maize.model_repository.mongodb.model.System;
+import eu.datacrop.maize.model_repository.mongodb.converters.auxiliaries.LocationConverters;
 import eu.datacrop.maize.model_repository.mongodb.model.auxiliaries.Location;
+import eu.datacrop.maize.model_repository.mongodb.model.entities.System;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

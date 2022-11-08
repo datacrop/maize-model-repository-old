@@ -1,6 +1,6 @@
 package eu.datacrop.maize.model_repository.mongodb.repositories;
 
-import eu.datacrop.maize.model_repository.mongodb.model.System;
+import eu.datacrop.maize.model_repository.mongodb.model.entities.System;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

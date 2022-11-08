@@ -1,4 +1,4 @@
-package eu.datacrop.maize.model_repository.mongodb.model;
+package eu.datacrop.maize.model_repository.mongodb.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
