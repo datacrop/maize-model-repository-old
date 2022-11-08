@@ -6,7 +6,7 @@ import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.enums.SuccessOrFailure;
 import eu.datacrop.maize.model_repository.commons.error.messages.LocationErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
-import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.LocationResponseWrapper;
 import org.springframework.stereotype.Service;
 
 /**********************************************************************************************************************
@@ -29,7 +29,7 @@ public class LocationValidator implements Validator {
      * throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public ResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
+    public LocationResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
         // Checking input parameters.
         if (requestDto == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method LocationValidator.validate().");
@@ -46,13 +46,13 @@ public class LocationValidator implements Validator {
             throw new IllegalArgumentException(e.getMessage());
         }
 
-        ResponseWrapper wrapper;
+        LocationResponseWrapper wrapper;
         if (verdict.equals(SuccessOrFailure.SUCCESS)) {
             // Success.
-            wrapper = new ResponseWrapper(ResponseCode.SUCCESS, "Validation success.");
+            wrapper = new LocationResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
         } else {
             // Failure.
-            wrapper = new ResponseWrapper(ResponseCode.BAD_REQUEST, LocationErrorMessages.INVALID_LOCATION.toString());
+            wrapper = new LocationResponseWrapper(ResponseCode.BAD_REQUEST, LocationErrorMessages.INVALID_LOCATION.toString(), null, LocationErrorMessages.INVALID_LOCATION);
         }
 
         // Returning attribute validation result.
@@ -69,14 +69,14 @@ public class LocationValidator implements Validator {
      * throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public ResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
+    public LocationResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
 
         if (requestDto == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method LocationValidator.validate().");
         }
 
         // Always returns SUCCESS according to business logic Locations do not refer to other entities.
-        return new ResponseWrapper(ResponseCode.SUCCESS, "Validation success.");
+        return new LocationResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
     }
 
     /******************************************************************************************************************

@@ -1,7 +1,11 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
 import java.io.Serial;
@@ -16,6 +20,7 @@ import java.util.Set;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
+@Slf4j
 public class SystemRequestDto extends RequestDto implements Serializable {
 
     @Serial
@@ -280,5 +285,43 @@ public class SystemRequestDto extends RequestDto implements Serializable {
         jo.put("organization", organization);
         jo.put("additionalInformation", additionalInformation); // This field might not work perfectly.
         return jo;
+    }
+
+    /******************************************************************************************************************
+     * This method triggers validation of the data transfer object's attributes and external relationships.
+     *
+     * @return A SystemResponseWrapper (the user will receive a more elaborate one, here it is used only for
+     * internal intra-module communication).
+     *****************************************************************************************************************/
+    @Override
+    public SystemResponseWrapper performValidation() {
+        SystemResponseWrapper wrapper;
+        try {
+            // Validating attributes.
+            wrapper = (SystemResponseWrapper) super.getValidator().validateAttributes(this);
+
+            // If we already have an error there is no point in checking further.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Validating relationships (if applicable).
+            wrapper = (SystemResponseWrapper) super.getValidator().validateRelationships(this);
+
+            // If an error has been discovered report it and return.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Reporting that the validation discovered no issues.
+            log.debug("Validation of the Request DTO has no issues to report.");
+            return wrapper;
+        } catch (IllegalArgumentException e) {
+            String message = "Error occurred during Request DTO validation.";
+            log.error(message);
+            return new SystemResponseWrapper(ResponseCode.ERROR, message, null, SystemErrorMessages.INTERNAL_SERVER_ERROR);
+        }
     }
 }

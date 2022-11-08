@@ -2,7 +2,7 @@ package eu.datacrop.maize.model_repository.persistence.mongo_implementation;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.services.SystemServices;
@@ -106,11 +106,11 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         requestDto.setValidator(this.validator);
 
         // Performing validations of data transfer object.
-        ResponseWrapper wrapper = requestDto.performValidation();
+        SystemResponseWrapper wrapper = (SystemResponseWrapper) requestDto.performValidation();
         if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
             // Aborting if issues have been discovered.
             log.debug("Issues discovered during attribute validation.");
-            return synthesizeResponseWrapperForError(wrapper.getCode(), wrapper.getMessage());
+            return synthesizeResponseWrapperForError(wrapper.getCode(), wrapper.getMessage(), wrapper.getErrorCode());
         }
 
         // Continuing if issues have not been discovered.
@@ -141,11 +141,11 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         requestDto.setValidator(this.validator);
 
         // Performing validations of data transfer object.
-        ResponseWrapper wrapper = requestDto.performValidation();
+        SystemResponseWrapper wrapper = requestDto.performValidation();
         if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
             // Aborting if issues have been discovered.
             log.debug("Issues discovered during attribute validation.");
-            return synthesizeResponseWrapperForError(wrapper.getCode(), wrapper.getMessage());
+            return synthesizeResponseWrapperForError(wrapper.getCode(), wrapper.getMessage(), wrapper.getErrorCode());
         }
 
         // Continuing if issues have not been discovered.
@@ -183,7 +183,15 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         return services.deleteAllSystems();
     }
 
-    private SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message) throws IllegalArgumentException {
+    /******************************************************************************************************************
+     * Method that creates an error report.
+     *
+     * @param code A response code to be translated to an appropriate Http code.
+     * @param message The message describing the actual error.
+     * @param errorCode A shorthand key for the error.
+     * @return A wrapped data transfer object with either a success message or failure messages.
+     *****************************************************************************************************************/
+    private SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, SystemErrorMessages errorCode) throws IllegalArgumentException {
 
         if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
             throw new IllegalArgumentException("Invalid parameter detected for method synthesizeResponseWrapperForError().");
@@ -193,6 +201,7 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         wrapper.setCode(code);
         wrapper.setMessage(message);
         wrapper.setResponse(null);
+        wrapper.setErrorCode(errorCode);
 
         log.debug("Successfully produced ResponseWrapper for unsuccessful database transaction.");
 

@@ -43,7 +43,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Retrieve System By UUID", description = "Retrieves an existing System using its UUID as unique identifier.")
+    @Operation(summary = "Retrieve System by UUID", description = "Retrieves an existing System using its UUID as unique identifier.")
     @GetMapping(path = "/{systemID}/id/")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully retrieved.",
@@ -68,7 +68,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Retrieve System By Name", description = "Retrieves an existing System using its Name as unique identifier.")
+    @Operation(summary = "Retrieve System by Name", description = "Retrieves an existing System using its Name as unique identifier.")
     @GetMapping(path = "/{name}/name/")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully retrieved.",
@@ -140,7 +140,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Update System By UUID", description = ("Updates an existing System using its UUID as " +
+    @Operation(summary = "Update System by UUID", description = ("Updates an existing System using its UUID as " +
             "unique identifier."))
     @PutMapping(path = "/{systemID}/id/")
     @ApiResponses(value = {
@@ -168,7 +168,7 @@ public class SystemController {
      * @return A data structure to be transmitted from server to client as response.
      *****************************************************************************************************************/
     @ResponseStatus(HttpStatus.OK)
-    @Operation(summary = "Delete System By UUID", description = "Deletes an existing System using its UUID as unique identifier.")
+    @Operation(summary = "Delete System by UUID", description = "Deletes an existing System using its UUID as unique identifier.")
     @DeleteMapping(path = "/{systemID}/id/")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK ~ System has been successfully deleted.",

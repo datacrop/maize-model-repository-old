@@ -4,11 +4,11 @@ import eu.datacrop.maize.model_repository.commons.dtos.requests.LocationRequestD
 import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.enums.SuccessOrFailure;
 import eu.datacrop.maize.model_repository.commons.error.messages.LocationErrorMessages;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Vector;
@@ -24,7 +24,7 @@ import java.util.Vector;
 public class SystemValidator implements Validator {
 
     @Override
-    public ResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
+    public SystemResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
         // Checking input parameters.
         if (requestDto == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method SystemValidator.validate().");
@@ -38,15 +38,15 @@ public class SystemValidator implements Validator {
             Vector<String> fields = getNamesOfFieldsThatAreErroneouslyNull(systemRequestDto);
             if (!fields.isEmpty()) {
                 message = SystemErrorMessages.MANDATORY_FIELDS_MISSING.toString().concat(" Field(s): ").concat(fields.toString());
-                return new ResponseWrapper(ResponseCode.BAD_REQUEST, message);
+                return new SystemResponseWrapper(ResponseCode.BAD_REQUEST, message, null, SystemErrorMessages.MANDATORY_FIELDS_MISSING);
             }
 
             // Checking that the location adheres to business logic.
             if (systemRequestDto.getLocation() != null) {
                 ResponseWrapper verdict = validateLocation(systemRequestDto);
-                if (verdict.getCode().equals(SuccessOrFailure.FAILURE)) {
+                if (verdict.getCode().equals(ResponseCode.BAD_REQUEST)) {
                     message = SystemErrorMessages.INVALID_LOCATION_STRUCTURE.toString();
-                    return new ResponseWrapper(ResponseCode.BAD_REQUEST, message);
+                    return new SystemResponseWrapper(ResponseCode.BAD_REQUEST, message, null, SystemErrorMessages.INVALID_LOCATION_STRUCTURE);
                 }
             }
         } catch (IllegalArgumentException e) {
@@ -55,7 +55,7 @@ public class SystemValidator implements Validator {
         }
 
         // Reporting that attribute validation found no issues.
-        return new ResponseWrapper(ResponseCode.SUCCESS, "");
+        return new SystemResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
     }
 
     /******************************************************************************************************************
@@ -68,14 +68,14 @@ public class SystemValidator implements Validator {
      * throws IllegalArgumentException, if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public ResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
+    public SystemResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
 
         if (requestDto == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method SystemValidator.validate().");
         }
 
         // Always returns SUCCESS according to business logic Locations do not refer to other entities.
-        return new ResponseWrapper(ResponseCode.SUCCESS, "Validation success.");
+        return new SystemResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
     }
 
     /******************************************************************************************************************
@@ -97,8 +97,8 @@ public class SystemValidator implements Validator {
         Vector<String> fields = new Vector<String>();
 
         // Checking mandatory fields "Name" and "Description".
-        if (requestDto.getName().isBlank()) fields.add("name");
-        if (requestDto.getDescription().isBlank()) fields.add("description");
+        if (requestDto.getName() == null || requestDto.getName().isBlank()) fields.add("name");
+        if (requestDto.getDescription() == null || requestDto.getDescription().isBlank()) fields.add("description");
 
         // Logging and returning result.
         return fields;
@@ -136,7 +136,7 @@ public class SystemValidator implements Validator {
             throw new IllegalArgumentException(e.getMessage());
         }
 
-        if (!validationResult.getCode().equals(SuccessOrFailure.SUCCESS)) {
+        if (!validationResult.getCode().equals(ResponseCode.SUCCESS)) {
             return new ResponseWrapper(ResponseCode.BAD_REQUEST, LocationErrorMessages.INVALID_LOCATION.toString());
         }
 

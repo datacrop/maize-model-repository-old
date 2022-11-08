@@ -31,7 +31,7 @@ public enum SystemErrorMessages {
     /******************************************************************************************************************
      * Indicates that persistence has been aborted due to unique identifier conflict.
      *****************************************************************************************************************/
-    CONFLICT("There is already another System with the same Name and ID: "),
+    DUPLICATE_SYSTEM("There is already another System with the same Name and ID: "),
 
     /******************************************************************************************************************
      * Indicates that persistence has been aborted due to absence of mandatory fields.

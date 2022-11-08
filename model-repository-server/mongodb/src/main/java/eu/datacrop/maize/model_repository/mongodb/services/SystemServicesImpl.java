@@ -238,9 +238,9 @@ public class SystemServicesImpl implements SystemServices {
         }
 
         if (conflictingEntity != null) {
-            message = SystemErrorMessages.CONFLICT.toString().concat("'" + conflictingEntity.getId() + "'.");
-            log.error(message);
-            return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.CONFLICT);
+            message = SystemErrorMessages.DUPLICATE_SYSTEM.toString().concat("'" + conflictingEntity.getId() + "'.");
+            log.info(message);
+            return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.DUPLICATE_SYSTEM);
         }
 
         // Converting the request data transfer object to a database entity.
@@ -341,9 +341,9 @@ public class SystemServicesImpl implements SystemServices {
             }
 
             if (conflictingEntity != null) {
-                message = SystemErrorMessages.CONFLICT.toString().concat("'" + conflictingEntity.getId() + "'.");
+                message = SystemErrorMessages.DUPLICATE_SYSTEM.toString().concat("'" + conflictingEntity.getId() + "'.");
                 log.error(message);
-                return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.CONFLICT);
+                return converters.synthesizeResponseWrapperForError(ResponseCode.CONFLICT, message, SystemErrorMessages.DUPLICATE_SYSTEM);
             }
         }
 

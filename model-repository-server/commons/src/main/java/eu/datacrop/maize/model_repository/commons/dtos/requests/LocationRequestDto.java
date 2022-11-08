@@ -1,8 +1,11 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.LocationErrorMessages;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.LocationResponseWrapper;
 import lombok.Builder;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
 import java.io.Serial;
@@ -15,6 +18,7 @@ import java.util.Objects;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
+@Slf4j
 public class LocationRequestDto extends RequestDto implements Serializable {
 
     @Serial
@@ -35,21 +39,11 @@ public class LocationRequestDto extends RequestDto implements Serializable {
      * Constructor of the LocationRequestDto class, both for Builder pattern and instantiation with "new".
      *****************************************************************************************************************/
     public LocationRequestDto(double latitude, double longitude, String virtualLocation) {
-
+        this.geoLocation = GeoLocationRequestDto.builder()
+                .latitude(latitude)
+                .longitude(longitude)
+                .build();
         this.virtualLocation = virtualLocation;
-
-        if (!StringUtils.isBlank(virtualLocation)) {
-            this.geoLocation = GeoLocationRequestDto.builder()
-                    .latitude(0.0)
-                    .longitude(0.0)
-                    .build();
-        } else {
-            this.geoLocation = GeoLocationRequestDto.builder()
-                    .latitude(latitude)
-                    .longitude(longitude)
-                    .build();
-        }
-
     }
 
     /******************************************************************************************************************
@@ -100,21 +94,11 @@ public class LocationRequestDto extends RequestDto implements Serializable {
      * @param virtualLocation A string representing a Virtual Location, not null if coordinates are null.
      *****************************************************************************************************************/
     public void setGeoLocation(double latitude, double longitude, String virtualLocation) {
-
+        this.geoLocation = GeoLocationRequestDto.builder()
+                .latitude(latitude)
+                .longitude(longitude)
+                .build();
         this.virtualLocation = virtualLocation;
-
-        if (!StringUtils.isBlank(virtualLocation)) {
-            this.geoLocation = GeoLocationRequestDto.builder()
-                    .latitude(0.0)
-                    .longitude(0.0)
-                    .build();
-        } else {
-            this.geoLocation = GeoLocationRequestDto.builder()
-                    .latitude(latitude)
-                    .longitude(longitude)
-                    .build();
-        }
-
     }
 
     /******************************************************************************************************************
@@ -133,12 +117,6 @@ public class LocationRequestDto extends RequestDto implements Serializable {
      *****************************************************************************************************************/
     public void setVirtualLocation(String virtualLocation) {
         this.virtualLocation = virtualLocation;
-        if (!StringUtils.isBlank(virtualLocation)) {
-            this.geoLocation = GeoLocationRequestDto.builder()
-                    .latitude(0.0)
-                    .longitude(0.0)
-                    .build();
-        }
     }
 
     /******************************************************************************************************************
@@ -185,6 +163,44 @@ public class LocationRequestDto extends RequestDto implements Serializable {
         jo.put("geoLocation", geoLocation.toJSON());
         jo.put("virtualLocation", virtualLocation);
         return jo;
+    }
+
+    /******************************************************************************************************************
+     * This method triggers validation of the data transfer object's attributes and external relationships.
+     *
+     * @return A SystemResponseWrapper (the user will receive a more elaborate one, here it is used only for
+     * internal intra-module communication).
+     *****************************************************************************************************************/
+    @Override
+    public LocationResponseWrapper performValidation() {
+        LocationResponseWrapper wrapper;
+        try {
+            // Validating attributes.
+            wrapper = (LocationResponseWrapper) super.getValidator().validateAttributes(this);
+
+            // If we already have an error there is no point in checking further.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Validating relationships (if applicable).
+            wrapper = (LocationResponseWrapper) super.getValidator().validateRelationships(this);
+
+            // If an error has been discovered report it and return.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Reporting that the validation discovered no issues.
+            log.debug("Validation of the Request DTO has no issues to report.");
+            return wrapper;
+        } catch (IllegalArgumentException e) {
+            String message = "Error occurred during Request DTO validation.";
+            log.error(message);
+            return new LocationResponseWrapper(ResponseCode.ERROR, message, null, LocationErrorMessages.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /******************************************************************************************************************
