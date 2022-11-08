@@ -1,13 +1,13 @@
 package eu.datacrop.maize.model_repository.mongodb.services;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.exceptions.NonUuidArgumentException;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.util.ValidatorUUID;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.converters.SystemConverters;
 import eu.datacrop.maize.model_repository.mongodb.model.System;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;

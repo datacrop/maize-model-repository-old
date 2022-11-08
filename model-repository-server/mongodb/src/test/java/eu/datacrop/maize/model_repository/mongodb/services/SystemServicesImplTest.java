@@ -1,17 +1,17 @@
 package eu.datacrop.maize.model_repository.mongodb.services;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.LocationRequestDto;
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
-import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.LocationRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.entities.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.exceptions.NonUuidArgumentException;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.model.System;
-import eu.datacrop.maize.model_repository.mongodb.model.auxiliary.Location;
+import eu.datacrop.maize.model_repository.mongodb.model.auxiliaries.Location;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -54,7 +54,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
         "eu.datacrop.maize.model_repository.mongodb.daos",
         "eu.datacrop.maize.model_repository.mongodb.listeners",
         "eu.datacrop.maize.model_repository.mongodb.model",
-        "eu.datacrop.maize.model_repository.mongodb.model.auxiliary",
+        "eu.datacrop.maize.model_repository.mongodb.model.auxiliaries",
         "eu.datacrop.maize.model_repository.mongodb.repositories",
         "eu.datacrop.maize.model_repository.mongodb.services",
         "org.springframework.data.annotation"

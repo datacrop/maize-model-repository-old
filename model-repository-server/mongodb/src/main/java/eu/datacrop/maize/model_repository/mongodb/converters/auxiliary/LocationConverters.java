@@ -1,8 +1,8 @@
 package eu.datacrop.maize.model_repository.mongodb.converters.auxiliary;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.LocationRequestDto;
-import eu.datacrop.maize.model_repository.commons.dtos.responses.LocationResponseDto;
-import eu.datacrop.maize.model_repository.mongodb.model.auxiliary.Location;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.LocationRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.LocationResponseDto;
+import eu.datacrop.maize.model_repository.mongodb.model.auxiliaries.Location;
 
 /**********************************************************************************************************************
  * This auxiliary interface defines transformations among MongoDb Location database entities and data transfer objects.

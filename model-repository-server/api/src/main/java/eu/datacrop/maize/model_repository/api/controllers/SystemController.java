@@ -2,8 +2,8 @@ package eu.datacrop.maize.model_repository.api.controllers;
 
 import eu.datacrop.maize.model_repository.api.error.ErrorMessage;
 import eu.datacrop.maize.model_repository.api.services.SystemApiServices;
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
-import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.entities.SystemResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

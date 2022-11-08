@@ -1,10 +1,10 @@
 package eu.datacrop.maize.model_repository.persistence.mongo_implementation;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.mongodb.services.SystemServices;
 import eu.datacrop.maize.model_repository.persistence.daos.SystemPersistenceLayerDaos;
 import eu.datacrop.maize.model_repository.persistence.validators.SystemValidator;

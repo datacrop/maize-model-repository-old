@@ -1,6 +1,6 @@
 package eu.datacrop.maize.model_repository.commons.wrappers.collection;
 
-import eu.datacrop.maize.model_repository.commons.dtos.responses.SystemResponseDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.entities.SystemResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;

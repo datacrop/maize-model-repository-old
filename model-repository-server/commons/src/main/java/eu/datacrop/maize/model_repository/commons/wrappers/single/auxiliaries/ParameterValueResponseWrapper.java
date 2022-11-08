@@ -1,32 +1,32 @@
-package eu.datacrop.maize.model_repository.commons.wrappers.single;
+package eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries;
 
-import eu.datacrop.maize.model_repository.commons.dtos.responses.LocationResponseDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.ParameterValueResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.error.messages.LocationErrorMessages;
+import eu.datacrop.maize.model_repository.commons.error.messages.ParameterValueErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-public class LocationResponseWrapper extends ResponseWrapper implements Serializable {
+public class ParameterValueResponseWrapper extends ResponseWrapper implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -7799138665399848499L;
+    private static final long serialVersionUID = -5517361506125760235L;
 
     /******************************************************************************************************************
-     * A data transfer object representing a Location to be wrapped while returned as a response to an HTTP request.
+     * A data transfer object representing a ParameterValue to be wrapped while returned as a response to an HTTP request.
      *****************************************************************************************************************/
-    private LocationResponseDto response;
+    private ParameterValueResponseDto response;
 
     /******************************************************************************************************************
      * An error code in case the wrapper is used to report error.
      *****************************************************************************************************************/
-    private LocationErrorMessages errorCode;
+    private ParameterValueErrorMessages errorCode;
 
     /******************************************************************************************************************
-     * Constructor of the LocationResponseWrapper class, both for Builder pattern and instantiation with "new".
+     * Constructor of the ParameterValueResponseWrapper class, both for Builder pattern and instantiation with "new".
      *****************************************************************************************************************/
-    public LocationResponseWrapper(ResponseCode code, String message, LocationResponseDto response, LocationErrorMessages errorCode) {
+    public ParameterValueResponseWrapper(ResponseCode code, String message, ParameterValueResponseDto response, ParameterValueErrorMessages errorCode) {
         this.setCode(code);
         if (code.equals(ResponseCode.SUCCESS)) {
             this.setMessage("Request has been successful.");
@@ -38,9 +38,9 @@ public class LocationResponseWrapper extends ResponseWrapper implements Serializ
     }
 
     /******************************************************************************************************************
-     * Empty constructor of the LocationResponseWrapper class.
+     * Empty constructor of the ParameterValueResponseWrapper class.
      *****************************************************************************************************************/
-    public LocationResponseWrapper() {
+    public ParameterValueResponseWrapper() {
         this.setCode(ResponseCode.UNDEFINED);
         this.setMessage(null);
         this.response = null;
@@ -52,7 +52,7 @@ public class LocationResponseWrapper extends ResponseWrapper implements Serializ
      *
      * @return The current value of the object's "response" attribute.
      *****************************************************************************************************************/
-    public LocationResponseDto getResponse() {
+    public ParameterValueResponseDto getResponse() {
         return response;
     }
 
@@ -61,7 +61,7 @@ public class LocationResponseWrapper extends ResponseWrapper implements Serializ
      *
      * @param response A value to assign to the object's "response" attribute, not null.
      *****************************************************************************************************************/
-    public void setResponse(LocationResponseDto response) {
+    public void setResponse(ParameterValueResponseDto response) {
         this.response = response;
     }
 
@@ -70,7 +70,7 @@ public class LocationResponseWrapper extends ResponseWrapper implements Serializ
      *
      * @return The current value of the object's "errorCode" attribute.
      *****************************************************************************************************************/
-    public LocationErrorMessages getErrorCode() {
+    public ParameterValueErrorMessages getErrorCode() {
         return errorCode;
     }
 
@@ -79,12 +79,12 @@ public class LocationResponseWrapper extends ResponseWrapper implements Serializ
      *
      * @param errorCode A value to assign to the object's "errorCode" attribute, not null.
      *****************************************************************************************************************/
-    public void setErrorCode(LocationErrorMessages errorCode) {
+    public void setErrorCode(ParameterValueErrorMessages errorCode) {
         this.errorCode = errorCode;
     }
 
     /******************************************************************************************************************
-     * Transforms a LocationResponseWrapper object to String.
+     * Transforms a ParameterValueResponseWrapper object to String.
      *
      * @return A string representation of the Object.
      *****************************************************************************************************************/

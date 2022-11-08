@@ -2,11 +2,11 @@ package eu.datacrop.maize.model_repository.api.services;
 
 import eu.datacrop.maize.model_repository.api.error.ErrorMessage;
 import eu.datacrop.maize.model_repository.api.error.ErrorMessages;
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.util.ValidatorUUID;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 import eu.datacrop.maize.model_repository.services.persistence.SystemPersistenceServicesDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

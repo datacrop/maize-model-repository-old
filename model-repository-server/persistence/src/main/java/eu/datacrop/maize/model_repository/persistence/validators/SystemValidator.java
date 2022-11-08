@@ -1,14 +1,14 @@
 package eu.datacrop.maize.model_repository.persistence.validators;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.LocationRequestDto;
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.LocationRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.messages.LocationErrorMessages;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Vector;

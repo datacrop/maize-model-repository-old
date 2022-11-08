@@ -1,8 +1,8 @@
 package eu.datacrop.maize.model_repository.mongodb.daos;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 
 /**********************************************************************************************************************
  * This interface defines the entry points (Data Access Objects) to the services offered by Mongo databases

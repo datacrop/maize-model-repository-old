@@ -1,5 +1,7 @@
-package eu.datacrop.maize.model_repository.mongodb.model.auxiliary;
+package eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.Builder;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
@@ -9,21 +11,20 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**********************************************************************************************************************
- * This class defines the data model of Locations (Geographical or Virtual ones) for persistence in a MongoDB.
- * Note: Locations are auxiliary entities and are not stored in a Document of their own.
+ * This class is a data transfer object representing Locations (Geographical or Virtual ones). Used in HTTP responses.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public class Location implements Serializable {
+public class LocationResponseDto implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -7797102348398353735L;
+    private static final long serialVersionUID = 418281017020031854L;
 
     /******************************************************************************************************************
      * Αn object representing a Geographical Location (a pair of  coordinates).
      *****************************************************************************************************************/
-    private GeoLocation geoLocation;
+    private GeoLocationResponseDto geoLocation;
 
     /******************************************************************************************************************
      * A string representing a Virtual Location (a URL or the identifier of a resource/subsystem).
@@ -31,19 +32,19 @@ public class Location implements Serializable {
     private String virtualLocation;
 
     /******************************************************************************************************************
-     * Constructor of the Location class.
+     * Constructor of the LocationResponseDto class.
      *****************************************************************************************************************/
-    public Location(double latitude, double longitude, String virtualLocation) {
+    public LocationResponseDto(double latitude, double longitude, String virtualLocation) {
 
         this.virtualLocation = virtualLocation;
 
         if (!StringUtils.isBlank(virtualLocation)) {
-            this.geoLocation = GeoLocation.builder()
+            this.geoLocation = GeoLocationResponseDto.builder()
                     .latitude(0.0)
                     .longitude(0.0)
                     .build();
         } else {
-            this.geoLocation = GeoLocation.builder()
+            this.geoLocation = GeoLocationResponseDto.builder()
                     .latitude(latitude)
                     .longitude(longitude)
                     .build();
@@ -52,11 +53,11 @@ public class Location implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Empty constructor of the Location class.
+     * Empty constructor of the LocationResponseDto class.
      *****************************************************************************************************************/
-    public Location() {
+    public LocationResponseDto() {
         this.virtualLocation = "";
-        this.geoLocation = GeoLocation.builder()
+        this.geoLocation = GeoLocationResponseDto.builder()
                 .latitude(0.0)
                 .longitude(0.0)
                 .build();
@@ -67,7 +68,7 @@ public class Location implements Serializable {
      *
      * @return The current value of the object's "geoLocation" attribute.
      *****************************************************************************************************************/
-    public GeoLocation getGeoLocation() {
+    public GeoLocationResponseDto getGeoLocation() {
         return geoLocation;
     }
 
@@ -76,6 +77,8 @@ public class Location implements Serializable {
      *
      * @return The current value of the object's "latitude" attribute.
      *************************************************************************************************************/
+    @Hidden
+    @JsonIgnore
     public double getLatitude() {
         return geoLocation.getLatitude();
     }
@@ -86,6 +89,8 @@ public class Location implements Serializable {
      *
      * @return The current value of the object's "longitude" attribute.
      *************************************************************************************************************/
+    @Hidden
+    @JsonIgnore
     public double getLongitude() {
         return geoLocation.getLongitude();
     }
@@ -103,12 +108,12 @@ public class Location implements Serializable {
         this.virtualLocation = virtualLocation;
 
         if (!StringUtils.isBlank(virtualLocation)) {
-            this.geoLocation = GeoLocation.builder()
+            this.geoLocation = GeoLocationResponseDto.builder()
                     .latitude(0.0)
                     .longitude(0.0)
                     .build();
         } else {
-            this.geoLocation = GeoLocation.builder()
+            this.geoLocation = GeoLocationResponseDto.builder()
                     .latitude(latitude)
                     .longitude(longitude)
                     .build();
@@ -133,7 +138,7 @@ public class Location implements Serializable {
     public void setVirtualLocation(String virtualLocation) {
         this.virtualLocation = virtualLocation;
         if (!StringUtils.isBlank(virtualLocation)) {
-            this.geoLocation = GeoLocation.builder()
+            this.geoLocation = LocationResponseDto.GeoLocationResponseDto.builder()
                     .latitude(0.0)
                     .longitude(0.0)
                     .build();
@@ -141,7 +146,7 @@ public class Location implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Method that checks whether two Location objects are equal.
+     * Method that checks whether two LocationResponseDto objects are equal.
      *
      * @param o The second Object to compare with the current Object, not null.
      *****************************************************************************************************************/
@@ -149,12 +154,12 @@ public class Location implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Location that = (Location) o;
+        LocationResponseDto that = (LocationResponseDto) o;
         return Objects.equals(geoLocation, that.geoLocation) && Objects.equals(virtualLocation, that.virtualLocation);
     }
 
     /******************************************************************************************************************
-     * Method that returns the integer hash code value of the Location object.
+     * Method that returns the integer hash code value of the LocationResponseDto object.
      *****************************************************************************************************************/
     @Override
     public int hashCode() {
@@ -162,7 +167,7 @@ public class Location implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Transforms a Location object to String.
+     * Transforms a LocationResponseDto object to String.
      *
      * @return A string representation of the Object.
      *****************************************************************************************************************/
@@ -175,7 +180,7 @@ public class Location implements Serializable {
     }
 
     /**************************************************************************************************************
-     * Transforms a Location object to JSONObject.
+     * Transforms a LocationResponseDto object to JSONObject.
      *
      * @return A JSON representation of the Object.
      *************************************************************************************************************/
@@ -187,17 +192,16 @@ public class Location implements Serializable {
     }
 
     /******************************************************************************************************************
-     * This inner class defines the data model of Geographical Locations for persistence in a MongoDB.
+     * This inner class is a data transfer object for Geographical Locations.
      *
      * @author Angela-Maria Despotopoulou [Athens, Greece]
      * @since version 0.3.0
      *****************************************************************************************************************/
     @Builder
-    public static class GeoLocation implements Serializable {
+    public static class GeoLocationResponseDto implements Serializable {
 
         @Serial
-        private static final long serialVersionUID = -1754719913405025278L;
-
+        private static final long serialVersionUID = 4100314718361516719L;
 
         /**************************************************************************************************************
          * The latitude of the Geographical Location.
@@ -210,29 +214,30 @@ public class Location implements Serializable {
         private double longitude;
 
         /**************************************************************************************************************
-         * Constructor of the GeoLocation class, both for Builder pattern and instantiation with "new".
+         * Constructor of the GeoLocationResponseDto class, both for Builder pattern and instantiation with "new".
          *
          * @param latitude  The latitude of the new Geographical Location, not null.
          * @param longitude The longitude of the new Geographical Location, not null.
          *************************************************************************************************************/
-        private GeoLocation(double latitude, double longitude) {
+        private GeoLocationResponseDto(double latitude, double longitude) {
             this.latitude = latitude;
             this.longitude = longitude;
         }
 
         /**************************************************************************************************************
-         * Empty constructor of the GeoLocation class.
+         * Empty constructor of the GeoLocationResponseDto class.
          *************************************************************************************************************/
-        private GeoLocation() {
+        private GeoLocationResponseDto() {
             this(0.0, 0.0);
         }
 
         /**************************************************************************************************************
          * "Getter" function for "latitude" attribute.
+         * Note: This method is public for (de)serialization purposes.
          *
          * @return The current value of the object's "latitude" attribute.
          *************************************************************************************************************/
-        private double getLatitude() {
+        public double getLatitude() {
             return latitude;
         }
 
@@ -247,10 +252,11 @@ public class Location implements Serializable {
 
         /**************************************************************************************************************
          * "Getter" function for "longitude" attribute.
+         * Note: This method is public for (de)serialization purposes.
          *
          * @return The current value of the object's "longitude" attribute.
          *************************************************************************************************************/
-        private double getLongitude() {
+        public double getLongitude() {
             return longitude;
         }
 
@@ -264,7 +270,7 @@ public class Location implements Serializable {
         }
 
         /**************************************************************************************************************
-         * Method that checks whether two GeoLocation objects are equal.
+         * Method that checks whether two GeoLocationResponseDto objects are equal.
          *
          * @param o The second Object to compare with the current Object, not null.
          *************************************************************************************************************/
@@ -272,12 +278,12 @@ public class Location implements Serializable {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            GeoLocation that = (GeoLocation) o;
+            GeoLocationResponseDto that = (GeoLocationResponseDto) o;
             return Double.compare(that.latitude, latitude) == 0 && Double.compare(that.longitude, longitude) == 0;
         }
 
         /**************************************************************************************************************
-         * Method that returns the integer hash code value of the GeoLocation object.
+         * Method that returns the integer hash code value of the GeoLocationResponseDto object.
          *************************************************************************************************************/
         @Override
         public int hashCode() {
@@ -285,7 +291,7 @@ public class Location implements Serializable {
         }
 
         /**************************************************************************************************************
-         * Transforms a GeoLocation object to String.
+         * Transforms a GeoLocationResponseDto object to String.
          *
          * @return A string representation of the Object.
          *************************************************************************************************************/
@@ -298,7 +304,7 @@ public class Location implements Serializable {
         }
 
         /**************************************************************************************************************
-         * Transforms a GeoLocation object to JSONObject.
+         * Transforms a GeoLocationResponseDto object to JSONObject.
          *
          * @return A JSON representation of the Object.
          *************************************************************************************************************/
@@ -309,4 +315,5 @@ public class Location implements Serializable {
             return jo;
         }
     }
+
 }

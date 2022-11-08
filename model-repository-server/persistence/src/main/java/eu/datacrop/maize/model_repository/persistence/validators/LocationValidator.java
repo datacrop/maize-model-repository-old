@@ -1,12 +1,12 @@
 package eu.datacrop.maize.model_repository.persistence.validators;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.LocationRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.LocationRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.enums.SuccessOrFailure;
 import eu.datacrop.maize.model_repository.commons.error.messages.LocationErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.LocationResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.LocationResponseWrapper;
 import org.springframework.stereotype.Service;
 
 /**********************************************************************************************************************

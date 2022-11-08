@@ -1,6 +1,6 @@
 package eu.datacrop.maize.model_repository.api.services;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
 import org.springframework.http.ResponseEntity;
 
 /**********************************************************************************************************************

@@ -1,6 +1,7 @@
-package eu.datacrop.maize.model_repository.commons.dtos.responses;
+package eu.datacrop.maize.model_repository.commons.dtos.responses.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.LocationResponseDto;
 import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
 import lombok.Builder;
 import org.json.JSONObject;

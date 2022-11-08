@@ -31,7 +31,7 @@ import org.springframework.context.annotation.ComponentScan;
         "eu.datacrop.maize.model_repository.mongodb.daos",
         "eu.datacrop.maize.model_repository.mongodb.listeners",
         "eu.datacrop.maize.model_repository.mongodb.model",
-        "eu.datacrop.maize.model_repository.mongodb.model.auxiliary",
+        "eu.datacrop.maize.model_repository.mongodb.model.auxiliaries",
         "eu.datacrop.maize.model_repository.mongodb.repositories",
         "eu.datacrop.maize.model_repository.mongodb.services",
         "eu.datacrop.maize.model_repository.persistence.daos",

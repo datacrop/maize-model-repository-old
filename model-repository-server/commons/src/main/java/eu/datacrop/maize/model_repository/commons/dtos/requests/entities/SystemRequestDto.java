@@ -1,10 +1,11 @@
-package eu.datacrop.maize.model_repository.commons.dtos.requests;
+package eu.datacrop.maize.model_repository.commons.dtos.requests.entities;
 
+import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.LocationRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.SystemResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 

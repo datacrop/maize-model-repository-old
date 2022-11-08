@@ -3,7 +3,7 @@ package eu.datacrop.maize.model_repository.mongodb.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import eu.datacrop.maize.model_repository.commons.util.DateFormatter;
 import eu.datacrop.maize.model_repository.mongodb.listeners.SystemListener;
-import eu.datacrop.maize.model_repository.mongodb.model.auxiliary.Location;
+import eu.datacrop.maize.model_repository.mongodb.model.auxiliaries.Location;
 import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
