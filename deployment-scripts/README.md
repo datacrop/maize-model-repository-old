@@ -6,7 +6,7 @@ Implementation of databases based on the DataCROP Maize :corn: (V3.0) digital mo
 </p>
 
 <p align="center">
-  <img src="../pictures/release.jpg" width="500px" />
+  <img src="../pictures/release.jpg" width="600px" />
 </p>
 
 ## Directory contents
