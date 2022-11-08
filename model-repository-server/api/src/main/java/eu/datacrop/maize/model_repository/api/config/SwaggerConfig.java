@@ -51,7 +51,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info().title("Model Repository")
                         .description("DataCROP Model Repository RESTful API")
-                        .version("1.0.0")
+                        .version("0.3.0")
                         .contact(contact)
                         .license(new License().name("Apache 2.0").url("https://www.apache.org/licenses/LICENSE-2.0")));
     }

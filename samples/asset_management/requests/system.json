@@ -1,0 +1,18 @@
+{
+    "name": "Phygital Centrifuge 4.0",
+    "description": "A cyberphysical system revolving around an automatic disc centrifuge.",
+    "location": {
+        "geoLocation": {
+            "latitude": 52.15425526446103,
+            "longitude": 9.95084586033136
+        },
+        "virtualLocation": ""
+    },
+    "organization": "ACME Explosives",
+    "additionalInformation": [
+        {
+            "manufacturer": "SpinningTop Inc.",
+            "latest_service": "2022-09-01T12:00:00.020"
+        }
+    ]
+}
