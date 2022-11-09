@@ -33,6 +33,10 @@ public class LocationResponseDto implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the LocationResponseDto class.
+     *
+     * @param latitude Latitude of the Geographical Location, not null if virtualLocation is null.
+     * @param longitude Longitude of the Geographical Location, not null if virtualLocation is null.
+     * @param virtualLocation String representing a Virtual Location, not null if coordinates are null.
      *****************************************************************************************************************/
     public LocationResponseDto(double latitude, double longitude, String virtualLocation) {
 

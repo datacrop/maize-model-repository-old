@@ -37,8 +37,7 @@ public class KvAttributeRequestDto extends RequestDto implements Serializable {
     /******************************************************************************************************************
      * Constructor of the KvAttributeRequestDto class.
      *
-     * @param name A human-readable name for the Parameter Value, not null.
-     * @returns A new KvAttributeRequestDto object.
+     * @param name A human-readable name for the Parameter Value, not null.     *
      *****************************************************************************************************************/
     public KvAttributeRequestDto(String name) {
         this.name = name;
@@ -47,8 +46,6 @@ public class KvAttributeRequestDto extends RequestDto implements Serializable {
 
     /******************************************************************************************************************
      * Empty constructor of the KvAttributeRequestDto class.
-     *
-     * @returns A new KvAttributeRequestDto object.
      *****************************************************************************************************************/
     public KvAttributeRequestDto() {
         this("");

@@ -28,7 +28,7 @@ public class SystemRequestDto extends RequestDto implements Serializable {
     private static final long serialVersionUID = -9170777359020648979L;
 
     /******************************************************************************************************************
-     * A human readable string representing a unique identifier for the IoT System. Mandatory field.
+     * A human-readable string representing a unique identifier for the IoT System. Mandatory field.
      *****************************************************************************************************************/
     private String name;
 
@@ -43,7 +43,7 @@ public class SystemRequestDto extends RequestDto implements Serializable {
     private LocationRequestDto location;
 
     /******************************************************************************************************************
-     * A human readable string representing the organization owning the IoT System. Optional field.
+     * A human-readable string representing the organization owning the IoT System. Optional field.
      *****************************************************************************************************************/
     private String organization;
 
@@ -53,7 +53,14 @@ public class SystemRequestDto extends RequestDto implements Serializable {
     private transient Set<Object> additionalInformation;
 
     /******************************************************************************************************************
-     * Constructor of the SystemRequestDto class, used for the Builder pattern.
+     * Constructor of the SystemRequestDto class.
+     *
+     * @param name A human-readable string representing a unique identifier for the IoT System, not null.
+     * @param description A textual description of the IoT System, not null.
+     * @param location The virtual or physical Location of the IoT System, not null.
+     * @param organization A human-readable string representing the organization owning the IoT System, not null.
+     * @param additionalInformation A collection of versatile variables hosting additional information, not null.
+     * @param validator A validator object for SystemRequestDto objects, not null.
      *****************************************************************************************************************/
     public SystemRequestDto(String name, String description, LocationRequestDto location,
                             String organization, Set<Object> additionalInformation, Validator validator) {

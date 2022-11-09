@@ -37,6 +37,10 @@ public class LocationRequestDto extends RequestDto implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the LocationRequestDto class.
+     *
+     * @param latitude Latitude of the Geographical Location, not null if virtualLocation is null.
+     * @param longitude Longitude of the Geographical Location, not null if virtualLocation is null.
+     * @param virtualLocation String representing a Virtual Location, not null if coordinates are null.
      *****************************************************************************************************************/
     public LocationRequestDto(double latitude, double longitude, String virtualLocation) {
         this.geoLocation = GeoLocationRequestDto.builder()

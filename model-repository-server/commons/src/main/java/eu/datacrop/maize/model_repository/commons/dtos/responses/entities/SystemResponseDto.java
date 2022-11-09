@@ -69,6 +69,12 @@ public class SystemResponseDto implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the SystemResponseDto class, used for the Builder pattern.
+     *
+     * @param name A human-readable string representing a unique identifier for the IoT System, not null.
+     * @param description A textual description of the IoT System, not null.
+     * @param location The virtual or physical Location of the IoT System, not null.
+     * @param organization A human-readable string representing the organization owning the IoT System, not null.
+     * @param additionalInformation A collection of versatile variables hosting additional information, not null.
      *****************************************************************************************************************/
     public SystemResponseDto(String id, String name, String description, LocationResponseDto location,
                              String organization, Set<Object> additionalInformation, LocalDateTime creationDate,
