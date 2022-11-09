@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**********************************************************************************************************************
  * This class wraps the responses travelling from the persistence layer back to the API for a more complete
- * reporting of problems / unsuccessful requests on IoT Systems. Used for Single Objects (as opposed to a Collection).
+ * reporting of problems / unsuccessful requests on Parameters. Used for Single Objects (as opposed to a Collection).
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0

@@ -1,17 +1,22 @@
 package eu.datacrop.maize.model_repository.commons.error.messages;
 
 /**********************************************************************************************************************
- * This enumeration contains Response Codes to be used in Response Wrappers for Parameters.
+ * This enumeration contains Response Codes to be used in Response Wrappers for KvAttributes.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.3.0
  *********************************************************************************************************************/
-public enum ParameterErrorMessages {
+public enum KvAttributeErrorMessages {
 
     /******************************************************************************************************************
-     * Indicates that a duplicate parameter was about to be persisted.
+     * Indicates that a duplicate parameter value was about to be persisted.
      *****************************************************************************************************************/
-    DUPLICATE_PARAMETER("There is already a Parameter with the same name."),
+    DUPLICATE_KV_ATTRIBUTE("There is already a KvAttribute with the same group name."),
+
+    /******************************************************************************************************************
+     * Indicates that a duplicate parameter value was about to be persisted.
+     *****************************************************************************************************************/
+    DUPLICATE_PARAMETER_VALUE("There is already a Parameter with the same name."),
 
     /******************************************************************************************************************
      * Indicates that persistence has been aborted due to absence of mandatory fields.
@@ -29,14 +34,14 @@ public enum ParameterErrorMessages {
     private final String text;
 
     /******************************************************************************************************************
-     * Constructor of the ParameterErrorMessages enumeration.
+     * Constructor of the KvAttributeErrorMessages enumeration.
      *****************************************************************************************************************/
-    ParameterErrorMessages(String text) {
+    KvAttributeErrorMessages(String text) {
         this.text = text;
     }
 
     /******************************************************************************************************************
-     * Transforms a ParameterErrorMessages enumeration object to String.
+     * Transforms a KvAttributeErrorMessages enumeration object to String.
      *
      *  @return A string representation of the Object.
      *****************************************************************************************************************/

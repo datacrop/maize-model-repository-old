@@ -1,5 +1,11 @@
 package eu.datacrop.maize.model_repository.commons.error.messages;
 
+/**********************************************************************************************************************
+ * This enumeration contains Response Codes to be used in Response Wrappers for Parameter Values.
+ *
+ * @author Angela-Maria Despotopoulou [Athens, Greece]
+ * @since version 0.3.0
+ *********************************************************************************************************************/
 public enum ParameterValueErrorMessages {
 
     /******************************************************************************************************************

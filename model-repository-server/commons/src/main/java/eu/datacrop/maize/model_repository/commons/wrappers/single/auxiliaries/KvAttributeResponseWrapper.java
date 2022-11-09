@@ -1,8 +1,8 @@
 package eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries;
 
-import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.ParameterValueResponseDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.KvAttributeResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.error.messages.ParameterValueErrorMessages;
+import eu.datacrop.maize.model_repository.commons.error.messages.KvAttributeErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
 
 import java.io.Serial;
@@ -10,31 +10,30 @@ import java.io.Serializable;
 
 /**********************************************************************************************************************
  * This class wraps the responses travelling from the persistence layer back to the API for a more complete
- * reporting of problems / unsuccessful requests on Parameter Values. Used for Single Objects (as opposed to
- * a Collection).
+ * reporting of problems / unsuccessful requests on KvAttributes. Used for Single Objects (as opposed to a Collection).
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
-public class ParameterValueResponseWrapper extends ResponseWrapper implements Serializable {
+public class KvAttributeResponseWrapper extends ResponseWrapper implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -5517361506125760235L;
+    private static final long serialVersionUID = -1257206859791546955L;
 
     /******************************************************************************************************************
-     * A data transfer object representing a ParameterValue to be wrapped while returned as a response to an HTTP request.
+     * A data transfer object representing a KvAttribute to be wrapped while returned as a response to an HTTP request.
      *****************************************************************************************************************/
-    private ParameterValueResponseDto response;
+    private KvAttributeResponseDto response;
 
     /******************************************************************************************************************
      * An error code in case the wrapper is used to report error.
      *****************************************************************************************************************/
-    private ParameterValueErrorMessages errorCode;
+    private KvAttributeErrorMessages errorCode;
 
     /******************************************************************************************************************
-     * Constructor of the ParameterValueResponseWrapper class, both for Builder pattern and instantiation with "new".
+     * Constructor of the KvAttributeResponseWrapper class, both for Builder pattern and instantiation with "new".
      *****************************************************************************************************************/
-    public ParameterValueResponseWrapper(ResponseCode code, String message, ParameterValueResponseDto response, ParameterValueErrorMessages errorCode) {
+    public KvAttributeResponseWrapper(ResponseCode code, String message, KvAttributeResponseDto response, KvAttributeErrorMessages errorCode) {
         this.setCode(code);
         if (code.equals(ResponseCode.SUCCESS)) {
             this.setMessage("Request has been successful.");
@@ -46,9 +45,9 @@ public class ParameterValueResponseWrapper extends ResponseWrapper implements Se
     }
 
     /******************************************************************************************************************
-     * Empty constructor of the ParameterValueResponseWrapper class.
+     * Empty constructor of the KvAttributeResponseWrapper class.
      *****************************************************************************************************************/
-    public ParameterValueResponseWrapper() {
+    public KvAttributeResponseWrapper() {
         this.setCode(ResponseCode.UNDEFINED);
         this.setMessage(null);
         this.response = null;
@@ -60,7 +59,7 @@ public class ParameterValueResponseWrapper extends ResponseWrapper implements Se
      *
      * @return The current value of the object's "response" attribute.
      *****************************************************************************************************************/
-    public ParameterValueResponseDto getResponse() {
+    public KvAttributeResponseDto getResponse() {
         return response;
     }
 
@@ -69,7 +68,7 @@ public class ParameterValueResponseWrapper extends ResponseWrapper implements Se
      *
      * @param response A value to assign to the object's "response" attribute, not null.
      *****************************************************************************************************************/
-    public void setResponse(ParameterValueResponseDto response) {
+    public void setResponse(KvAttributeResponseDto response) {
         this.response = response;
     }
 
@@ -78,7 +77,7 @@ public class ParameterValueResponseWrapper extends ResponseWrapper implements Se
      *
      * @return The current value of the object's "errorCode" attribute.
      *****************************************************************************************************************/
-    public ParameterValueErrorMessages getErrorCode() {
+    public KvAttributeErrorMessages getErrorCode() {
         return errorCode;
     }
 
@@ -87,12 +86,12 @@ public class ParameterValueResponseWrapper extends ResponseWrapper implements Se
      *
      * @param errorCode A value to assign to the object's "errorCode" attribute, not null.
      *****************************************************************************************************************/
-    public void setErrorCode(ParameterValueErrorMessages errorCode) {
+    public void setErrorCode(KvAttributeErrorMessages errorCode) {
         this.errorCode = errorCode;
     }
 
     /******************************************************************************************************************
-     * Transforms a ParameterValueResponseWrapper object to String.
+     * Transforms a KvAttributeResponseWrapper object to String.
      *
      * @return A string representation of the Object.
      *****************************************************************************************************************/
