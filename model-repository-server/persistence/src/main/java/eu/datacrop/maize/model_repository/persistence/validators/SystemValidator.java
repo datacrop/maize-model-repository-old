@@ -23,6 +23,15 @@ import java.util.Vector;
 @Service
 public class SystemValidator implements Validator {
 
+    /******************************************************************************************************************
+     * This method triggers validation of the data transfer object's attributes.
+     *
+     * @param requestDto A data transfer object to validate, not null.
+     * @return An abstract ResponseWrapper (the user will receive a more elaborate one, here it is used only for
+     * internal intra-module communication).
+     *
+     * throws IllegalArgumentException, if requestDto is null.
+     *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
         // Checking input parameters.
@@ -74,7 +83,7 @@ public class SystemValidator implements Validator {
             throw new IllegalArgumentException("Invalid parameter detected for method SystemValidator.validate().");
         }
 
-        // Always returns SUCCESS according to business logic Locations do not refer to other entities.
+        // Always returns SUCCESS according to business logic Systems do not refer to other entities.
         return new SystemResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
     }
 

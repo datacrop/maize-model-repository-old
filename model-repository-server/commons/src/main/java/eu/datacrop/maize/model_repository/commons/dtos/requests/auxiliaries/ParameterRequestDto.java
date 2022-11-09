@@ -1,7 +1,11 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.ParameterErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.ParameterResponseWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
 import java.io.Serial;
@@ -14,6 +18,7 @@ import java.util.Objects;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
+@Slf4j
 public class ParameterRequestDto extends RequestDto implements Serializable {
 
     @Serial
@@ -193,6 +198,33 @@ public class ParameterRequestDto extends RequestDto implements Serializable {
      *****************************************************************************************************************/
     @Override
     public ResponseWrapper performValidation() {
-        return null;
+        ParameterResponseWrapper wrapper;
+        try {
+            // Validating attributes.
+            wrapper = (ParameterResponseWrapper) super.getValidator().validateAttributes(this);
+
+            // If we already have an error there is no point in checking further.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Validating relationships (if applicable).
+            wrapper = (ParameterResponseWrapper) super.getValidator().validateRelationships(this);
+
+            // If an error has been discovered report it and return.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Reporting that the validation discovered no issues.
+            log.debug("Validation of the Request DTO has no issues to report.");
+            return wrapper;
+        } catch (IllegalArgumentException e) {
+            String message = "Error occurred during Request DTO validation.";
+            log.error(message);
+            return new ParameterResponseWrapper(ResponseCode.ERROR, message, null, ParameterErrorMessages.INTERNAL_SERVER_ERROR);
+        }
     }
 }

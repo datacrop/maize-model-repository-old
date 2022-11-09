@@ -1,7 +1,10 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.ParameterValueErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.ParameterValueResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
@@ -142,6 +145,33 @@ public class ParameterValueRequestDto extends RequestDto implements Serializable
      *****************************************************************************************************************/
     @Override
     public ResponseWrapper performValidation() {
-        return null; //TODO
+        ParameterValueResponseWrapper wrapper;
+        try {
+            // Validating attributes.
+            wrapper = (ParameterValueResponseWrapper) super.getValidator().validateAttributes(this);
+
+            // If we already have an error there is no point in checking further.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Validating relationships (if applicable).
+            wrapper = (ParameterValueResponseWrapper) super.getValidator().validateRelationships(this);
+
+            // If an error has been discovered report it and return.
+            if (wrapper == null || !wrapper.getCode().equals(ResponseCode.SUCCESS)) {
+                log.debug("Issues discovered during attribute validation.");
+                return wrapper;
+            }
+
+            // Reporting that the validation discovered no issues.
+            log.debug("Validation of the Request DTO has no issues to report.");
+            return wrapper;
+        } catch (IllegalArgumentException e) {
+            String message = "Error occurred during Request DTO validation.";
+            log.error(message);
+            return new ParameterValueResponseWrapper(ResponseCode.ERROR, message, null, ParameterValueErrorMessages.INTERNAL_SERVER_ERROR);
+        }
     }
 }
