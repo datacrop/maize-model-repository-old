@@ -1,57 +1,43 @@
 package eu.datacrop.maize.model_repository.commons.enums;
 
 /**********************************************************************************************************************
- * This enumeration contains Response Codes to be used in Response Wrappers.
+ * This enumeration contains classifications of Assets (Asset Nature options).
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
- * @since version 0.3.0
+ * @since version 0.4.0
  *********************************************************************************************************************/
-public enum ResponseCode {
+public enum AssetNature {
 
     /******************************************************************************************************************
-     * Indicates that the API Request has been concluded successfully.
+     * Indicates that an Asset exists in the physical world and is a device connected to the Internet.
      *****************************************************************************************************************/
-    SUCCESS("SUCCESS"),
+    TANGIBLE_PHYSICAL("TANGIBLE_PHYSICAL"),
 
     /******************************************************************************************************************
-     * Indicates that the API Request has not been concluded successfully due to Internal Server Error.
+     * Indicates that an Asset exists in the physical world and fuses computation, networking and physical processes.
      *****************************************************************************************************************/
-    ERROR("ERROR"),
+    TANGIBLE_CYBER_PHYSICAL("TANGIBLE_CYBER_PHYSICAL"),
 
     /******************************************************************************************************************
-     * Indicates that the API Request did not produce error, however no result was available to return.
+     * Indicates that an Asset is not represented in the physical world; instead it might be a web resource or
+     * a remote (micro)service.
      *****************************************************************************************************************/
-    NOT_FOUND("NOT_FOUND"),
+    INTANGIBLE("INTANGIBLE");
 
     /******************************************************************************************************************
-     * Indicates that the API Request did not produce error, however it was aborted due to conflict.
-     *****************************************************************************************************************/
-    CONFLICT("CONFLICT"),
-
-    /******************************************************************************************************************
-     * Indicates that the API Request was problematic due to the client's fault.
-     *****************************************************************************************************************/
-    BAD_REQUEST("BAD_REQUEST"),
-
-    /******************************************************************************************************************
-     * Default value of the Response Wrapper. Not meant to reach end-users.
-     *****************************************************************************************************************/
-    UNDEFINED("UNDEFINED");
-
-    /******************************************************************************************************************
-     * The text representing the ResponseCode enumeration values.
+     * The text representing the AssetNature enumeration values.
      *****************************************************************************************************************/
     private final String text;
 
     /******************************************************************************************************************
-     * Constructor of the ResponseCode enumeration.
+     * Constructor of the AssetNature enumeration.
      *****************************************************************************************************************/
-    ResponseCode(String text) {
+    AssetNature(String text) {
         this.text = text;
     }
 
     /******************************************************************************************************************
-     * Transforms a ResponseCode enumeration object to String.
+     * Transforms an AssetNature enumeration object to String.
      *
      *  @return A string representation of the Object.
      *****************************************************************************************************************/
@@ -59,5 +45,4 @@ public enum ResponseCode {
     public String toString() {
         return text;
     }
-
 }
