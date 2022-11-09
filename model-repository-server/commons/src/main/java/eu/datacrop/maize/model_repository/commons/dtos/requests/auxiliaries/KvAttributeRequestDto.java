@@ -1,7 +1,10 @@
 package eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries;
 
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
+import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
+import eu.datacrop.maize.model_repository.commons.error.messages.KvAttributeErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.ResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.KvAttributeResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
@@ -249,7 +252,8 @@ public class KvAttributeRequestDto extends RequestDto implements Serializable {
      *****************************************************************************************************************/
     @Override
     public ResponseWrapper performValidation() {
-        /*KvAttributeResponseWrapper wrapper;
+
+        KvAttributeResponseWrapper wrapper;
         try {
             // Validating attributes.
             wrapper = (KvAttributeResponseWrapper) super.getValidator().validateAttributes(this);
@@ -276,7 +280,6 @@ public class KvAttributeRequestDto extends RequestDto implements Serializable {
             String message = "Error occurred during Request DTO validation.";
             log.error(message);
             return new KvAttributeResponseWrapper(ResponseCode.ERROR, message, null, KvAttributeErrorMessages.INTERNAL_SERVER_ERROR);
-        }*/
-        return null; //TODO
+        }
     }
 }

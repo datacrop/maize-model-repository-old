@@ -11,12 +11,7 @@ public enum KvAttributeErrorMessages {
     /******************************************************************************************************************
      * Indicates that a duplicate parameter value was about to be persisted.
      *****************************************************************************************************************/
-    DUPLICATE_KV_ATTRIBUTE("There is already a KvAttribute with the same group name."),
-
-    /******************************************************************************************************************
-     * Indicates that a duplicate parameter value was about to be persisted.
-     *****************************************************************************************************************/
-    DUPLICATE_PARAMETER_VALUE("There is already a Parameter with the same name."),
+    DUPLICATE_PARAMETER_VALUE("Parameter Values sharing the same name detected:"),
 
     /******************************************************************************************************************
      * Indicates that persistence has been aborted due to absence of mandatory fields.
