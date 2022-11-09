@@ -1,4 +1,4 @@
-package eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries;
+package eu.datacrop.maize.model_repository.mongodb.model.auxiliaries;
 
 import org.json.JSONObject;
 
@@ -9,16 +9,17 @@ import java.util.Objects;
 import java.util.Set;
 
 /**********************************************************************************************************************
- * This class is a data transfer object representing KvAttributes, in essence additional parameters describing
- * Assets. Used in HTTP responses.
+ * This class defines the data model of KvAttributes (in essence additional parameters describing Assets)  for
+ * persistence in a MongoDB.
+ * Note: Parameters are auxiliary entities and are not stored in a Document of their own.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
-public class KvAttributeResponseDto implements Serializable {
+public class KvAttribute implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 8393620447532340953L;
+    private static final long serialVersionUID = -2525357868604982016L;
 
     /******************************************************************************************************************
      * A human-readable name for the KvAttribute group.
@@ -28,25 +29,25 @@ public class KvAttributeResponseDto implements Serializable {
     /******************************************************************************************************************
      * A collection of Parameter Values.
      *****************************************************************************************************************/
-    private Set<ParameterValueResponseDto> parameterValues;
+    private Set<ParameterValue> parameterValues;
 
     /******************************************************************************************************************
-     * Constructor of the KvAttributeResponseDto class.
+     * Constructor of the KvAttribute class.
      *
      * @param name A human-readable name for the Parameter Value, not null.
-     * @returns A new KvAttributeResponseDto object.
+     * @returns A new KvAttribute object.
      *****************************************************************************************************************/
-    public KvAttributeResponseDto(String name) {
+    public KvAttribute(String name) {
         this.name = name;
         this.parameterValues = new HashSet<>();
     }
 
     /******************************************************************************************************************
-     * Empty constructor of the KvAttributeResponseDto class.
+     * Empty constructor of the KvAttribute class.
      *
-     * @returns A new KvAttributeResponseDto object.
+     * @returns A new KvAttribute object.
      *****************************************************************************************************************/
-    public KvAttributeResponseDto() {
+    public KvAttribute() {
         this("");
     }
 
@@ -73,7 +74,7 @@ public class KvAttributeResponseDto implements Serializable {
      *
      * @return The current value of the object's "parameterValues" attribute.
      *****************************************************************************************************************/
-    public Set<ParameterValueResponseDto> getParameterValues() {
+    public Set<ParameterValue> getParameterValues() {
 
         if (parameterValues == null) {
             this.parameterValues = new HashSet<>();
@@ -87,7 +88,7 @@ public class KvAttributeResponseDto implements Serializable {
      *
      * @param parameterValues A value to assign to the object's "parameterValues" attribute, not null.
      *****************************************************************************************************************/
-    public void setParameterValues(Set<ParameterValueResponseDto> parameterValues) {
+    public void setParameterValues(Set<ParameterValue> parameterValues) {
 
         if (parameterValues == null) {
             this.parameterValues = new HashSet<>();
@@ -102,7 +103,7 @@ public class KvAttributeResponseDto implements Serializable {
      *
      * @param parameterValue The Parameter Value object to add to the "parameterValues" collection, not null.
      *****************************************************************************************************************/
-    public void addParameterValue(ParameterValueResponseDto parameterValue) {
+    public void addParameterValue(ParameterValue parameterValue) {
         if (this.parameterValues == null) {
             this.parameterValues = new HashSet<>();
         }
@@ -121,7 +122,7 @@ public class KvAttributeResponseDto implements Serializable {
             this.parameterValues = new HashSet<>();
         }
 
-        ParameterValueResponseDto parameterValue = new ParameterValueResponseDto(name, value);
+        ParameterValue parameterValue = new ParameterValue(name, value);
 
         parameterValues.add(parameterValue);
     }
@@ -131,7 +132,7 @@ public class KvAttributeResponseDto implements Serializable {
      *
      * @param parameterValue The Parameter Value object to delete from the "parameterValues" collection, not null.
      *****************************************************************************************************************/
-    public void removeParameterValue(ParameterValueResponseDto parameterValue) {
+    public void removeParameterValue(ParameterValue parameterValue) {
         if (this.parameterValues == null) {
             this.parameterValues = new HashSet<>();
             return;
@@ -164,7 +165,7 @@ public class KvAttributeResponseDto implements Serializable {
     public Object getParameterActualValueByKey(String key) {
         if (key == null || key.equals("")) {
             throw new IllegalArgumentException("Invalid parameter detected for method " +
-                    "KvAttributeResponseDto.getParameterActualValueByKey().");
+                    "KvAttribute.getParameterActualValueByKey().");
         }
 
         if (this.parameterValues == null) {
@@ -175,7 +176,7 @@ public class KvAttributeResponseDto implements Serializable {
         Object result = null;
         key = key.trim();
 
-        for (ParameterValueResponseDto parameterValue : this.parameterValues) {
+        for (ParameterValue parameterValue : this.parameterValues) {
             String paramKey = parameterValue.getName();
 
             if (paramKey == null || paramKey.equals("")) continue;
@@ -193,7 +194,7 @@ public class KvAttributeResponseDto implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Method that checks whether two KvAttributeResponseDto objects are equal. Two KvAttributes are considered
+     * Method that checks whether two KvAttribute objects are equal. Two KvAttributes are considered
      * equal if they have the same "name".
      *
      * @param o The second Object to compare with the current Object, not null.
@@ -202,12 +203,12 @@ public class KvAttributeResponseDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        KvAttributeResponseDto that = (KvAttributeResponseDto) o;
+        KvAttribute that = (KvAttribute) o;
         return name.equals(that.name);
     }
 
     /******************************************************************************************************************
-     * Method that returns the integer hash code value of the KvAttributeResponseDto object.
+     * Method that returns the integer hash code value of the KvAttribute object.
      *****************************************************************************************************************/
     @Override
     public int hashCode() {
@@ -215,7 +216,7 @@ public class KvAttributeResponseDto implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Transforms a KvAttributeResponseDto object to String.
+     * Transforms a KvAttribute object to String.
      *
      * @return A string representation of the Object.
      *****************************************************************************************************************/
@@ -228,7 +229,7 @@ public class KvAttributeResponseDto implements Serializable {
     }
 
     /**************************************************************************************************************
-     * Transforms a KvAttributeResponseDto object to JSONObject.
+     * Transforms a KvAttribute object to JSONObject.
      *
      * @return A JSON representation of the Object.
      *************************************************************************************************************/
