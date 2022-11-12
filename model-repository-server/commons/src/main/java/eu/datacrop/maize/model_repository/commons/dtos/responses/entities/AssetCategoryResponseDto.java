@@ -43,7 +43,7 @@ public class AssetCategoryResponseDto implements Serializable {
     private LocalDateTime creationDate;
 
     /******************************************************************************************************************
-     * Timestamp of latest persistence regarding the Asset Category in the database. Mandatory field.
+     * Timestamp of the latest persistence regarding the Asset Category in the database. Mandatory field.
      *****************************************************************************************************************/
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime latestUpdateDate;
@@ -51,11 +51,11 @@ public class AssetCategoryResponseDto implements Serializable {
     /******************************************************************************************************************
      * Constructor of the AssetCategoryResponseDto class.
      *
-     * @param id A UUID representing a unique identifier for the Asset Category. Mandatory field.
-     * @param name A human-readable string representing a unique identifier for the Asset Category. Mandatory field.
+     * @param id A UUID representing a unique identifier for the Asset Category, not null.
+     * @param name A human-readable string representing a unique identifier for the Asset Category, not null.
      * @param description human-readable longer elucidation of the Asset Category.
-     * @param creationDate Timestamp of first persistence regarding the Asset Category in the database. Mandatory field.
-     * @param latestUpdateDate Timestamp of latest persistence regarding the Asset Category in the database. Mandatory field.
+     * @param creationDate Timestamp of first persistence regarding the Asset Category in the database, not null.
+     * @param latestUpdateDate Timestamp of the latest persistence regarding the Asset Category in the database, not null.
      *****************************************************************************************************************/
     public AssetCategoryResponseDto(String id, String name, String description, LocalDateTime creationDate, LocalDateTime latestUpdateDate) {
         this.id = id;

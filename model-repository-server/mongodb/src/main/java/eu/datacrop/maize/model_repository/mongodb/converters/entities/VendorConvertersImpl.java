@@ -1,18 +1,14 @@
 package eu.datacrop.maize.model_repository.mongodb.converters.entities;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
-import eu.datacrop.maize.model_repository.commons.dtos.responses.auxiliaries.LocationResponseDto;
-import eu.datacrop.maize.model_repository.commons.dtos.responses.entities.SystemResponseDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.VendorRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.responses.entities.VendorResponseDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
+import eu.datacrop.maize.model_repository.commons.error.messages.VendorErrorMessages;
 import eu.datacrop.maize.model_repository.commons.wrappers.PaginationInfo;
-import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
-import eu.datacrop.maize.model_repository.mongodb.converters.auxiliaries.LocationConverters;
-import eu.datacrop.maize.model_repository.mongodb.model.auxiliaries.Location;
-import eu.datacrop.maize.model_repository.mongodb.model.entities.System;
+import eu.datacrop.maize.model_repository.commons.wrappers.collection.VendorResponsesWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.VendorResponseWrapper;
+import eu.datacrop.maize.model_repository.mongodb.model.entities.Vendor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,61 +17,53 @@ import java.util.List;
 import java.util.UUID;
 
 /**********************************************************************************************************************
- * This auxiliary class performs transformations among MongoDb System database entities and data transfer objects.
+ * This auxiliary class performs transformations among MongoDb Vendor database entities and data transfer objects.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
- * @since version 0.3.0
+ * @since version 0.4.0
  *********************************************************************************************************************/
 @Slf4j
 @Service
-public class SystemConvertersImpl implements SystemConverters {
-
-    @Autowired
-    LocationConverters locationConverters;
+public class VendorConvertersImpl implements VendorConverters {
 
     /*****************************************************************************************************************
-     * This method transforms a System Request Data Transfer Object into its respective MongoDB Entity form.
+     * This method transforms a Vendor Request Data Transfer Object into its respective MongoDB Entity form.
      * Returns null on erroneous input.
      *
      * @param  dto The data transfer object to transform, not null.
-     * @param  databaseID UUID that uniquely identifies a persisted System, receives value only on update requests.
+     * @param  databaseID UUID that uniquely identifies a persisted Vendor, receives value only on update requests.
      * @return The result of the transformation.
      *
      * @throws IllegalArgumentException if dto parameter is null.
      ****************************************************************************************************************/
     @Override
-    public System convertRequestDtoToEntity(SystemRequestDto dto, String databaseID) throws IllegalArgumentException {
+    public Vendor convertRequestDtoToEntity(VendorRequestDto dto, String databaseID) throws IllegalArgumentException {
 
         if (dto == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method convertRequestDtoToEntity().");
         }
 
-        Location location = locationConverters.convertRequestDtoToEntity(dto.getLocation());
-
-        System system = System.builder()
+        Vendor vendor = Vendor.builder()
                 .name(dto.getName())
                 .description(dto.getDescription())
-                .location(location)
-                .organization(dto.getOrganization())
-                .additionalInformation(dto.getAdditionalInformation())
                 .build();
 
         if (databaseID.isBlank()) // RequestDTO used for first persistence of new entities.
         {
-            system.setId(UUID.randomUUID().toString());
-            system.setCreationDate(LocalDateTime.now());
+            vendor.setId(UUID.randomUUID().toString());
+            vendor.setCreationDate(LocalDateTime.now());
         } else // RequestDTO used to update existing entities.
         {
-            system.setId(databaseID);
+            vendor.setId(databaseID);
         }
 
-        log.debug("Successfully converted RequestDto to MongoDB entity for System.");
+        log.debug("Successfully converted RequestDto to MongoDB entity for Vendor.");
 
-        return system;
+        return vendor;
     }
 
     /*****************************************************************************************************************
-     * This method transforms a System MongoDB Entity into its respective Request Data Transfer Response form.
+     * This method transforms a Vendor MongoDB Entity into its respective Request Data Transfer Response form.
      * The result is enclosed in a Wrapper object. Returns null on erroneous input.
      *
      * @param entity  The database entity to transform, not null.
@@ -84,39 +72,34 @@ public class SystemConvertersImpl implements SystemConverters {
      * @throws IllegalArgumentException if entity parameter is null.
      ****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper convertEntityToResponseWrapper(System entity) throws IllegalArgumentException {
+    public VendorResponseWrapper convertEntityToResponseWrapper(Vendor entity) throws IllegalArgumentException {
 
         if (entity == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method convertEntityToResponseWrapper().");
         }
 
         // Performing transformation of contents.
-        LocationResponseDto location = locationConverters.convertEntityToResponseDto(entity.getLocation());
-
-        SystemResponseDto responseDto = SystemResponseDto.builder()
+        VendorResponseDto responseDto = VendorResponseDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .description(entity.getDescription())
-                .location(location)
-                .organization(entity.getOrganization())
-                .additionalInformation(entity.getAdditionalInformation())
                 .creationDate(entity.getCreationDate())
                 .latestUpdateDate(entity.getLatestUpdateDate())
                 .build();
 
         // Wrapping the result.
-        SystemResponseWrapper wrapper = new SystemResponseWrapper();
+        VendorResponseWrapper wrapper = new VendorResponseWrapper();
         wrapper.setCode(ResponseCode.SUCCESS);
         wrapper.setMessage("Database transaction successfully concluded.");
         wrapper.setResponse(responseDto);
 
-        log.debug("Successfully converted MongoDB entity to ResponseWrapper for System.");
+        log.debug("Successfully converted MongoDB entity to ResponseWrapper for Vendor.");
 
         return wrapper;
     }
 
     /*****************************************************************************************************************
-     * This method transforms a collection of System MongoDB Entities into its respective collection of Request Data
+     * This method transforms a collection of Vendor MongoDB Entities into its respective collection of Request Data
      * Transfer Responses form. The result is enclosed in a Wrapper object. Returns null on erroneous input.
      *
      * @param entitiesList The list of database entities to transform, not null, not empty.
@@ -127,26 +110,21 @@ public class SystemConvertersImpl implements SystemConverters {
      * @throws IllegalArgumentException if paginationInfo parameter is null.
      ****************************************************************************************************************/
     @Override
-    public SystemResponsesWrapper convertEntitiesToResponseWrapper(List<System> entitiesList, PaginationInfo paginationInfo) throws IllegalArgumentException {
+    public VendorResponsesWrapper convertEntitiesToResponseWrapper(List<Vendor> entitiesList, PaginationInfo paginationInfo) throws IllegalArgumentException {
 
         if (entitiesList == null || entitiesList.isEmpty() || paginationInfo == null) {
             throw new IllegalArgumentException("Invalid parameter detected for method convertEntitiesToResponseWrapper().");
         }
 
-        List<SystemResponseDto> responseDtoList = new ArrayList<>();
+        List<VendorResponseDto> responseDtoList = new ArrayList<>();
 
         // Performing transformation of contents.
-        for (System entity : entitiesList) {
+        for (Vendor entity : entitiesList) {
 
-            LocationResponseDto location = locationConverters.convertEntityToResponseDto(entity.getLocation());
-
-            SystemResponseDto responseDto = SystemResponseDto.builder()
+            VendorResponseDto responseDto = VendorResponseDto.builder()
                     .id(entity.getId())
                     .name(entity.getName())
                     .description(entity.getDescription())
-                    .location(location)
-                    .organization(entity.getOrganization())
-                    .additionalInformation(entity.getAdditionalInformation())
                     .creationDate(entity.getCreationDate())
                     .latestUpdateDate(entity.getLatestUpdateDate())
                     .build();
@@ -155,13 +133,13 @@ public class SystemConvertersImpl implements SystemConverters {
         }
 
         // Wrapping the result.
-        SystemResponsesWrapper wrapper = new SystemResponsesWrapper();
+        VendorResponsesWrapper wrapper = new VendorResponsesWrapper();
         wrapper.setCode(ResponseCode.SUCCESS);
         wrapper.setMessage("Database transaction successfully concluded.");
         wrapper.setListOfResponses(responseDtoList);
         wrapper.setPaginationInfo(paginationInfo);
 
-        log.debug("Successfully converted MongoDB entities list to ResponseWrapper for Systems.");
+        log.debug("Successfully converted MongoDB entities list to ResponseWrapper for Vendors.");
 
         return wrapper;
     }
@@ -179,12 +157,12 @@ public class SystemConvertersImpl implements SystemConverters {
      * @throws IllegalArgumentException if message parameter is null or an empty string.
      ****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, SystemErrorMessages errorMessage) throws IllegalArgumentException {
+    public VendorResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, VendorErrorMessages errorMessage) throws IllegalArgumentException {
         if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
             throw new IllegalArgumentException("Invalid parameter detected for method synthesizeResponseWrapperForError().");
         }
 
-        SystemResponseWrapper wrapper = new SystemResponseWrapper();
+        VendorResponseWrapper wrapper = new VendorResponseWrapper();
         wrapper.setCode(code);
         wrapper.setMessage(message);
         wrapper.setResponse(null);
@@ -208,12 +186,12 @@ public class SystemConvertersImpl implements SystemConverters {
      * @throws IllegalArgumentException if message parameter is null or an empty string.
      ****************************************************************************************************************/
     @Override
-    public SystemResponsesWrapper synthesizeResponsesWrapperForError(ResponseCode code, String message, SystemErrorMessages errorMessage) throws IllegalArgumentException {
+    public VendorResponsesWrapper synthesizeResponsesWrapperForError(ResponseCode code, String message, VendorErrorMessages errorMessage) throws IllegalArgumentException {
         if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
             throw new IllegalArgumentException("Invalid parameter detected for method synthesizeResponsesWrapperForError().");
         }
 
-        SystemResponsesWrapper wrapper = new SystemResponsesWrapper();
+        VendorResponsesWrapper wrapper = new VendorResponsesWrapper();
         wrapper.setCode(code);
         wrapper.setMessage(message);
         wrapper.setListOfResponses(new ArrayList<>());
@@ -223,6 +201,4 @@ public class SystemConvertersImpl implements SystemConverters {
 
         return wrapper;
     }
-
-
 }

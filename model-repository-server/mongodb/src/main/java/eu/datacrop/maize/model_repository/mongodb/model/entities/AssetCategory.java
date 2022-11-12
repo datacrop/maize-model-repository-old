@@ -1,63 +1,72 @@
-package eu.datacrop.maize.model_repository.commons.dtos.responses.entities;
+package eu.datacrop.maize.model_repository.mongodb.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import eu.datacrop.maize.model_repository.mongodb.listeners.AssetCategoryListener;
 import lombok.Builder;
-import org.json.JSONObject;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.EntityListeners;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 /**********************************************************************************************************************
- * This class is a data transfer object representing Vendors. Used in HTTP responses.
+ * This class defines the data model of Asset Categories for persistence in a MongoDB.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
 @Builder
-public class VendorResponseDto implements Serializable {
+@Document(collection = "AssetCategory")
+@EntityListeners(AssetCategoryListener.class)
+public class AssetCategory implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -4391485086619989430L;
+    private static final long serialVersionUID = -1770243006386687651L;
 
     /******************************************************************************************************************
-     * A UUID representing a unique identifier for the Vendor. Mandatory field.
+     * A UUID representing a unique identifier for the Asset Category. Mandatory field.
      *****************************************************************************************************************/
+    @Id
     private String id;
 
     /******************************************************************************************************************
-     * A human-readable string representing a unique identifier for the Vendor. Mandatory field.
+     * A human readable string representing a unique identifier for the Asset Category. Mandatory field.
      *****************************************************************************************************************/
     private String name;
 
     /******************************************************************************************************************
-     * A human-readable longer elucidation of the Vendor.
+     * A textual description of the Asset Category. Mandatory field.
      *****************************************************************************************************************/
     private String description;
 
     /******************************************************************************************************************
-     * Timestamp of first persistence regarding the Vendor in the database. Mandatory field.
+     * Timestamp of first persistence regarding the Asset Category in the database.
      *****************************************************************************************************************/
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime creationDate;
 
     /******************************************************************************************************************
-     * Timestamp of the latest persistence regarding the Vendor in the database. Mandatory field.
+     * Timestamp of latest persistence regarding the Asset Category in the database.
      *****************************************************************************************************************/
+    @LastModifiedDate
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime latestUpdateDate;
 
     /******************************************************************************************************************
-     * Constructor of the VendorResponseDto class.
+     *  Constructor of the AssetCategory class, used for the Builder pattern.
      *
-     * @param id A UUID representing a unique identifier for the Vendor, not null.
-     * @param name A human-readable string representing a unique identifier for the Vendor, not null.
-     * @param description human-readable longer elucidation of the Vendor, not null.
-     * @param creationDate Timestamp of first persistence regarding the Vendor in the database, not null.
-     * @param latestUpdateDate Timestamp of the latest persistence regarding the Vendor in the database, not null.
+     * @param id A UUID representing a unique identifier for the Asset Category, not null.
+     * @param name A human-readable string representing a unique identifier for the Asset Category, not null.
+     * @param description A human-readable longer elucidation of the Asset Category.
+     * @param creationDate Timestamp of first persistence regarding the Asset Category in the database, not null.
+     * @param latestUpdateDate Timestamp of the latest persistence regarding the Asset Category in the database, not null.
      *****************************************************************************************************************/
-    public VendorResponseDto(String id, String name, String description, LocalDateTime creationDate, LocalDateTime latestUpdateDate) {
+    public AssetCategory(String id, String name, String description, LocalDateTime creationDate, LocalDateTime latestUpdateDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -66,10 +75,23 @@ public class VendorResponseDto implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Empty constructor of the VendorResponseDto class.
+     * Constructor of the AssetCategory class, used for instantiation with "new".
+     *
+     * @param name A human-readable string representing a unique identifier for the Asset Category, not null.
+     * @param description A human-readable longer elucidation of the Asset Category.
      *****************************************************************************************************************/
-    public VendorResponseDto() {
-        this("", "", "", null, null);
+    public AssetCategory(String name, String description) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.description = description;
+        this.creationDate = LocalDateTime.now();
+    }
+
+    /******************************************************************************************************************
+     * Empty constructor of the AssetCategory class.
+     *****************************************************************************************************************/
+    public AssetCategory() {
+        this("", "");
     }
 
     /******************************************************************************************************************
@@ -163,7 +185,7 @@ public class VendorResponseDto implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Method that checks whether two VendorResponseDto objects are equal. Two such objects are considered
+     * Method that checks whether two AssetCategory objects are equal. Two such objects are considered
      * equal if their ids and names are the same.
      *
      * @param o The second Object to compare with the current Object, not null.
@@ -172,12 +194,12 @@ public class VendorResponseDto implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VendorResponseDto that = (VendorResponseDto) o;
+        AssetCategory that = (AssetCategory) o;
         return id.equals(that.id) && name.equals(that.name);
     }
 
     /******************************************************************************************************************
-     * Method that returns the integer hash code value of the VendorResponseDto object.
+     * Method that returns the integer hash code value of the AssetCategory object.
      *****************************************************************************************************************/
     @Override
     public int hashCode() {
@@ -185,7 +207,7 @@ public class VendorResponseDto implements Serializable {
     }
 
     /******************************************************************************************************************
-     * Transforms a VendorResponseDto object to String.
+     * Transforms an AssetCategory object to String.
      *
      * @return A string representation of the Object.
      *****************************************************************************************************************/
@@ -198,20 +220,5 @@ public class VendorResponseDto implements Serializable {
                 ", creationDate=" + creationDate +
                 ", latestUpdateDate=" + latestUpdateDate +
                 '}';
-    }
-
-    /**************************************************************************************************************
-     * Transforms a VendorResponseDto object to JSONObject.
-     *
-     * @return A JSON representation of the Object.
-     *************************************************************************************************************/
-    public JSONObject toJSON() {
-        JSONObject jo = new JSONObject();
-        jo.put("id", id);
-        jo.put("name", name);
-        jo.put("description", description);
-        jo.put("creationDate", creationDate);
-        jo.put("latestUpdateDate", latestUpdateDate);
-        return jo;
     }
 }
