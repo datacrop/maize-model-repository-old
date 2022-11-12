@@ -358,7 +358,7 @@ public class SystemResponseDto implements Serializable {
     }
 
     /**************************************************************************************************************
-     * Transforms a LocationResponseDto object to JSONObject.
+     * Transforms a SystemResponseDto object to JSONObject.
      *
      * @return A JSON representation of the Object.
      *************************************************************************************************************/
