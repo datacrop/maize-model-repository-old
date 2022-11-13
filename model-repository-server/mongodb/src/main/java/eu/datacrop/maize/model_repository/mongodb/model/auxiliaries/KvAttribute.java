@@ -18,6 +18,9 @@ import java.util.Set;
  *********************************************************************************************************************/
 public class KvAttribute implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the KvAttribute class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -2525357868604982016L;
 
@@ -35,7 +38,6 @@ public class KvAttribute implements Serializable {
      * Constructor of the KvAttribute class.
      *
      * @param name A human-readable name for the Parameter Value, not null.
-     * @returns A new KvAttribute object.
      *****************************************************************************************************************/
     public KvAttribute(String name) {
         this.name = name;
@@ -44,8 +46,6 @@ public class KvAttribute implements Serializable {
 
     /******************************************************************************************************************
      * Empty constructor of the KvAttribute class.
-     *
-     * @returns A new KvAttribute object.
      *****************************************************************************************************************/
     public KvAttribute() {
         this("");

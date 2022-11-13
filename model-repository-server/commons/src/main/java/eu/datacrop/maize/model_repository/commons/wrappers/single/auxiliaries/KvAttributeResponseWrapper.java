@@ -17,6 +17,9 @@ import java.io.Serializable;
  *********************************************************************************************************************/
 public class KvAttributeResponseWrapper extends ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the KvAttributeResponseWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -1257206859791546955L;
 
@@ -32,6 +35,11 @@ public class KvAttributeResponseWrapper extends ResponseWrapper implements Seria
 
     /******************************************************************************************************************
      * Constructor of the KvAttributeResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
+     * @param response The actual object to be used as a body in API responses.
+     * @param errorCode A small string identifying a particular error.
      *****************************************************************************************************************/
     public KvAttributeResponseWrapper(ResponseCode code, String message, KvAttributeResponseDto response, KvAttributeErrorMessages errorCode) {
         this.setCode(code);

@@ -17,6 +17,9 @@ import java.io.Serializable;
  *********************************************************************************************************************/
 public class LocationResponseWrapper extends ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the LocationResponseWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -7799138665399848499L;
 
@@ -32,6 +35,11 @@ public class LocationResponseWrapper extends ResponseWrapper implements Serializ
 
     /******************************************************************************************************************
      * Constructor of the LocationResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
+     * @param response The actual object to be used as a body in API responses.
+     * @param errorCode A small string identifying a particular error.
      *****************************************************************************************************************/
     public LocationResponseWrapper(ResponseCode code, String message, LocationResponseDto response, LocationErrorMessages errorCode) {
         this.setCode(code);

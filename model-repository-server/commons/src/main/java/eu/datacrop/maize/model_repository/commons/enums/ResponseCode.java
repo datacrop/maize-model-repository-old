@@ -45,6 +45,8 @@ public enum ResponseCode {
 
     /******************************************************************************************************************
      * Constructor of the ResponseCode enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     ResponseCode(String text) {
         this.text = text;

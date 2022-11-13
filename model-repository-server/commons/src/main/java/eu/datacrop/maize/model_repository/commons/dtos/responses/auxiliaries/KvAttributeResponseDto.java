@@ -17,6 +17,9 @@ import java.util.Set;
  *********************************************************************************************************************/
 public class KvAttributeResponseDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the KvAttributeResponseDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 8393620447532340953L;
 
@@ -34,7 +37,6 @@ public class KvAttributeResponseDto implements Serializable {
      * Constructor of the KvAttributeResponseDto class.
      *
      * @param name A human-readable name for the Parameter Value, not null.
-     * @returns A new KvAttributeResponseDto object.
      *****************************************************************************************************************/
     public KvAttributeResponseDto(String name) {
         this.name = name;
@@ -43,8 +45,6 @@ public class KvAttributeResponseDto implements Serializable {
 
     /******************************************************************************************************************
      * Empty constructor of the KvAttributeResponseDto class.
-     *
-     * @returns A new KvAttributeResponseDto object.
      *****************************************************************************************************************/
     public KvAttributeResponseDto() {
         this("");

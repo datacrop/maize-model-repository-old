@@ -25,6 +25,9 @@ import java.util.UUID;
 @EntityListeners(AssetCategoryListener.class)
 public class AssetCategory implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the AssetCategory class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -1770243006386687651L;
 

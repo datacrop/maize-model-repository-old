@@ -30,6 +30,9 @@ import java.util.UUID;
 @Service
 public class SystemConvertersImpl implements SystemConverters {
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     LocationConverters locationConverters;
 

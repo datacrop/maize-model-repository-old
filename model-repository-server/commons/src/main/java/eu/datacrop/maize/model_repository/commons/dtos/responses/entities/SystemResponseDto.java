@@ -22,6 +22,9 @@ import java.util.Set;
 @Builder
 public class SystemResponseDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the SystemResponseDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -9170777359020648979L;
 
@@ -70,11 +73,14 @@ public class SystemResponseDto implements Serializable {
     /******************************************************************************************************************
      * Constructor of the SystemResponseDto class, used for the Builder pattern.
      *
+     * @param id A UUID representing a unique identifier for the IoT System, not null.
      * @param name A human-readable string representing a unique identifier for the IoT System, not null.
      * @param description A textual description of the IoT System, not null.
      * @param location The virtual or physical Location of the IoT System, not null.
      * @param organization A human-readable string representing the organization owning the IoT System, not null.
      * @param additionalInformation A collection of versatile variables hosting additional information, not null.
+     * @param creationDate Timestamp of first persistence regarding the IoT System in the database.
+     * @param latestUpdateDate Timestamp of the latest persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
     public SystemResponseDto(String id, String name, String description, LocationResponseDto location,
                              String organization, Set<Object> additionalInformation, LocalDateTime creationDate,
@@ -100,6 +106,13 @@ public class SystemResponseDto implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the SystemResponseDto class, used for instantiation with "new".
+     *
+     * @param id A UUID representing a unique identifier for the IoT System, not null.
+     * @param name A human-readable string representing a unique identifier for the IoT System, not null.
+     * @param description A textual description of the IoT System, not null.
+     * @param organization A human-readable string representing the organization owning the IoT System, not null.
+     * @param creationDate Timestamp of first persistence regarding the IoT System in the database.
+     * @param latestUpdateDate Timestamp of the latest persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
     public SystemResponseDto(String id, String name, String description, String organization,
                              LocalDateTime creationDate, LocalDateTime latestUpdateDate) {

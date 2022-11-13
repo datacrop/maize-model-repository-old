@@ -75,6 +75,8 @@ public enum RelationshipType {
 
     /******************************************************************************************************************
      * Constructor of the RelationshipType enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     RelationshipType(String text) {
         this.text = text;

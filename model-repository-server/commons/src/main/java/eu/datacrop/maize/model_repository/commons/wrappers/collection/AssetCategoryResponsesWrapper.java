@@ -20,6 +20,9 @@ import java.util.List;
  *********************************************************************************************************************/
 public class AssetCategoryResponsesWrapper extends ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the AssetCategoryResponsesWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 8589571224686950171L;
 
@@ -42,6 +45,11 @@ public class AssetCategoryResponsesWrapper extends ResponseWrapper implements Se
 
     /******************************************************************************************************************
      * Constructor of the AssetCategoryResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
+     * @param paginationInfo An object containing information regarding Pagination.
+     * @param errorCode A small string identifying a particular error.
      *****************************************************************************************************************/
     public AssetCategoryResponsesWrapper(ResponseCode code, String message, PaginationInfo paginationInfo, AssetCategoryErrorMessages errorCode) {
         this.setCode(code);

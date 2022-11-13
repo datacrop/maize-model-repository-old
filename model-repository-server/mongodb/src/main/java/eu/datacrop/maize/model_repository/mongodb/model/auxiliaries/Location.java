@@ -16,6 +16,9 @@ import java.util.Objects;
  *********************************************************************************************************************/
 public class Location implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the Location class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -7797102348398353735L;
 
@@ -31,6 +34,10 @@ public class Location implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the Location class.
+     *
+     * @param latitude The latitude of the Geographical Location, not null if virtualLocation is null.
+     * @param longitude The longitude of the Geographical Location, not null if virtualLocation is null.
+     * @param virtualLocation A string representing a Virtual Location, not null if coordinates are null.
      *****************************************************************************************************************/
     public Location(double latitude, double longitude, String virtualLocation) {
 

@@ -15,6 +15,9 @@ import java.util.Objects;
  *********************************************************************************************************************/
 public class ParameterValueResponseDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the ParameterValueResponseDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 4412043931038189371L;
 

@@ -25,6 +25,8 @@ public enum SuccessOrFailure {
 
     /******************************************************************************************************************
      * Constructor of the ResponseCode enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     SuccessOrFailure(String text) {
         this.text = text;

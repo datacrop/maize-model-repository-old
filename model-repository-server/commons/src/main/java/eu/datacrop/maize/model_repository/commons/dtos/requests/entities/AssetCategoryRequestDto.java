@@ -22,6 +22,9 @@ import java.util.Objects;
 @Builder
 public class AssetCategoryRequestDto extends RequestDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the AssetCategoryRequestDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 4603728822126069994L;
 

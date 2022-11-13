@@ -32,9 +32,15 @@ import java.util.List;
 @Profile("devmongo")
 public class AssetCategoryServicesImpl implements AssetCategoryServices {
 
+    /******************************************************************************************************************
+     * A bean that intermediates with the database.
+     *****************************************************************************************************************/
     @Autowired
     AssetCategoryRepository repository;
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     AssetCategoryConverters converters;
 

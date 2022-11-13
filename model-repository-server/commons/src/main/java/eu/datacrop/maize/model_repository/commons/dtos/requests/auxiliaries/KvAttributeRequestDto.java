@@ -24,6 +24,9 @@ import java.util.Set;
 @Slf4j
 public class KvAttributeRequestDto extends RequestDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the KvAttributeRequestDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 94725905254538961L;
 

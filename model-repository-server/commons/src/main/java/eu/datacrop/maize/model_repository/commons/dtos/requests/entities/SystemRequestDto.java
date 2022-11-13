@@ -24,6 +24,9 @@ import java.util.Set;
 @Slf4j
 public class SystemRequestDto extends RequestDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the SystemRequestDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -9170777359020648979L;
 
@@ -83,6 +86,11 @@ public class SystemRequestDto extends RequestDto implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the SystemRequestDto class, used for instantiation with "new".
+     *
+     * @param name A human-readable string representing a unique identifier for the IoT System, not null.
+     * @param description A textual description of the IoT System, not null.
+     * @param validator A bean tha offers methods to validate whether an incoming HTTP Request body contains
+     * attributes that are valid according to the business rules.
      *****************************************************************************************************************/
     public SystemRequestDto(String name, String description, String organization, Validator validator) {
         this.name = name;

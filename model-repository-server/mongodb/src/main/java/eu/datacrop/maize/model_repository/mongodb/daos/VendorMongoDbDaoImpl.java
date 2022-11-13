@@ -25,9 +25,15 @@ import org.springframework.stereotype.Service;
 @Profile("devmongo")
 public class VendorMongoDbDaoImpl implements VendorMongoDbDao {
 
+    /******************************************************************************************************************
+     * A bean that implements database operations.
+     *****************************************************************************************************************/
     @Autowired
     VendorServices services;
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     VendorConverters converters;
 

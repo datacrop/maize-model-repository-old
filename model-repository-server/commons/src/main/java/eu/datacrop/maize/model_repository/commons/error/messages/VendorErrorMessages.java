@@ -96,6 +96,8 @@ public enum VendorErrorMessages {
 
     /******************************************************************************************************************
      * Constructor of the VendorErrorMessages enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     VendorErrorMessages(String text) {
         this.text = text;

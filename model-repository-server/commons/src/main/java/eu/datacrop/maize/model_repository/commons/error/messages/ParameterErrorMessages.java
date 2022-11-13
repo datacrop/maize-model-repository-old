@@ -30,6 +30,8 @@ public enum ParameterErrorMessages {
 
     /******************************************************************************************************************
      * Constructor of the ParameterErrorMessages enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     ParameterErrorMessages(String text) {
         this.text = text;

@@ -20,6 +20,9 @@ import java.util.List;
  *********************************************************************************************************************/
 public class VendorResponsesWrapper extends ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the VendorResponsesWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -8463797614137292486L;
 
@@ -41,6 +44,11 @@ public class VendorResponsesWrapper extends ResponseWrapper implements Serializa
 
     /******************************************************************************************************************
      * Constructor of the VendorResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
+     * @param paginationInfo An object containing information regarding Pagination.
+     * @param errorCode A small string identifying a particular error.
      *****************************************************************************************************************/
     public VendorResponsesWrapper(ResponseCode code, String message, PaginationInfo paginationInfo, VendorErrorMessages errorCode) {
         this.setCode(code);

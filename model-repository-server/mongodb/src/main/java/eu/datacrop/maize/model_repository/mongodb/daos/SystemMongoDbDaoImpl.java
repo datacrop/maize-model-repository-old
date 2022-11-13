@@ -25,9 +25,15 @@ import org.springframework.stereotype.Service;
 @Profile("devmongo")
 public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
 
+    /******************************************************************************************************************
+     * A bean that implements database operations.
+     *****************************************************************************************************************/
     @Autowired
     SystemServices services;
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     SystemConverters converters;
 
@@ -36,7 +42,6 @@ public class SystemMongoDbDaoImpl implements SystemMongoDbDao {
      *
      * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
      * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
-     *
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) {

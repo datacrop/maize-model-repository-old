@@ -18,6 +18,9 @@ import java.io.Serializable;
  *********************************************************************************************************************/
 public class ParameterValueResponseWrapper extends ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the ParameterValueResponseWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -5517361506125760235L;
 
@@ -33,6 +36,11 @@ public class ParameterValueResponseWrapper extends ResponseWrapper implements Se
 
     /******************************************************************************************************************
      * Constructor of the ParameterValueResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
+     * @param response The actual object to be used as a body in API responses.
+     * @param errorCode A small string identifying a particular error.
      *****************************************************************************************************************/
     public ParameterValueResponseWrapper(ResponseCode code, String message, ParameterValueResponseDto response, ParameterValueErrorMessages errorCode) {
         this.setCode(code);

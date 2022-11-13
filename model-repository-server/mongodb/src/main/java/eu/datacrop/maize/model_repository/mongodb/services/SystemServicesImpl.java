@@ -32,9 +32,15 @@ import java.util.List;
 @Profile("devmongo")
 public class SystemServicesImpl implements SystemServices {
 
+    /******************************************************************************************************************
+     * A bean that intermediates with the database.
+     *****************************************************************************************************************/
     @Autowired
     SystemRepository repository;
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     SystemConverters converters;
 

@@ -25,6 +25,9 @@ import java.util.UUID;
 @EntityListeners(VendorListener.class)
 public class Vendor implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the Vendor class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 5072516887240873232L;
 

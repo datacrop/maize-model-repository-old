@@ -30,6 +30,8 @@ public enum KvAttributeErrorMessages {
 
     /******************************************************************************************************************
      * Constructor of the KvAttributeErrorMessages enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     KvAttributeErrorMessages(String text) {
         this.text = text;

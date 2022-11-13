@@ -29,6 +29,9 @@ import java.util.UUID;
 @EntityListeners(SystemListener.class)
 public class System implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the System class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -2593715007779118066L;
 
@@ -78,6 +81,15 @@ public class System implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the System class, used for the Builder pattern.
+     *
+     * @param id A UUID representing a unique identifier for the IoT System, not null.
+     * @param name A human-readable string representing a unique identifier for the IoT System, not null.
+     * @param description A textual description of the IoT System, not null.
+     * @param location The virtual or physical Location of the IoT System, not null.
+     * @param organization A human-readable string representing the organization owning the IoT System, not null.
+     * @param additionalInformation A collection of versatile variables hosting additional information, not null.
+     * @param creationDate Timestamp of first persistence regarding the IoT System in the database.
+     * @param latestUpdateDate Timestamp of the latest persistence regarding the IoT System in the database.
      *****************************************************************************************************************/
     public System(String id, String name, String description, Location location,
                   String organization, Set<Object> additionalInformation,
@@ -103,6 +115,10 @@ public class System implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the System class, used for instantiation with "new".
+     *
+     * @param name A human-readable string representing a unique identifier for the IoT System, not null.
+     * @param description A textual description of the IoT System, not null.
+     * @param organization A human-readable string representing the organization owning the IoT System, not null.
      *****************************************************************************************************************/
     public System(String name, String description, String organization) {
         this.id = UUID.randomUUID().toString();

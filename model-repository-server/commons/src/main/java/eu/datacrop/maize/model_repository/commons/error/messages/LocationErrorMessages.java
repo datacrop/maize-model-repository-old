@@ -25,6 +25,8 @@ public enum LocationErrorMessages {
 
     /******************************************************************************************************************
      * Constructor of the LocationErrorMessages enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     LocationErrorMessages(String text) {
         this.text = text;

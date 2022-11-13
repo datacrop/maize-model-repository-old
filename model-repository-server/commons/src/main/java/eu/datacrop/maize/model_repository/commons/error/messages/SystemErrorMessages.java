@@ -102,6 +102,8 @@ public enum SystemErrorMessages {
 
     /******************************************************************************************************************
      * Constructor of the SystemErrorMessages enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     SystemErrorMessages(String text) {
         this.text = text;

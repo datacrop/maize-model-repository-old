@@ -18,6 +18,9 @@ import java.io.Serializable;
 @Builder
 public class ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the ResponseWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 6615190985490046583L;
 
@@ -33,6 +36,9 @@ public class ResponseWrapper implements Serializable {
 
     /******************************************************************************************************************
      * Constructor of the ResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
      *****************************************************************************************************************/
     public ResponseWrapper(ResponseCode code, String message) {
         this.code = code;

@@ -21,6 +21,9 @@ import java.util.Objects;
 @Slf4j
 public class ParameterRequestDto extends RequestDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the ParameterRequestDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 7498412026167936543L;
 

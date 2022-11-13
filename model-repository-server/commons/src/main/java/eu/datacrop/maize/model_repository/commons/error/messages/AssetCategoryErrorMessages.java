@@ -96,6 +96,8 @@ public enum AssetCategoryErrorMessages {
 
     /******************************************************************************************************************
      * Constructor of the AssetCategoryErrorMessages enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     AssetCategoryErrorMessages(String text) {
         this.text = text;

@@ -32,9 +32,15 @@ import java.util.List;
 @Profile("devmongo")
 public class VendorServicesImpl implements VendorServices {
 
+    /******************************************************************************************************************
+     * A bean that intermediates with the database.
+     *****************************************************************************************************************/
     @Autowired
     VendorRepository repository;
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     VendorConverters converters;
 

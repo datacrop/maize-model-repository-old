@@ -25,9 +25,15 @@ import org.springframework.stereotype.Service;
 @Profile("devmongo")
 public class AssetCategoryMongoDbDaoImpl implements AssetCategoryMongoDbDao {
 
+    /******************************************************************************************************************
+     * A bean that implements database operations.
+     *****************************************************************************************************************/
     @Autowired
     AssetCategoryServices services;
 
+    /******************************************************************************************************************
+     * A bean that converts among database entities and data transfer objects.
+     *****************************************************************************************************************/
     @Autowired
     AssetCategoryConverters converters;
 

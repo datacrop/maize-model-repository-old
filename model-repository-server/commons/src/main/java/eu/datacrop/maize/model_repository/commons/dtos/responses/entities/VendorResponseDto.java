@@ -18,6 +18,9 @@ import java.util.Objects;
 @Builder
 public class VendorResponseDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the VendorResponseDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -4391485086619989430L;
 

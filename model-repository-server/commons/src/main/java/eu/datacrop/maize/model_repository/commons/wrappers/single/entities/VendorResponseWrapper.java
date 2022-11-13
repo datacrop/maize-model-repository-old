@@ -17,6 +17,9 @@ import java.io.Serializable;
  *********************************************************************************************************************/
 public class VendorResponseWrapper extends ResponseWrapper implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the VendorResponseWrapper class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -208824161186995071L;
 
@@ -32,6 +35,11 @@ public class VendorResponseWrapper extends ResponseWrapper implements Serializab
 
     /******************************************************************************************************************
      * Constructor of the VendorResponseWrapper class, both for Builder pattern and instantiation with "new".
+     *
+     * @param code A value from the ResponseCode enumeration to be included in responses.
+     * @param message A message to be included in responses.
+     * @param response The actual object to be used as a body in API responses.
+     * @param errorCode A small string identifying a particular error.
      *****************************************************************************************************************/
     public VendorResponseWrapper(ResponseCode code, String message, VendorResponseDto response, VendorErrorMessages errorCode) {
         this.setCode(code);

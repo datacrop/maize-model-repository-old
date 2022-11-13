@@ -22,6 +22,9 @@ import java.util.Objects;
 @Builder
 public class VendorRequestDto extends RequestDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the VendorRequestDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = -3447131953221702710L;
 

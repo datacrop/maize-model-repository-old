@@ -18,6 +18,9 @@ import java.util.Objects;
 @Builder
 public class AssetCategoryResponseDto implements Serializable {
 
+    /******************************************************************************************************************
+     * A unique identifier for the AssetCategoryResponseDto class.
+     *****************************************************************************************************************/
     @Serial
     private static final long serialVersionUID = 8075695603088176510L;
 

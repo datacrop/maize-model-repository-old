@@ -31,6 +31,8 @@ public enum AssetNature {
 
     /******************************************************************************************************************
      * Constructor of the AssetNature enumeration.
+     *
+     * @param text The text representing the enumeration values.
      *****************************************************************************************************************/
     AssetNature(String text) {
         this.text = text;
