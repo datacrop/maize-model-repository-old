@@ -323,7 +323,7 @@ public class VendorApiServicesImpl implements VendorApiServices {
         }
 
         // Logging success and returning the created Vendor.
-        log.info("Successfully created new Vendor at persistence layer with ID '{}' and Name: '{}'.",
+        log.info("Successfully created new Vendor at persistence layer with ID '{}' and Name '{}'.",
                 wrapper.getResponse().getId(), wrapper.getResponse().getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(wrapper.getResponse());
     }
@@ -432,7 +432,7 @@ public class VendorApiServicesImpl implements VendorApiServices {
         }
 
         // Logging success and returning the updated Vendor.
-        log.info("Successfully updated Vendor at persistence layer with ID '{}' and Name: '{}'.",
+        log.info("Successfully updated Vendor at persistence layer with ID '{}' and Name '{}'.",
                 wrapper.getResponse().getId(), wrapper.getResponse().getName());
         return ResponseEntity.status(HttpStatus.OK).body(wrapper.getResponse());
     }

@@ -117,7 +117,7 @@ public class VendorController {
     @Operation(summary = "Persist new Vendor", description = "Persists a new Vendor.")
     @PostMapping(path = "/")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "CREATED ~ Vendor has been successfully created.",
+            @ApiResponse(responseCode = "201", description = "Created ~ Vendor has been successfully created.",
                     content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = VendorResponseDto.class)))),
             @ApiResponse(responseCode = "400", description = "Bad_Request ~ Erroneous request operation on Vendor to be aborted.",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
@@ -194,7 +194,7 @@ public class VendorController {
     @Operation(summary = "Delete All Vendors", description = "Deletes all Vendors that have been ever persisted.")
     @DeleteMapping(path = "/")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "OK ~ All Vendors have been successfully deleted.",
+            @ApiResponse(responseCode = "204", description = "No_Content ~ All Vendors have been successfully deleted.",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))),
             @ApiResponse(responseCode = "404", description = "Not_Found ~ No Vendor has been found available to delete.",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),

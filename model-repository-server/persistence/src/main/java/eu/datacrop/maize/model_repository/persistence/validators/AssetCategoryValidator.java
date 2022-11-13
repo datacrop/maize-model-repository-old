@@ -6,6 +6,7 @@ import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
 import eu.datacrop.maize.model_repository.commons.error.messages.AssetCategoryErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.AssetCategoryResponseWrapper;
+import org.springframework.stereotype.Service;
 
 import java.util.Vector;
 
@@ -16,6 +17,7 @@ import java.util.Vector;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
+@Service
 public class AssetCategoryValidator implements Validator {
 
     /******************************************************************************************************************

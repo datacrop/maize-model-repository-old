@@ -323,7 +323,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
         }
 
         // Logging success and returning the created System.
-        log.info("Successfully created new System at persistence layer with ID '{}' and Name: '{}'.",
+        log.info("Successfully created new System at persistence layer with ID '{}' and Name '{}'.",
                 wrapper.getResponse().getId(), wrapper.getResponse().getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(wrapper.getResponse());
     }
@@ -432,7 +432,7 @@ public class SystemApiServicesImpl implements SystemApiServices {
         }
 
         // Logging success and returning the updated System.
-        log.info("Successfully updated System at persistence layer with ID '{}' and Name: '{}'.",
+        log.info("Successfully updated System at persistence layer with ID '{}' and Name '{}'.",
                 wrapper.getResponse().getId(), wrapper.getResponse().getName());
         return ResponseEntity.status(HttpStatus.OK).body(wrapper.getResponse());
     }

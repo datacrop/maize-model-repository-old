@@ -8,6 +8,7 @@ import eu.datacrop.maize.model_repository.commons.error.messages.KvAttributeErro
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.KvAttributeResponseWrapper;
 import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.ParameterValueResponseWrapper;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,7 @@ import static eu.datacrop.maize.model_repository.commons.error.messages.KvAttrib
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
+@Service
 public class KvAttributeValidator implements Validator {
 
     /******************************************************************************************************************

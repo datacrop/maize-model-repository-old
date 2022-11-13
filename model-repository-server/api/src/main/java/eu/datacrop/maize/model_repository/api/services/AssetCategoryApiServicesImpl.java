@@ -324,7 +324,7 @@ public class AssetCategoryApiServicesImpl implements AssetCategoryApiServices {
         }
 
         // Logging success and returning the created Asset Category.
-        log.info("Successfully created new Asset Category at persistence layer with ID '{}' and Name: '{}'.",
+        log.info("Successfully created new Asset Category at persistence layer with ID '{}' and Name '{}'.",
                 wrapper.getResponse().getId(), wrapper.getResponse().getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(wrapper.getResponse());
     }
@@ -433,7 +433,7 @@ public class AssetCategoryApiServicesImpl implements AssetCategoryApiServices {
         }
 
         // Logging success and returning the updated Asset Category.
-        log.info("Successfully updated Asset Category at persistence layer with ID '{}' and Name: '{}'.",
+        log.info("Successfully updated Asset Category at persistence layer with ID '{}' and Name '{}'.",
                 wrapper.getResponse().getId(), wrapper.getResponse().getName());
         return ResponseEntity.status(HttpStatus.OK).body(wrapper.getResponse());
     }
