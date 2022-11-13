@@ -7,6 +7,1941 @@
 	},
 	"item": [
 		{
+			"name": "Asset Category",
+			"item": [
+				{
+					"name": "Persist new Asset Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Industrial oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:33:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"87f6570e-e0c3-451e-be94-de75dd670172\",\n    \"name\": \"Industrial oven\",\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\",\n    \"creationDate\": \"2022-11-13T21:33:27.475\",\n    \"latestUpdateDate\": \"2022-11-13T21:33:27.490\"\n}"
+						},
+						{
+							"name": "409 Conflict - DUPLICATE_ASSET_CATEGORY",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:35:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another Asset Category with the same Name and ID: '87f6570e-e0c3-451e-be94-de75dd670172'.\",\n    \"messageKey\": \"DUPLICATE_ASSET_CATEGORY\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:35:17.695\"\n}"
+						},
+						{
+							"name": "400 Bad Request - MANDATORY_FIELDS_MISSING",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"   \",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:35:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Request contains one or more mandatory fields that are null. Operation aborted. Field(s): [name]\",\n    \"messageKey\": \"MANDATORY_FIELDS_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:35:59.308\"\n}"
+						},
+						{
+							"name": "400 Bad Request - HTTP_MESSAGE_NOT_READABLE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial oven\",,,,,,,,,,,\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:36:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"JSON parse error: Unexpected character (',' (code 44)): was expecting double-quote to start field name\",\n    \"messageKey\": \"HTTP_MESSAGE_NOT_READABLE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:36:29.252\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_CREATION\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Asset Category by UUID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Industrial baking oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{assetCategoryID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								"{{assetCategoryID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial baking oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/87f6570e-e0c3-451e-be94-de75dd670172/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"87f6570e-e0c3-451e-be94-de75dd670172",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:40:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"87f6570e-e0c3-451e-be94-de75dd670172\",\n    \"name\": \"Industrial baking oven\",\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\",\n    \"creationDate\": \"2022-11-13T21:33:27.475\",\n    \"latestUpdateDate\": \"2022-11-13T21:40:14.667\"\n}"
+						},
+						{
+							"name": "404 Not Found - ASSET_CATEGORY_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial baking oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/87f6570e-e0c3-451e-be94-de71dd670172/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"87f6570e-e0c3-451e-be94-de71dd670172",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:45:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities from the database with ID: '87f6570e-e0c3-451e-be94-de71dd670172'.\",\n    \"messageKey\": \"ASSET_CATEGORY_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:45:36.077\"\n}"
+						},
+						{
+							"name": "409 Conflict - DUPLICATE_ASSET_CATEGORY",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/87f6570e-e0c3-451e-be94-de75dd670172/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"87f6570e-e0c3-451e-be94-de75dd670172",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:42:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another Asset Category with the same Name and ID: '3f182f76-445e-41f4-8e1e-49fa07984555'.\",\n    \"messageKey\": \"DUPLICATE_ASSET_CATEGORY\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:42:23.282\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial baking oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:42:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:42:51.704\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial baking oven\",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/some_random_string/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"some_random_string",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:43:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:43:17.731\"\n}"
+						},
+						{
+							"name": "400 Bad Request - HTTP_MESSAGE_NOT_READABLE",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Industrial baking oven\",,,,,,,,\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/some_random_string/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"some_random_string",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:43:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"JSON parse error: Unexpected character (',' (code 44)): was expecting double-quote to start field name\",\n    \"messageKey\": \"HTTP_MESSAGE_NOT_READABLE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:43:40.021\"\n}"
+						},
+						{
+							"name": "400 Bad Request - MANDATORY_FIELDS_MISSING",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"   \",\r\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/87f6570e-e0c3-451e-be94-de75dd670172/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"87f6570e-e0c3-451e-be94-de75dd670172",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:44:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Request contains one or more mandatory fields that are null. Operation aborted. Field(s): [name]\",\n    \"messageKey\": \"MANDATORY_FIELDS_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:44:16.975\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{assetCategoryID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"{{assetCategoryID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_UPDATE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve Asset Category by UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{systemID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								"{{systemID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/87f6570e-e0c3-451e-be94-de75dd670172/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"87f6570e-e0c3-451e-be94-de75dd670172",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:48:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"87f6570e-e0c3-451e-be94-de75dd670172\",\n    \"name\": \"Industrial baking oven\",\n    \"description\": \"Heated chamber used for a variety of industrial applications, including baking components.\",\n    \"creationDate\": \"2022-11-13T21:33:27.475\",\n    \"latestUpdateDate\": \"2022-11-13T21:41:22.575\"\n}"
+						},
+						{
+							"name": "404 Not Found - ASSET_CATEGORY_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/87f6570e-e0c3-451e-be94-de75dd670175/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"87f6570e-e0c3-451e-be94-de75dd670175",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:49:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities from the database with ID: '87f6570e-e0c3-451e-be94-de75dd670175'.\",\n    \"messageKey\": \"ASSET_CATEGORY_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:49:45.099\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:50:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:50:11.047\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/some_random_string/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"some_random_string",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:50:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:50:39.937\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{assetCategoryID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"{{assetCategoryID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_ID\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve Asset Category by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{name}}/name/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								"{{name}}",
+								"name",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/Industrial oven/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"Industrial oven",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:55:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"3f182f76-445e-41f4-8e1e-49fa07984555\",\n    \"name\": \"Industrial oven\",\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\",\n    \"creationDate\": \"2022-11-13T21:42:08.712\",\n    \"latestUpdateDate\": \"2022-11-13T21:42:08.712\"\n}"
+						},
+						{
+							"name": "404 Not Found - ASSET_CATEGORY_NOT_FOUND_NAME",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/Industrial microscope/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"Industrial microscope",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:56:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities from the database with Name: 'Industrial microscope'.\",\n    \"messageKey\": \"ASSET_CATEGORY_NOT_FOUND_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:56:15.250\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/ /name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										" ",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:56:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:56:42.064\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{name}}/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"{{name}}",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:07:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve all Asset Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/?page=0&size=8",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Default is 0."
+								},
+								{
+									"key": "size",
+									"value": "8",
+									"description": "Default is 10."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:01:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"21f2e5ad-771d-4191-8b08-5e5540634f02\",\n        \"name\": \"Industrial oven\",\n        \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\",\n        \"creationDate\": \"2022-11-13T22:00:25.227\",\n        \"latestUpdateDate\": \"2022-11-13T22:00:25.228\"\n    },\n    {\n        \"id\": \"c2d63a06-1d77-425c-862b-e7e552bae2b4\",\n        \"name\": \"Packaging machinery\",\n        \"description\": \"Machine used for enclosing or protecting products for distribution, storage, sale, and use.\",\n        \"creationDate\": \"2022-11-13T22:01:26.247\",\n        \"latestUpdateDate\": \"2022-11-13T22:01:26.247\"\n    }\n]"
+						},
+						{
+							"name": "404 Not Found - EXCEEDED_PAGE_LIMIT",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/?page=2&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:02:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities because page limit has been exceeded. Total Pages: 1\",\n    \"messageKey\": \"EXCEEDED_PAGE_LIMIT\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T22:02:21.934\"\n}"
+						},
+						{
+							"name": "404 Not Found - NO_ASSET_CATEGORIES_FOUND",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 19:58:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities from the database.\",\n    \"messageKey\": \"NO_ASSET_CATEGORIES_FOUND\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T21:58:49.840\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_MANY\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete System by UUID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{assetCategoryID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								"{{assetCategoryID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/21f2e5ad-771d-4191-8b08-5e5540634f02/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"21f2e5ad-771d-4191-8b08-5e5540634f02",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:08:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"21f2e5ad-771d-4191-8b08-5e5540634f02\",\n    \"name\": \"Industrial oven\",\n    \"description\": \"Heated chamber used for a variety of industrial applications, including drying, curing, or baking components.\",\n    \"creationDate\": \"2022-11-13T22:00:25.227\",\n    \"latestUpdateDate\": \"2022-11-13T22:00:25.228\"\n}"
+						},
+						{
+							"name": "404 Not Found - ASSET_CATEGORY_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/21f2e5ad-771d-4191-8b08-5e5740634f02/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"21f2e5ad-771d-4191-8b08-5e5740634f02",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:09:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities from the database with ID: '21f2e5ad-771d-4191-8b08-5e5740634f02'.\",\n    \"messageKey\": \"ASSET_CATEGORY_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T22:09:09.767\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:09:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T22:09:29.059\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/some_random_string/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"some_random_string",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:09:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T22:09:59.380\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/{{assetCategoryID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										"{{assetCategoryID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_DELETION_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete all Systems",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"assetCategory",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content (Success)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:11:15 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "404 Not Found - NO_ASSET_CATEGORIES_FOUND",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 20:11:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Asset Category entities from the database.\",\n    \"messageKey\": \"NO_ASSET_CATEGORIES_FOUND\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T22:11:33.913\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/assetCategory/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"assetCategory",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_DELETION_MANY\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "System",
 			"item": [
 				{
@@ -40,7 +1975,7 @@
 					},
 					"response": [
 						{
-							"name": "201 Success",
+							"name": "201 Created",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -154,7 +2089,7 @@
 							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another System with the same Name and ID: 'fa841dd9-a822-491f-9096-7f3345f8ca64'.\",\n    \"messageKey\": \"DUPLICATE_SYSTEM\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-08T13:54:34.914\"\n}"
 						},
 						{
-							"name": "400 Bas Request - INVALID_LOCATION_STRUCTURE",
+							"name": "400 Bad Request - INVALID_LOCATION_STRUCTURE",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -857,7 +2792,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ace83002-c399-43d2-a175-b70208430afc/id/",
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/{{systemID}}/id/",
 									"protocol": "{{httpType}}",
 									"host": [
 										"{{base_url}}"
@@ -867,7 +2802,7 @@
 										"v1",
 										"asset_management",
 										"system",
-										"ace83002-c399-43d2-a175-b70208430afc",
+										"{{systemID}}",
 										"id",
 										""
 									]
@@ -1218,52 +3153,6 @@
 							"body": "{\n    \"id\": \"58d668eb-d6eb-4070-8132-e132a4d0ace8\",\n    \"name\": \"Phygital Centrifuge 4.0\",\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\n    \"location\": {\n        \"geoLocation\": {\n            \"latitude\": 52.15425526446103,\n            \"longitude\": 9.95084586033136\n        },\n        \"virtualLocation\": \"\"\n    },\n    \"organization\": \"ACME Explosives\",\n    \"additionalInformation\": [\n        {\n            \"manufacturer\": \"SpinningTop Inc.\",\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\n        }\n    ],\n    \"creationDate\": \"2022-11-06T14:40:34.228\",\n    \"latestUpdateDate\": \"2022-11-06T14:40:34.229\"\n}"
 						},
 						{
-							"name": "400 Bad Request - IDENTIFIER_MISSING",
-							"originalRequest": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ /name/",
-									"protocol": "{{httpType}}",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"model_repository",
-										"v1",
-										"asset_management",
-										"system",
-										" ",
-										"name",
-										""
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Transfer-Encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Date",
-									"value": "Sun, 06 Nov 2022 14:58:11 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "close"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:58:11.310\"\n}"
-						},
-						{
 							"name": "404 Not Found - SYSTEM_NOT_FOUND_NAME",
 							"originalRequest": {
 								"method": "GET",
@@ -1312,6 +3201,52 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any System entities from the database with Name: 'Non Existent Name'.\",\n    \"messageKey\": \"SYSTEM_NOT_FOUND_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T17:07:53.058\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/system/ /name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"system",
+										" ",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 14:58:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:58:11.310\"\n}"
 						},
 						{
 							"name": "500 Internal Server Error",
@@ -1903,7 +3838,7 @@
 					},
 					"response": [
 						{
-							"name": "204 Success",
+							"name": "204 No Content (Success)",
 							"originalRequest": {
 								"method": "DELETE",
 								"header": [],
@@ -2026,6 +3961,1874 @@
 										"v1",
 										"asset_management",
 										"system",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_DELETION_MANY\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Vendor",
+			"item": [
+				{
+					"name": "Persist new Vendor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Secure Manufacturing Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:19:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"96fd105c-2a15-45ec-82ac-8f1b2279891d\",\n    \"name\": \"Secure Manufacturing Systems S.A.\",\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\",\n    \"creationDate\": \"2022-11-13T19:19:46.214\",\n    \"latestUpdateDate\": \"2022-11-13T19:19:46.236\"\n}"
+						},
+						{
+							"name": "409 Conflict - DUPLICATE_VENDOR",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:20:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another Vendor with the same Name and ID: '96fd105c-2a15-45ec-82ac-8f1b2279891d'.\",\n    \"messageKey\": \"DUPLICATE_VENDOR\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:20:53.778\"\n}"
+						},
+						{
+							"name": "400 Bad Request - MANDATORY_FIELDS_MISSING",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:22:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Request contains one or more mandatory fields that are null. Operation aborted. Field(s): [name]\",\n    \"messageKey\": \"MANDATORY_FIELDS_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:22:38.669\"\n}"
+						},
+						{
+							"name": "400 Bad Request - HTTP_MESSAGE_NOT_READABLE",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing Systems S.A.\",,,,\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:23:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"JSON parse error: Unexpected character (',' (code 44)): was expecting double-quote to start field name\",\n    \"messageKey\": \"HTTP_MESSAGE_NOT_READABLE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:23:42.027\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_CREATION\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Vendor by UUID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Secure Manufacturing 4.0 Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								"{{vendorID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing 4.0 Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/15b7ee02-26bb-47aa-8844-f05339b75953/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"15b7ee02-26bb-47aa-8844-f05339b75953",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:31:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"15b7ee02-26bb-47aa-8844-f05339b75953\",\n    \"name\": \"Secure Manufacturing 4.0 Systems S.A.\",\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\",\n    \"creationDate\": \"2022-11-13T19:31:10.459\",\n    \"latestUpdateDate\": \"2022-11-13T19:31:55.712\"\n}"
+						},
+						{
+							"name": "400 Bad Request - DUPLICATE_VENDOR",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing 5.0 Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/15b7ee02-26bb-47aa-8844-f05339b75953/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"15b7ee02-26bb-47aa-8844-f05339b75953",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:32:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 409,\n    \"httpText\": \"409 CONFLICT\",\n    \"message\": \"There is already another Vendor with the same Name and ID: '7f1f9fdc-c363-489e-8e1f-c4c1fb085a2a'.\",\n    \"messageKey\": \"DUPLICATE_VENDOR\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:32:56.641\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing 4.0 Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"{{vendorID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:35:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:35:06.235\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing 4.0 Systems S.A.\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/Some_string_id/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"Some_string_id",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:35:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:35:55.516\"\n}"
+						},
+						{
+							"name": "400 Bad Request - HTTP_MESSAGE_NOT_READABLE",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Secure Manufacturing 4.0 Systems S.A.\",,,,,,,,\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/7f1f9fdc-c363-489e-8e1f-c4c1fb085a2a/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"7f1f9fdc-c363-489e-8e1f-c4c1fb085a2a",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:36:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"JSON parse error: Unexpected character (',' (code 44)): was expecting double-quote to start field name\",\n    \"messageKey\": \"HTTP_MESSAGE_NOT_READABLE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:36:42.207\"\n}"
+						},
+						{
+							"name": "400 Bad Request - MANDATORY_FIELDS_MISSING",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems for Smart Factories.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/7f1f9fdc-c363-489e-8e1f-c4c1fb085a2a/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"7f1f9fdc-c363-489e-8e1f-c4c1fb085a2a",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:37:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"Request contains one or more mandatory fields that are null. Operation aborted. Field(s): [name]\",\n    \"messageKey\": \"MANDATORY_FIELDS_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:37:13.405\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Phygital Centrifuge 4.0\",\r\n    \"description\": \"A cyberphysical system revolving around an automatic disc centrifuge.\",\r\n    \"location\": {\r\n        \"geoLocation\": {\r\n            \"latitude\": 52.15425526446103,\r\n            \"longitude\": 9.95084586033136\r\n        },\r\n        \"virtualLocation\": \"\"\r\n    },\r\n    \"organization\": \"ACME Explosives\",\r\n    \"additionalInformation\": [\r\n        {\r\n            \"manufacturer\": \"SpinningTop Inc.\",\r\n            \"latest_service\": \"2022-09-01T12:00:00.020\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"{{vendorID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_UPDATE\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve Vendor by UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								"{{vendorID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/78fee5e8-3620-4240-a8e1-1600dca3e17b/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"78fee5e8-3620-4240-a8e1-1600dca3e17b",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:41:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"78fee5e8-3620-4240-a8e1-1600dca3e17b\",\n    \"name\": \"Secure Manufacturing Systems S.A.\",\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\",\n    \"creationDate\": \"2022-11-13T19:40:44.734\",\n    \"latestUpdateDate\": \"2022-11-13T19:40:44.734\"\n}"
+						},
+						{
+							"name": "404 Not Found - VENDOR_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/1de4d55b-7ae9-4b2c-850c-5d3e8fcf59e9/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"1de4d55b-7ae9-4b2c-850c-5d3e8fcf59e9",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:42:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Vendor entities from the database with ID: '1de4d55b-7ae9-4b2c-850c-5d3e8fcf59e9'.\",\n    \"messageKey\": \"VENDOR_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:42:43.764\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:41:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:41:31.013\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/Some_String_ID/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"Some_String_ID",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:42:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:42:11.052\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"{{vendorID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_ID\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve Vendor by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{name}}/name/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								"{{name}}",
+								"name",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/Secure Manufacturing Systems S.A./name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"Secure Manufacturing Systems S.A.",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:50:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"9b77c823-1404-46bb-905a-c5616980b393\",\n    \"name\": \"Secure Manufacturing Systems S.A.\",\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\",\n    \"creationDate\": \"2022-11-13T19:49:37.684\",\n    \"latestUpdateDate\": \"2022-11-13T19:49:37.684\"\n}"
+						},
+						{
+							"name": "404 Not Found - VENDOR_NOT_FOUND_NAME",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/Secure Manufacturing/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"Secure Manufacturing",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:51:13 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Vendor entities from the database with Name: 'Secure Manufacturing'.\",\n    \"messageKey\": \"VENDOR_NOT_FOUND_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:51:13.088\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/ /name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										" ",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:50:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:50:42.662\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{name}}/name/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"{{name}}",
+										"name",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Nov 2022 15:07:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_NAME\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve all Vendors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/?page=0&size=8",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:54:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"9b77c823-1404-46bb-905a-c5616980b393\",\n        \"name\": \"Secure Manufacturing Systems S.A.\",\n        \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\",\n        \"creationDate\": \"2022-11-13T19:49:37.684\",\n        \"latestUpdateDate\": \"2022-11-13T19:49:37.684\"\n    },\n    {\n        \"id\": \"bfaea7b4-d723-45ff-872b-4113144a8609\",\n        \"name\": \"Reliable Systems S.A.\",\n        \"description\": \"A multinational company specializing in procuring resilient Systems.\",\n        \"creationDate\": \"2022-11-13T19:54:42.748\",\n        \"latestUpdateDate\": \"2022-11-13T19:54:42.748\"\n    }\n]"
+						},
+						{
+							"name": "404 Not Found - EXCEEDED_PAGE_LIMIT",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/?page=2&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "size",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:55:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Vendor entities because page limit has been exceeded. Total Pages: 1\",\n    \"messageKey\": \"EXCEEDED_PAGE_LIMIT\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:55:14.138\"\n}"
+						},
+						{
+							"name": "404 Not Found - NO_VENDORS_FOUND",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:55:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Vendor entities from the database.\",\n    \"messageKey\": \"NO_VENDORS_FOUND\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:55:57.989\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/?page=0&size=8",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0",
+											"description": "Default is 0."
+										},
+										{
+											"key": "size",
+											"value": "8",
+											"description": "Default is 10."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"httpCode\": 500,\r\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\r\n    \"message\": \"Internal Server Error.\",\r\n    \"messageKey\": \"ERROR_ON_RETRIEVAL_MANY\",\r\n    \"href\": null,\r\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Vendor by UUID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								"{{vendorID}}",
+								"id",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/b031f1c4-8c0e-4cd9-8703-29bced4a4e31/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"b031f1c4-8c0e-4cd9-8703-29bced4a4e31",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:58:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"b031f1c4-8c0e-4cd9-8703-29bced4a4e31\",\n    \"name\": \"Secure Manufacturing Systems S.A.\",\n    \"description\": \"A multinational company specializing in procuring tamper-proof Cyber Physical Systems.\",\n    \"creationDate\": \"2022-11-13T19:57:11.404\",\n    \"latestUpdateDate\": \"2022-11-13T19:57:11.405\"\n}"
+						},
+						{
+							"name": "404 Not Found - VENDOR_NOT_FOUND_ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/b031f1c4-8c0e-4cd9-8703-29bced4a4e32/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"b031f1c4-8c0e-4cd9-8703-29bced4a4e32",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 17:59:10 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Vendor entities from the database with ID: 'b031f1c4-8c0e-4cd9-8703-29bced4a4e32'.\",\n    \"messageKey\": \"VENDOR_NOT_FOUND_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T19:59:10.260\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_MISSING",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/ /id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										" ",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 18:00:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"An identifier is required to perform this operation.\",\n    \"messageKey\": \"IDENTIFIER_MISSING\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T20:00:30.010\"\n}"
+						},
+						{
+							"name": "400 Bad Request - IDENTIFIER_NOT_UUID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/Some_String/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"Some_String",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 18:00:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 400,\n    \"httpText\": \"400 BAD_REQUEST\",\n    \"message\": \"The identifier must adhere to the UUID format.\",\n    \"messageKey\": \"IDENTIFIER_NOT_UUID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T20:00:57.536\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/{{vendorID}}/id/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										"{{vendorID}}",
+										"id",
+										""
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 500,\n    \"httpText\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Internal Server Error.\",\n    \"messageKey\": \"ERROR_ON_DELETION_ID\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-06T14:48:38.158\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete all Vendors",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+							"protocol": "{{httpType}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"model_repository",
+								"v1",
+								"asset_management",
+								"vendor",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content (Success)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 18:02:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "404 Not Found - NO_VENDORS_FOUND",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Nov 2022 18:03:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"httpCode\": 404,\n    \"httpText\": \"404 NOT_FOUND\",\n    \"message\": \"Failed to retrieve any Vendor entities from the database.\",\n    \"messageKey\": \"NO_VENDORS_FOUND\",\n    \"href\": null,\n    \"timestamp\": \"2022-11-13T20:03:11.321\"\n}"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{httpType}}://{{base_url}}/model_repository/v1/asset_management/vendor/",
+									"protocol": "{{httpType}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"model_repository",
+										"v1",
+										"asset_management",
+										"vendor",
 										""
 									]
 								}

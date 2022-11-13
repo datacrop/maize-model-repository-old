@@ -1,6 +1,8 @@
 package eu.datacrop.maize.model_repository.api.services;
 
+import eu.datacrop.maize.model_repository.mongodb.repositories.AssetCategoryRepository;
 import eu.datacrop.maize.model_repository.mongodb.repositories.SystemRepository;
+import eu.datacrop.maize.model_repository.mongodb.repositories.VendorRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -15,11 +17,21 @@ public class InitDB implements ApplicationListener<ApplicationReadyEvent> {
     SystemRepository systemRepository;
 
     @Autowired
+    AssetCategoryRepository assetCategoryRepository;
+
+    @Autowired
+    VendorRepository vendorRepository;
+
+    @Autowired
     SystemApiServices services;
 
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
 
         systemRepository.deleteAll();
+
+        assetCategoryRepository.deleteAll();
+
+        vendorRepository.deleteAll();
 
         /*for (int i = 0; i < 10; i++) {
             System system = new System();
