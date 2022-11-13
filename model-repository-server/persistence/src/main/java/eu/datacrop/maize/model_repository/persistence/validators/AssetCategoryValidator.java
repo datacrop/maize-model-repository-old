@@ -17,6 +17,7 @@ import java.util.Vector;
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
+
 @Service
 public class AssetCategoryValidator implements Validator {
 
