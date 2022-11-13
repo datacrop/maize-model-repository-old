@@ -31,7 +31,7 @@ public class KvAttributeValidator implements Validator {
      * @return A ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public KvAttributeResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
@@ -75,7 +75,7 @@ public class KvAttributeValidator implements Validator {
      * @return A ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public KvAttributeResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
@@ -95,7 +95,7 @@ public class KvAttributeValidator implements Validator {
      * @param   requestDto The data transfer object to be parsed, not null.
      * @return A collection of fields that have been marked as erroneous.
      *
-     * @throws IllegalArgumentException if the method parameter is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     private Vector<String> getNamesOfFieldsThatAreErroneouslyNull(KvAttributeRequestDto requestDto) throws IllegalArgumentException {
 
@@ -121,7 +121,7 @@ public class KvAttributeValidator implements Validator {
      * @return A ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * @throws IllegalArgumentException if the method parameter is null.
+     * @throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     private KvAttributeResponseWrapper validateParameterValues(KvAttributeRequestDto requestDto) throws IllegalArgumentException {
 

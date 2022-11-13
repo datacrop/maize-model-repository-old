@@ -25,7 +25,7 @@ public class ParameterValueValidator implements Validator {
      * @return A ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public ParameterValueResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
@@ -61,7 +61,7 @@ public class ParameterValueValidator implements Validator {
      * @return A ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public ParameterValueResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
@@ -81,7 +81,7 @@ public class ParameterValueValidator implements Validator {
      * @param   requestDto The data transfer object to be parsed, not null.
      * @return A collection of fields that have been marked as erroneous.
      *
-     * @throws IllegalArgumentException if the method parameter is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     private Vector<String> getNamesOfFieldsThatAreErroneouslyNull(ParameterValueRequestDto requestDto) throws IllegalArgumentException {
 

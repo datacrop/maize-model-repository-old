@@ -1,22 +1,22 @@
 package eu.datacrop.maize.model_repository.persistence.validators;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.auxiliaries.ParameterRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.VendorRequestDto;
 import eu.datacrop.maize.model_repository.commons.dtos.requests.templates.RequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.error.messages.ParameterErrorMessages;
+import eu.datacrop.maize.model_repository.commons.error.messages.VendorErrorMessages;
 import eu.datacrop.maize.model_repository.commons.validators.Validator;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.auxiliaries.ParameterResponseWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.VendorResponseWrapper;
 
 import java.util.Vector;
 
 /**********************************************************************************************************************
  * This class implements methods to validate whether an incoming HTTP Request body contains attributes that are
- * valid according to the business rules for a Parameter entity.
+ * valid according to the business rules for a Vendor entity.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
  * @since version 0.4.0
  *********************************************************************************************************************/
-public class ParameterValidator implements Validator {
+public class VendorValidator implements Validator {
 
     /******************************************************************************************************************
      * This method triggers validation of the data transfer object's attributes.
@@ -28,22 +28,22 @@ public class ParameterValidator implements Validator {
      * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
-    public ParameterResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
+    public VendorResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
 
-        // Checking input parameters.
+        // Checking input vendors.
         if (requestDto == null) {
-            throw new IllegalArgumentException("Invalid parameter detected for method ParameterValidator.validate().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorValidator.validate().");
         }
 
-        ParameterRequestDto parameterRequestDto = (ParameterRequestDto) requestDto;
+        VendorRequestDto vendorRequestDto = (VendorRequestDto) requestDto;
 
         String message;
         try {
             // Checking the request for mandatory fields that were erroneously provided without content.
-            Vector<String> fields = getNamesOfFieldsThatAreErroneouslyNull(parameterRequestDto);
+            Vector<String> fields = getNamesOfFieldsThatAreErroneouslyNull(vendorRequestDto);
             if (!fields.isEmpty()) {
-                message = ParameterErrorMessages.MANDATORY_FIELDS_MISSING.toString().concat(" Field(s): ").concat(fields.toString());
-                return new ParameterResponseWrapper(ResponseCode.BAD_REQUEST, message, null, ParameterErrorMessages.MANDATORY_FIELDS_MISSING);
+                message = VendorErrorMessages.MANDATORY_FIELDS_MISSING.toString().concat(" Field(s): ").concat(fields.toString());
+                return new VendorResponseWrapper(ResponseCode.BAD_REQUEST, message, null, VendorErrorMessages.MANDATORY_FIELDS_MISSING);
             }
         } catch (IllegalArgumentException e) {
             // Reporting internal server error.
@@ -51,7 +51,7 @@ public class ParameterValidator implements Validator {
         }
 
         // Reporting that attribute validation found no issues.
-        return new ParameterResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
+        return new VendorResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
     }
 
     /******************************************************************************************************************
@@ -64,18 +64,18 @@ public class ParameterValidator implements Validator {
      * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
-    public ParameterResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
+    public VendorResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
 
         if (requestDto == null) {
-            throw new IllegalArgumentException("Invalid parameter detected for method ParameterValidator.validate().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorValidator.validate().");
         }
 
-        // Always returns SUCCESS according to business logic Parameter do not refer to other entities.
-        return new ParameterResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
+        // Always returns SUCCESS according to business logic Vendor do not refer to other entities.
+        return new VendorResponseWrapper(ResponseCode.SUCCESS, "Validation success.", null, null);
     }
 
     /******************************************************************************************************************
-     * This method parses a Parameter Request Data Transfer Object for fields that should have not been left
+     * This method parses a Vendor Request Data Transfer Object for fields that should have not been left
      * null according to business logic. Returns empty Vector if no erroneous fields have been located.
      *
      * @param   requestDto The data transfer object to be parsed, not null.
@@ -83,19 +83,17 @@ public class ParameterValidator implements Validator {
      *
      * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
-    private Vector<String> getNamesOfFieldsThatAreErroneouslyNull(ParameterRequestDto requestDto) throws IllegalArgumentException {
+    private Vector<String> getNamesOfFieldsThatAreErroneouslyNull(VendorRequestDto requestDto) throws IllegalArgumentException {
 
         // Checking input parameters.
         if (requestDto == null) {
-            throw new IllegalArgumentException("Invalid parameter detected for method ParameterValidator.getNamesOfFieldsThatAreErroneouslyNull().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorValidator.getNamesOfFieldsThatAreErroneouslyNull().");
         }
 
         Vector<String> fields = new Vector<String>();
 
         // Checking mandatory fields "Name" and "Description".
         if (requestDto.getName() == null || requestDto.getName().isBlank()) fields.add("name");
-        if (requestDto.getDescription() == null) fields.add("description");
-        if (requestDto.getType() == null) fields.add("type");
 
         // Logging and returning result.
         return fields;

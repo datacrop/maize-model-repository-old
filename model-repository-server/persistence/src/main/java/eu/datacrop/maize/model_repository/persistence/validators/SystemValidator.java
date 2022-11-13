@@ -30,7 +30,7 @@ public class SystemValidator implements Validator {
      * @return An abstract ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
@@ -74,7 +74,7 @@ public class SystemValidator implements Validator {
      * @return An abstract ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public SystemResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
@@ -94,7 +94,7 @@ public class SystemValidator implements Validator {
      * @param   requestDto The data transfer object to be parsed, not null.
      * @return A collection of fields that have been marked as erroneous.
      *
-     * @throws IllegalArgumentException if the method parameter is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     private Vector<String> getNamesOfFieldsThatAreErroneouslyNull(SystemRequestDto requestDto) throws IllegalArgumentException {
 
@@ -120,7 +120,7 @@ public class SystemValidator implements Validator {
      * @param   requestDto The data transfer object to be parsed, not null.
      * @return The verdict for SUCCESS or FAILURE of the check.
      *
-     * @throws IllegalArgumentException if the method parameter is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     private ResponseWrapper validateLocation(SystemRequestDto requestDto) throws IllegalArgumentException {
 
