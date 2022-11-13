@@ -1,112 +1,112 @@
 package eu.datacrop.maize.model_repository.persistence.mongo_implementation;
 
-import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.SystemRequestDto;
+import eu.datacrop.maize.model_repository.commons.dtos.requests.entities.VendorRequestDto;
 import eu.datacrop.maize.model_repository.commons.enums.ResponseCode;
-import eu.datacrop.maize.model_repository.commons.error.messages.SystemErrorMessages;
-import eu.datacrop.maize.model_repository.commons.wrappers.collection.SystemResponsesWrapper;
-import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.SystemResponseWrapper;
-import eu.datacrop.maize.model_repository.mongodb.services.SystemServices;
-import eu.datacrop.maize.model_repository.persistence.daos.SystemPersistenceLayerDaos;
-import eu.datacrop.maize.model_repository.persistence.validators.SystemValidator;
+import eu.datacrop.maize.model_repository.commons.error.messages.VendorErrorMessages;
+import eu.datacrop.maize.model_repository.commons.wrappers.collection.VendorResponsesWrapper;
+import eu.datacrop.maize.model_repository.commons.wrappers.single.entities.VendorResponseWrapper;
+import eu.datacrop.maize.model_repository.mongodb.services.VendorServices;
+import eu.datacrop.maize.model_repository.persistence.daos.VendorPersistenceLayerDaos;
+import eu.datacrop.maize.model_repository.persistence.validators.VendorValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 /**********************************************************************************************************************
- * This class redirects enquires to the persistence layer pertaining to IoT Systems. Implementation for MongoDB.
+ * This class redirects enquires to the persistence layer pertaining to Vendors. Implementation for MongoDB.
  *
  * @author Angela-Maria Despotopoulou [Athens, Greece]
- * @since version 0.3.0
+ * @since version 0.4.0
  *********************************************************************************************************************/
 @Slf4j
 @Service
 @Profile("devmongo")
-public class SystemMongoDaos implements SystemPersistenceLayerDaos {
+public class VendorMongoDaos implements VendorPersistenceLayerDaos {
 
     @Autowired
-    SystemServices services;
+    VendorServices services;
 
     @Autowired
-    SystemValidator validator;
+    VendorValidator validator;
 
 
     /******************************************************************************************************************
-     * Method to retrieve an existing System using its databaseID as unique identifier.
+     * Method to retrieve an existing Vendor using its databaseID as unique identifier.
      *
-     * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
-     * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
+     * @param databaseID A UUID that uniquely identifies an existing Vendor in the database, not null.
+     * @return A wrapped data transfer object with either information on the retrieved Vendor or failure messages.
      *
      * @throws IllegalArgumentException - if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper retrieveSystemByDatabaseID(String databaseID) throws IllegalArgumentException {
+    public VendorResponseWrapper retrieveVendorByDatabaseID(String databaseID) throws IllegalArgumentException {
 
         // Checking input parameters.
         if (databaseID.isBlank()) {
-            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.retrieveSystemByDatabaseID().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorMongoDaos.retrieveVendorByDatabaseID().");
         }
 
-        log.info("Persistence layer (MongoDB) received request for retrieval of System with ID: '{}'.", databaseID);
-        return services.retrieveSystemByDatabaseID(databaseID);
+        log.info("Persistence layer (MongoDB) received request for retrieval of Vendor with ID: '{}'.", databaseID);
+        return services.retrieveVendorByDatabaseID(databaseID);
     }
 
     /******************************************************************************************************************
-     * Method to retrieve an existing System using its name as unique identifier.
+     * Method to retrieve an existing Vendor using its name as unique identifier.
      *
-     * @param name A string that uniquely identifies an existing System in the database, not null.
-     * @return A wrapped data transfer object with either information on the retrieved System or failure messages.
+     * @param name A string that uniquely identifies an existing Vendor in the database, not null.
+     * @return A wrapped data transfer object with either information on the retrieved Vendor or failure messages.
      *
      * @throws IllegalArgumentException - if name is null.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper retrieveSystemByName(String name) throws IllegalArgumentException {
+    public VendorResponseWrapper retrieveVendorByName(String name) throws IllegalArgumentException {
 
         // Checking input parameters.
         if (name.isBlank()) {
-            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.retrieveSystemByName().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorMongoDaos.retrieveVendorByName().");
         }
 
-        log.info("Persistence layer (MongoDB) received request for retrieval of System with Name: '{}'.", name);
-        return services.retrieveSystemByName(name);
+        log.info("Persistence layer (MongoDB) received request for retrieval of Vendor with Name: '{}'.", name);
+        return services.retrieveVendorByName(name);
     }
 
     /******************************************************************************************************************
-     * Method to retrieve all Systems paginated.
+     * Method to retrieve all Vendors paginated.
      *
      * @param page The page to retrieve.
      * @param size The intended size of pages.
-     * @return A wrapped data transfer object with either information on the retrieved Systems or failure messages.
+     * @return A wrapped data transfer object with either information on the retrieved Vendors or failure messages.
      *****************************************************************************************************************/
     @Override
-    public SystemResponsesWrapper retrieveAllSystems(int page, int size) {
-        log.info("Persistence layer (MongoDB) received request for retrieval of all Systems.");
-        return services.retrieveAllSystems(page, size);
+    public VendorResponsesWrapper retrieveAllVendors(int page, int size) {
+        log.info("Persistence layer (MongoDB) received request for retrieval of all Vendors.");
+        return services.retrieveAllVendors(page, size);
     }
 
     /******************************************************************************************************************
-     * Method to persist a new System.
+     * Method to persist a new Vendor.
      *
-     * @param requestDto A data transfer object with values for the attributes of the System, not null.
-     * @return A wrapped data transfer object with either information on the created System or failure messages.
+     * @param requestDto A data transfer object with values for the attributes of the Vendor, not null.
+     * @return A wrapped data transfer object with either information on the created Vendor or failure messages.
      *
      * @throws IllegalArgumentException - if requestDto is null.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper createSystem(SystemRequestDto requestDto) throws IllegalArgumentException {
+    public VendorResponseWrapper createVendor(VendorRequestDto requestDto) throws IllegalArgumentException {
 
         // Checking input parameters.
         if (requestDto == null) {
-            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.createSystem().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorMongoDaos.createVendor().");
         }
 
-        log.info("Persistence layer (MongoDB) received request for creation of new System.");
+        log.info("Persistence layer (MongoDB) received request for creation of new Vendor.");
 
-        // Making the validator specific for Systems.
+        // Making the validator specific for Vendors.
         requestDto.setValidator(this.validator);
 
         // Performing validations of data transfer object.
-        SystemResponseWrapper wrapper = (SystemResponseWrapper) requestDto.performValidation();
+        VendorResponseWrapper wrapper = (VendorResponseWrapper) requestDto.performValidation();
         if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
             // Aborting if issues have been discovered.
             log.debug("Issues discovered during attribute validation.");
@@ -114,34 +114,34 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         }
 
         // Continuing if issues have not been discovered.
-        return services.createSystem(requestDto);
+        return services.createVendor(requestDto);
     }
 
     /******************************************************************************************************************
-     * Method to update an existing System using its databaseID as unique identifier.
+     * Method to update an existing Vendor using its databaseID as unique identifier.
      *
-     * @param requestDto A data transfer object with values for the attributes of the System, not null.
-     * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
-     * @return A wrapped data transfer object with either information on the updated System or failure messages.
+     * @param requestDto A data transfer object with values for the attributes of the Vendor, not null.
+     * @param databaseID A UUID that uniquely identifies an existing Vendor in the database, not null.
+     * @return A wrapped data transfer object with either information on the updated Vendor or failure messages.
      *
      * @throws IllegalArgumentException - if requestDto is null.
      * @throws IllegalArgumentException - if databaseID is null or empty string.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper updateSystem(SystemRequestDto requestDto, String databaseID) throws IllegalArgumentException {
+    public VendorResponseWrapper updateVendor(VendorRequestDto requestDto, String databaseID) throws IllegalArgumentException {
 
         // Checking input parameters.
         if (requestDto == null || databaseID.isBlank()) {
-            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.updateSystem().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorMongoDaos.updateVendor().");
         }
 
-        log.info("Persistence layer (MongoDB) received request for update of System with ID: '{}'.", databaseID);
+        log.info("Persistence layer (MongoDB) received request for update of Vendor with ID: '{}'.", databaseID);
 
-        // Making the validator specific for Systems.
+        // Making the validator specific for Vendors.
         requestDto.setValidator(this.validator);
 
         // Performing validations of data transfer object.
-        SystemResponseWrapper wrapper = requestDto.performValidation();
+        VendorResponseWrapper wrapper = requestDto.performValidation();
         if (!wrapper.getCode().equals(ResponseCode.SUCCESS)) {
             // Aborting if issues have been discovered.
             log.debug("Issues discovered during attribute validation.");
@@ -149,38 +149,38 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
         }
 
         // Continuing if issues have not been discovered.
-        return services.updateSystem(requestDto, databaseID);
+        return services.updateVendor(requestDto, databaseID);
     }
 
     /******************************************************************************************************************
-     * Method to delete an existing System using its databaseID as unique identifier.
+     * Method to delete an existing Vendor using its databaseID as unique identifier.
      *
-     * @param databaseID A UUID that uniquely identifies an existing System in the database, not null.
-     * @return A wrapped data transfer object with either information on the deleted System or failure messages.
+     * @param databaseID A UUID that uniquely identifies an existing Vendor in the database, not null.
+     * @return A wrapped data transfer object with either information on the deleted Vendor or failure messages.
      *
      * @throws IllegalArgumentException - if databaseID is null or empty string.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper deleteSystem(String databaseID) throws IllegalArgumentException {
+    public VendorResponseWrapper deleteVendor(String databaseID) throws IllegalArgumentException {
 
         // Checking input parameters.
         if (databaseID.isBlank()) {
-            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.deleteSystem().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorMongoDaos.deleteVendor().");
         }
 
-        log.info("Persistence layer (MongoDB) received request for deletion of System with ID: '{}'.", databaseID);
-        return services.deleteSystem(databaseID);
+        log.info("Persistence layer (MongoDB) received request for deletion of Vendor with ID: '{}'.", databaseID);
+        return services.deleteVendor(databaseID);
     }
 
     /******************************************************************************************************************
-     * Method to delete all existing Systems.
+     * Method to delete all existing Vendors.
      *
      * @return A wrapped data transfer object with either a success message or failure messages.
      *****************************************************************************************************************/
     @Override
-    public SystemResponseWrapper deleteAllSystems() {
-        log.info("Persistence layer (MongoDB) received request for deletion of all Systems.");
-        return services.deleteAllSystems();
+    public VendorResponseWrapper deleteAllVendors() {
+        log.info("Persistence layer (MongoDB) received request for deletion of all Vendors.");
+        return services.deleteAllVendors();
     }
 
     /******************************************************************************************************************
@@ -194,13 +194,13 @@ public class SystemMongoDaos implements SystemPersistenceLayerDaos {
      * @throws IllegalArgumentException - if code is null or empty.
      * @throws IllegalArgumentException - if code is ResponseCode.SUCCESS or ResponseCode.UNDEFINED.
      *****************************************************************************************************************/
-    private SystemResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, SystemErrorMessages errorCode) throws IllegalArgumentException {
+    private VendorResponseWrapper synthesizeResponseWrapperForError(ResponseCode code, String message, VendorErrorMessages errorCode) throws IllegalArgumentException {
 
         if (code == null || code.equals(ResponseCode.SUCCESS) || code.equals(ResponseCode.UNDEFINED) || message.isBlank()) {
-            throw new IllegalArgumentException("Invalid parameter detected for method SystemMongoDaos.synthesizeResponseWrapperForError().");
+            throw new IllegalArgumentException("Invalid parameter detected for method VendorMongoDaos.synthesizeResponseWrapperForError().");
         }
 
-        SystemResponseWrapper wrapper = new SystemResponseWrapper();
+        VendorResponseWrapper wrapper = new VendorResponseWrapper();
         wrapper.setCode(code);
         wrapper.setMessage(message);
         wrapper.setResponse(null);

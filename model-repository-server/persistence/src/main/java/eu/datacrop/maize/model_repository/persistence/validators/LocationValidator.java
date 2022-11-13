@@ -26,7 +26,7 @@ public class LocationValidator implements Validator {
      * @return An abstract ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public LocationResponseWrapper validateAttributes(RequestDto requestDto) throws IllegalArgumentException {
@@ -66,7 +66,7 @@ public class LocationValidator implements Validator {
      * @return An abstract ResponseWrapper (the user will receive a more elaborate one, here it is used only for
      * internal intra-module communication).
      *
-     * throws IllegalArgumentException, if requestDto is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     @Override
     public LocationResponseWrapper validateRelationships(RequestDto requestDto) throws IllegalArgumentException {
@@ -86,7 +86,7 @@ public class LocationValidator implements Validator {
      * @param requestDto The data transfer object to be checked.
      * @return The verdict for SUCCESS or FAILURE of the check.
      *
-     * @throws IllegalArgumentException if the method parameter is null.
+     * throws IllegalArgumentException - if the method parameter is null.
      *****************************************************************************************************************/
     private SuccessOrFailure checkGeoVirtualBalance(LocationRequestDto requestDto) throws IllegalArgumentException {
 
